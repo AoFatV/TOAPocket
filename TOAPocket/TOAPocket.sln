@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOAPocket.UI.Web", "TOAPocket.UI.Web\TOAPocket.UI.Web.csproj", "{7CC6FA7F-33AF-4225-B7BC-6ED216F42523}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5210D123-1EAE-4BDB-8098-D12BE83BBE2F} = {5210D123-1EAE-4BDB-8098-D12BE83BBE2F}
+		{AC631346-74DC-460E-B73E-C90499D3B2BC} = {AC631346-74DC-460E-B73E-C90499D3B2BC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOAPocket.DataAccess", "TOAPocket.DataAccess\TOAPocket.DataAccess.csproj", "{AC631346-74DC-460E-B73E-C90499D3B2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOAPocket.BusinessLogic", "TOAPocket.BusinessLogic\TOAPocket.BusinessLogic.csproj", "{5210D123-1EAE-4BDB-8098-D12BE83BBE2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC631346-74DC-460E-B73E-C90499D3B2BC} = {AC631346-74DC-460E-B73E-C90499D3B2BC}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CC6FA7F-33AF-4225-B7BC-6ED216F42523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC6FA7F-33AF-4225-B7BC-6ED216F42523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC6FA7F-33AF-4225-B7BC-6ED216F42523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC6FA7F-33AF-4225-B7BC-6ED216F42523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC631346-74DC-460E-B73E-C90499D3B2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC631346-74DC-460E-B73E-C90499D3B2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC631346-74DC-460E-B73E-C90499D3B2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC631346-74DC-460E-B73E-C90499D3B2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5210D123-1EAE-4BDB-8098-D12BE83BBE2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5210D123-1EAE-4BDB-8098-D12BE83BBE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5210D123-1EAE-4BDB-8098-D12BE83BBE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5210D123-1EAE-4BDB-8098-D12BE83BBE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
