@@ -48,7 +48,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_ServerClick" CssClass="btn btn-info pull-right" />
+                                <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_ServerClick" CssClass="btn btn-info pull-right" Text="Log in"/>
                                
                             </div>
                             <!-- /.box-footer -->

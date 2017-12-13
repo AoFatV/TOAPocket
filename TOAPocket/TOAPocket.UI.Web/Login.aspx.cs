@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TOAPocket.BusinessLogic;
@@ -14,8 +15,10 @@ namespace TOAPocket.UI.Web
         {
             if (!IsPostBack)
             {
-                //FormsAuthentication.SetAuthCookie("chowalit", false);
-                //Response.Redirect("Home/Index.aspx");
+                //if (Session["User"] == null || !User.Identity.IsAuthenticated)
+                //{
+                //    Response.Redirect("Login.aspx");
+                //}
             }
         }
 
@@ -26,15 +29,18 @@ namespace TOAPocket.UI.Web
             try
             {
                 var users = blUser.GetUser(txtUserName.Value);
-                //if (users.UserId == 0)
-                //{
-                //    //Invalid User
-                //}
-                //else
-                //{
-                //    FormsAuthentication.SetAuthCookie(txtUserName.Value, false);
-                //    Response.Redirect("Home/Index.aspx");
-                //}
+                if (users.Tables.Count == 0)
+                {
+                    //Invalid User
+                }
+                else
+                {
+
+                    Session["User"] = users;
+                    //FormsAuthentication.SetAuthCookie(txtUserName.Value, false);
+                    FormsAuthentication.SetAuthCookie(users.Tables[0].Rows[0]["USER_ID"].ToString(), true);
+                    Response.Redirect("Home/Index.aspx");
+                }
             }
             catch (Exception ex)
             {

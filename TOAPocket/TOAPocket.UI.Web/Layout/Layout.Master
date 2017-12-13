@@ -5,10 +5,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title></title>    
+    <%: System.Web.Optimization.Scripts.Render("~/scripts/jquery") %>
+    <%: System.Web.Optimization.Scripts.Render("~/scripts/adminlte") %>
     <%: System.Web.Optimization.Styles.Render("~/content/adminlte") %>
     <%: System.Web.Optimization.Styles.Render("~/content/css") %>
-    <%: System.Web.Optimization.Scripts.Render("~/scripts/adminlte") %>
+    <%: System.Web.Optimization.Styles.Render("~/content/datatable") %>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -55,7 +58,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../Barcode/ImportBarcode.aspx"><i class="fa fa-circle-o"></i>Import Barcode</a></li>
-                        <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i>Profile</a></li>
+                        <li><a href="../Barcode/ConfirmReceive.aspx"><i class="fa fa-circle-o"></i>รับ Barcode ตั้งต้น</a></li>
                         <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i>Login</a></li>
                         <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i>Register</a></li>
                         <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i>Lockscreen</a></li>

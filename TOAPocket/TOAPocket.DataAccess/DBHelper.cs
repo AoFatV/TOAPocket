@@ -24,7 +24,7 @@ namespace TOAPocket.DataAccess
 
         //public void New()
         //{
-            
+
         //}
 
         public void OpenCon()
@@ -73,7 +73,7 @@ namespace TOAPocket.DataAccess
 
         public void RollBackTransaction()
         {
-            if (Transaction == null)
+            if (Transaction != null)
             {
                 Transaction.Rollback();
                 Transaction.Dispose();
@@ -84,7 +84,7 @@ namespace TOAPocket.DataAccess
 
         public void CommitTransaction()
         {
-            if (Transaction == null)
+            if (Transaction != null)
             {
                 Transaction.Commit();
                 Transaction.Dispose();
@@ -95,13 +95,13 @@ namespace TOAPocket.DataAccess
 
         public void CloseCon()
         {
-            if (Connection == null)
+            if (Connection != null)
             {
                 Connection.Close();
                 Connection.Dispose();
             }
 
-            if (Command == null)
+            if (Command != null)
             {
                 Command.Dispose();
             }
