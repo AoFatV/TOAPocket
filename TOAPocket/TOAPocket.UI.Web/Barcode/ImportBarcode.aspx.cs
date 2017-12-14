@@ -82,9 +82,9 @@ namespace TOAPocket.UI.Web.Barcode
                 //DataSet users = (DataSet)Session["User"];
 
                 bool rsTmp = blBarcode.InsertBarcodeToTemp(dt, HttpContext.Current.User.Identity.Name);
-                bool resultClear = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
+                //bool resultClear = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
 
-                if (rsTmp && resultClear)
+                if (rsTmp)
                 {
                     dtUpload = dt;
                     dtUpload.Columns.Add("STATUS", typeof(String));
@@ -104,8 +104,8 @@ namespace TOAPocket.UI.Web.Barcode
             try
             {
                 ds = blBarcode.InsertBarcode(HttpContext.Current.User.Identity.Name, "");
-                result = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
-                if (ds.Tables.Count > 0 && result)
+                //result = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
+                if (ds.Tables.Count > 0)
                 {
                     dtUpload = ds.Tables[0];
                 }

@@ -162,5 +162,144 @@ namespace TOAPocket.DataAccess
 
             return result;
         }
+
+        public DataSet GetBarcodeByPO(string po)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetBarcodeByPO";
+                Command.Parameters.Clear();
+
+                if (!String.IsNullOrEmpty(po))
+                {
+                    Command.Parameters.Add(new SqlParameter("PONo", SqlDbType.VarChar));
+                    Command.Parameters["PONo"].Value = String.IsNullOrEmpty(po.Trim()) ? (object)DBNull.Value : po;
+                }
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
+
+        public bool UpdateBarcodeByPO(string po, string department, string updateBy)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("spUPDBarcodeByPO");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@PONo", SqlDbType.NVarChar, po);
+                db.AddInParameter(sqlCmd, "@Department", SqlDbType.NVarChar, department);
+                db.AddInParameter(sqlCmd, "@UpdateBy", SqlDbType.NVarChar, updateBy);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
+
+        public DataSet GetBarcodeByBarcode(string po, string barcodeStart, string barcodeEnd)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetBarcodeByBarcode";
+                Command.Parameters.Clear();
+
+                Command.Parameters.Add(new SqlParameter("PONo", SqlDbType.VarChar));
+                Command.Parameters["PONo"].Value = String.IsNullOrEmpty(po.Trim()) ? (object)DBNull.Value : po;
+                Command.Parameters.Add(new SqlParameter("BCStart", SqlDbType.VarChar));
+                Command.Parameters["BCStart"].Value = String.IsNullOrEmpty(barcodeStart.Trim()) ? (object)DBNull.Value : barcodeStart;
+                Command.Parameters.Add(new SqlParameter("BCEnd", SqlDbType.VarChar));
+                Command.Parameters["BCEnd"].Value = String.IsNullOrEmpty(barcodeEnd.Trim()) ? (object)DBNull.Value : barcodeEnd;
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
+
+        public bool UpdateBarcodeByBarcode(string barcodeId, string department, string updateBy)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("spUPDBarcodeByBarcode");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@BarcodeId", SqlDbType.NVarChar, barcodeId);
+                db.AddInParameter(sqlCmd, "@Department", SqlDbType.NVarChar, department);
+                db.AddInParameter(sqlCmd, "@UpdateBy", SqlDbType.NVarChar, updateBy);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
     }
 }

@@ -17,7 +17,7 @@
                 'autoWidth': false
             });
 
-            $("#fileUpload").change(function () {
+            $("[id*='fileUpload']").change(function () {
                 var file = this.files[0];
                 var reader = new FileReader();
 
@@ -26,6 +26,20 @@
             });
 
         });
+
+        function checkFileUpload() {
+
+            if ($("#txtFileUploadName").val() == "") {
+                alert("กรุณาเลือกไฟล์ก่อนทำการ Upload");
+                return false;
+            }
+
+            return true;
+        }
+
+        function clearFileUpload() {
+            $("#txtFileUploadName").val("");
+        }
     </script>
     <style type="text/css">
         .btn-bs-file input[type="file"] {
@@ -74,9 +88,9 @@
                                                 <%--<input type="file" id="fileUpload" runat="server" />--%>
                                                 <asp:FileUpload ID="fileUpload" runat="server" />
                                             </label>
-                                            <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_OnClick" Text="Upload" CssClass="btn btn-info" />
+                                            <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_OnClick" Text="Upload" CssClass="btn btn-info" OnClientClick="return checkFileUpload()" />
 
-                                            <div class="btn btn-info">
+                                            <div class="btn btn-info" onclick="clearFileUpload();">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                                 <span class="">Clear</span>
                                             </div>
@@ -116,10 +130,8 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-xs-2  col-sm-offset-3">
-                                        <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick"/>
-                                    </div>
-                                    <div class="col-xs-2  col-sm-offset-3">
-                                        <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-success" OnClick="btnCancel_OnClick"/>
+                                        <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick" />
+                                        <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-success" OnClick="btnCancel_OnClick" />
                                     </div>
                                 </div>
                             </div>

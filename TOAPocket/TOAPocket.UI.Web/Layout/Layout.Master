@@ -11,7 +11,7 @@
     <%: System.Web.Optimization.Styles.Render("~/content/adminlte") %>
     <%: System.Web.Optimization.Styles.Render("~/content/css") %>
     <%: System.Web.Optimization.Styles.Render("~/content/datatable") %>
-
+    <script src="../Scripts/message.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
