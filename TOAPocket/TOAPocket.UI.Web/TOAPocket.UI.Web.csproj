@@ -98,10 +98,13 @@
     <Content Include="Barcode\ConfirmReceive.aspx" />
     <Content Include="Barcode\ImportBarcode.aspx" />
     <Content Include="Barcode\MatchBarccode.aspx" />
-    <Content Include="Barcode\TranferBarcode.aspx" />
+    <Content Include="Barcode\TransferBarcode.aspx" />
+    <Content Include="Barcode\TransferBarcode_Create.aspx" />
     <Content Include="Barcode\UnmatchBarcode.aspx" />
     <Content Include="Barcode\VoidBarcode.aspx" />
     <Content Include="Barcode\VoidReturn.aspx" />
+    <Content Include="Common\FetchData.asmx" />
+    <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -7252,12 +7255,19 @@
     <Compile Include="Barcode\MatchBarccode.aspx.designer.cs">
       <DependentUpon>MatchBarccode.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Barcode\TranferBarcode.aspx.cs">
-      <DependentUpon>TranferBarcode.aspx</DependentUpon>
+    <Compile Include="Barcode\TransferBarcode.aspx.cs">
+      <DependentUpon>TransferBarcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Barcode\TranferBarcode.aspx.designer.cs">
-      <DependentUpon>TranferBarcode.aspx</DependentUpon>
+    <Compile Include="Barcode\TransferBarcode.aspx.designer.cs">
+      <DependentUpon>TransferBarcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Barcode\TransferBarcode_Create.aspx.cs">
+      <DependentUpon>TransferBarcode_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Barcode\TransferBarcode_Create.aspx.designer.cs">
+      <DependentUpon>TransferBarcode_Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Barcode\UnmatchBarcode.aspx.cs">
       <DependentUpon>UnmatchBarcode.aspx</DependentUpon>
@@ -7280,6 +7290,11 @@
     <Compile Include="Barcode\VoidReturn.aspx.designer.cs">
       <DependentUpon>VoidReturn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Common\FetchData.asmx.cs">
+      <DependentUpon>FetchData.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Utility.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7304,6 +7319,14 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

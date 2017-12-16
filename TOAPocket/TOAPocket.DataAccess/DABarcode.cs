@@ -301,5 +301,79 @@ namespace TOAPocket.DataAccess
 
             return result;
         }
+
+        public DataSet GetTrRunningNo()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetBarcodeTransferRunningNo";
+                Command.Parameters.Clear();
+
+                //if (!String.IsNullOrEmpty(condition))
+                //{
+                //    Command.Parameters.Add(new SqlParameter("Condition", SqlDbType.VarChar));
+                //    Command.Parameters["Condition"].Value = condition;
+                //}
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
+
+        public bool InsertBarcodeTransfer(string trNo, string fromDept, string toDept, string startBar, string endBar, string qty, string transDate, string createBy)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeTransfer");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@trNo", SqlDbType.NVarChar, trNo);
+                db.AddInParameter(sqlCmd, "@fromDept", SqlDbType.NVarChar, fromDept);
+                db.AddInParameter(sqlCmd, "@toDept", SqlDbType.NVarChar, toDept);
+                db.AddInParameter(sqlCmd, "@startBar", SqlDbType.NVarChar, startBar);
+                db.AddInParameter(sqlCmd, "@endBar", SqlDbType.NVarChar, endBar);
+                db.AddInParameter(sqlCmd, "@qty", SqlDbType.NVarChar, qty);
+                db.AddInParameter(sqlCmd, "@transDate", SqlDbType.NVarChar, transDate);
+                db.AddInParameter(sqlCmd, "@createBy", SqlDbType.NVarChar, createBy);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
     }
 }

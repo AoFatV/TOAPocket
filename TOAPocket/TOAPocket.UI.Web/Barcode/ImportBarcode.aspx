@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-
+        var totalData = 0;
         $(function () {
 
             $('#tbBarcode').DataTable({
@@ -25,12 +25,14 @@
 
             });
 
+
+            totalData = "<%=dtUpload.Rows.Count%>";
         });
 
         function checkFileUpload() {
 
             if ($("#txtFileUploadName").val() == "") {
-                alert("กรุณาเลือกไฟล์ก่อนทำการ Upload");
+                dangerMsg("กรุณาเลือกไฟล์ก่อนทำการ Upload");
                 return false;
             }
 
@@ -39,6 +41,15 @@
 
         function clearFileUpload() {
             $("#txtFileUploadName").val("");
+        }
+
+        function ImportBarode() {
+            if (totalData == 0) {
+                dangerMsg("กรุณาทำการ Upload ไฟล์ก่อน");
+                return false;
+            }
+
+            return true;
         }
     </script>
     <style type="text/css">
@@ -116,10 +127,10 @@
                                                     {
                                                 %>
                                                 <tr>
-                                                    <td><%=dr[0] %></td>
-                                                    <td><%=dr[1] %></td>
-                                                    <td><%=dr[2] %></td>
-                                                    <td><%=dr[3] %></td>
+                                                    <td class="text-center"><%=dr[0] %></td>
+                                                    <td class="text-center"><%=dr[1] %></td>
+                                                    <td class="text-center"><%=dr[2] %></td>
+                                                    <td class="text-center"><%=dr[3] %></td>
                                                 </tr>
                                                 <% } %>
                                             </tbody>
@@ -130,7 +141,7 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-xs-2  col-sm-offset-3">
-                                        <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick" />
+                                        <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick" OnClientClick="return ImportBarode()" />
                                         <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-success" OnClick="btnCancel_OnClick" />
                                     </div>
                                 </div>

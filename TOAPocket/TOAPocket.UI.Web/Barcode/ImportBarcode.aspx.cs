@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TOAPocket.BusinessLogic;
+using TOAPocket.UI.Web.Model;
 
 namespace TOAPocket.UI.Web.Barcode
 {
@@ -17,7 +18,17 @@ namespace TOAPocket.UI.Web.Barcode
         public DataTable dtUpload = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["User"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+                BLBarcode blBarcode = new BLBarcode();
+                var users = (User)Session["User"];
+                bool result = blBarcode.ClearBarcodeTemp(users.UserId);
+            }
         }
 
         protected void btnUpload_OnClick(object sender, EventArgs e)
@@ -79,12 +90,11 @@ namespace TOAPocket.UI.Web.Barcode
                 oda.Fill(dt);
                 connExcel.Close();
 
-                //DataSet users = (DataSet)Session["User"];
+                var users = (User)Session["User"];
+                bool resultClear = blBarcode.ClearBarcodeTemp(users.UserId);
+                bool rsTmp = blBarcode.InsertBarcodeToTemp(dt, users.UserId);
 
-                bool rsTmp = blBarcode.InsertBarcodeToTemp(dt, HttpContext.Current.User.Identity.Name);
-                //bool resultClear = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
-
-                if (rsTmp)
+                if (rsTmp && resultClear)
                 {
                     dtUpload = dt;
                     dtUpload.Columns.Add("STATUS", typeof(String));
@@ -103,7 +113,8 @@ namespace TOAPocket.UI.Web.Barcode
             bool result = false;
             try
             {
-                ds = blBarcode.InsertBarcode(HttpContext.Current.User.Identity.Name, "");
+                var users = (User)Session["User"];
+                ds = blBarcode.InsertBarcode(users.UserId, "");
                 //result = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
                 if (ds.Tables.Count > 0)
                 {
@@ -122,7 +133,8 @@ namespace TOAPocket.UI.Web.Barcode
             bool result = false;
             try
             {
-                result = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
+                var users = (User)Session["User"];
+                result = blBarcode.ClearBarcodeTemp(users.UserId);
             }
             catch (Exception ex)
             {

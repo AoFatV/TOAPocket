@@ -8,14 +8,20 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TOAPocket.BusinessLogic;
+using TOAPocket.UI.Web.Model;
 
 namespace TOAPocket.UI.Web.Barcode
 {
     public partial class ConfirmReceive : System.Web.UI.Page
     {
+        public string msg;
+        public bool actionResult = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["User"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         [WebMethod]
@@ -78,9 +84,17 @@ namespace TOAPocket.UI.Web.Barcode
                 BLBarcode blBarcode = new BLBarcode();
                 string[] hdText = hdChkPO.Value.Split(',');
                 bool result = false;
+                var users = (User)Session["User"];
+
                 foreach (string po in hdText)
                 {
-                    result = blBarcode.UpdateBarcodeByPO(po, "", HttpContext.Current.User.Identity.Name);
+                    result = blBarcode.UpdateBarcodeByPO(po, "", users.UserId);
+                }
+
+                if (result)
+                {
+                    actionResult = true;
+                    msg = "ยืนยันการรับทั้ง PO สำเร็จ";
                 }
             }
             catch (Exception ex)
@@ -98,7 +112,14 @@ namespace TOAPocket.UI.Web.Barcode
                 bool result = false;
                 foreach (string barcodeId in hdText)
                 {
-                    result = blBarcode.UpdateBarcodeByBarcode(barcodeId, "", HttpContext.Current.User.Identity.Name);
+                    var users = (User)Session["User"];
+                    result = blBarcode.UpdateBarcodeByBarcode(barcodeId, "", users.UserId);
+                }
+
+                if (result)
+                {
+                    actionResult = true;
+                    msg = "ยืนยันการรับ Barcode สำเร็จ";
                 }
             }
             catch (Exception ex)

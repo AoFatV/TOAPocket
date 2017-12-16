@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TOAPocket.UI.Web.Home
+namespace TOAPocket.UI.Web.Barcode
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class TranferBarcode : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -3,15 +3,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-
+        var actionResult = "<%=actionResult %>";
+        var msgResult = "<%=msg %>";
         $(function () {
+            if (actionResult == 'True') {
+                successMsg(msgResult);
+            }
 
             InitialTbByPO();
             InitialTbByBarcode();
 
         });
-
-
 
         function InitialTbByPO() {
 
@@ -148,6 +150,10 @@
         }
 
         function PreparePO() {
+            if ($("input[name='chkPO']:checked").length == 0) {
+                dangerMsg("กรุณาเลือก PO ที่ต้องการยืนยันการรับก่อน!");
+                return false;
+            }
 
             $.each($("input[name='chkPO']:checked"), function (index, value) {
                 $("[id*='hdChkPO']").val($("[id*='hdChkPO']").val() + ',' + value.value);
@@ -160,6 +166,10 @@
         }
 
         function PrepareBarcode() {
+            if ($("input[name='chkPchkBarcodeO']:checked").length == 0) {
+                dangerMsg("กรุณาเลือก Barcode ที่ต้องการยืนยันการรับก่อน!");
+                return false;
+            }
 
             $.each($("input[name='chkBarcode']:checked"), function (index, value) {
                 $("[id*='hdChkBarcode']").val($("[id*='hdChkBarcode']").val() + ',' + value.value);

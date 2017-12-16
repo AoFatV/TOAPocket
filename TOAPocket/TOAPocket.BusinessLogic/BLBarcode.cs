@@ -45,5 +45,15 @@ namespace TOAPocket.BusinessLogic
         {
             return daBarcode.UpdateBarcodeByBarcode(barcodeId, department, updateBy);
         }
+
+        public DataSet GetTrRunningNo()
+        {
+            return daBarcode.GetTrRunningNo();
+        }
+
+        public bool InsertBarcodeTransfer(string trNo, string fromDept, string toDept, string startBar, string endBar, string qty, string transDate, string createBy)
+        {
+            return daBarcode.InsertBarcodeTransfer(trNo, fromDept, toDept, startBar, endBar, qty, transDate, createBy);
+        }
     }
 }

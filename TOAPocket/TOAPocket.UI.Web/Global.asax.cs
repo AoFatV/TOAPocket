@@ -22,19 +22,19 @@ namespace TOAPocket.UI.Web
                 "~/Scripts/bower_components/datatables.net/js/jquery.dataTables.min.js",
                 "~/Scripts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
                 "~/Scripts/bower_components/fastclick/lib/fastclick.js",
-                "~/Scripts/bower_components/bootstrap/dist/js/bootstrap.min.js"
+                "~/Scripts/bower_components/bootstrap/dist/js/bootstrap.min.js",
+                "~/Scripts/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
             ));
 
             BundleTable.Bundles.Add(new StyleBundle("~/content/adminlte").IncludeDirectory("~/admin-lte/css", "*.min.css"));
 
             BundleTable.Bundles.Add(new StyleBundle("~/content/css").IncludeDirectory("~/content", "*.min.css"));
 
-            //BundleTable.Bundles.Add(new ScriptBundle("~/scripts/datatable").Include(
-            //    "~/Scripts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"
-            //));
-
             BundleTable.Bundles.Add(new StyleBundle("~/content/datatable").
                 IncludeDirectory("~/Scripts/bower_components/datatables.net-bs/css", "*.min.css"));
+
+            BundleTable.Bundles.Add(new StyleBundle("~/content/datepicker").
+                IncludeDirectory("~/Scripts/bower_components/bootstrap-datepicker/dist/css", "*.min.css"));
 
             BundleTable.EnableOptimizations = true;
         }
