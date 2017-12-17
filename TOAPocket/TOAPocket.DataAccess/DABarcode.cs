@@ -375,5 +375,46 @@ namespace TOAPocket.DataAccess
 
             return result;
         }
+
+        public DataSet GetBarcodeTransfer(string department)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetBarcodeTransfer";
+                Command.Parameters.Clear();
+
+                if (!String.IsNullOrEmpty(department))
+                {
+                    Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
+                    Command.Parameters["Department"].Value = department;
+                }
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
     }
 }

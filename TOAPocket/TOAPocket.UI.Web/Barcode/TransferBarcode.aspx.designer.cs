@@ -13,6 +13,42 @@ namespace TOAPocket.UI.Web.Barcode {
     public partial class TranferBarcode {
         
         /// <summary>
+        /// hdDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdDepartment;
+        
+        /// <summary>
+        /// hdUserId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdUserId;
+        
+        /// <summary>
+        /// ddlFromDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlFromDepartment;
+        
+        /// <summary>
+        /// ddlToDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlToDepartment;
+        
+        /// <summary>
         /// txtTfDateStart control.
         /// </summary>
         /// <remarks>

@@ -16,10 +16,140 @@
 
 
             InitialTb_1();
+            InitialDepartment();
         });
 
         function InitialTb_1() {
+            var postUrl = "TransferBarcode.aspx/GetBarcodeTransfer";
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                data: '{department: ' + $("[id*='hdDepartment']").val() + ' }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: BindTb_1,
+                failure: function (response) {
+                    //alert(response.d);
+                    console.log(response.d);
+                }
+            });
+        }
 
+        function InitialDepartment() {
+            var postUrl = "../Common/FetchData.asmx/GetDepartment";
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                data: '{condition: 1 }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: BindDropdown,
+                failure: function (response) {
+                    //alert(response.d);
+                    console.log(response.d);
+                }
+            });
+        }
+
+        function BindDropdown(response) {
+            var data = JSON.parse(response.d);
+
+            var ddl1 = $("[id*='ddlFromDepartment']");
+
+            ddl1.empty();
+            $.each(data, function () {
+                ddl1.append($("<option></option>").val(this['DEPT_ID']).html(this['DEPT_NAME']));
+                //Default is first value 
+            });
+
+            var ddl2 = $("[id*='ddlToDepartment']");
+
+            ddl2.empty();
+            $.each(data, function () {
+                ddl2.append($("<option></option>").val(this['DEPT_ID']).html(this['DEPT_NAME']));
+                //Default is first value 
+            });
+        }
+
+        function BindTb_1(response) {
+
+            var data = JSON.parse(response.d);
+            //console.log(data);
+            var table = $('#tbUnReceive').DataTable({
+                //"processing": true,
+                "responsive": true,
+                "data": (data),
+                "columns": [
+                    {
+                        "data": "TR_NO"
+                    },
+                    {
+                        "data": "TR_DATE",
+                        render: function (data, type, row) {
+
+                            var date = new Date(parseInt(data.substr(6)));
+
+                            var dd = date.getDate();
+                            var mm = date.getMonth() + 1; //January is 0!
+                            var yyyy = date.getFullYear();
+                            if (dd < 10) {
+                                dd = '0' + dd;
+                            }
+                            if (mm < 10) {
+                                mm = '0' + mm;
+                            }
+
+                            date = dd + '/' + mm + '/' + yyyy;
+                            return date;
+                        }, className: "dt-body-center"
+                    },
+                    {
+                        "data": "RECEIVE_DATE"
+                    },
+                    {
+                        "data": "FromDept"
+                    },
+                    {
+                        "data": "ToDept"
+                    },
+                    {
+                        "data": "TOTAL_QTY"
+                    },
+                    {
+                        "data": null,
+                        render: function (data, type, row) {
+                            var value = row.BARCODE_FROM + "-" + row.BARCODE_TO;
+                            return value;
+                        }
+                    }, {
+                        "data": "STATUS_NAME"
+                    }, {
+                        "data": null,
+                        render: function (data, type, row) {
+                            var buttonOk = "<button type='button' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button>";
+                            return buttonOk;
+                        }, className: "dt-body-center"
+
+                    }, {
+                        "data": null,
+                        render: function (data, type, row) {
+                            var buttonReject = "<button type='button' class='btn btn-danger '><span class='glyphicon glyphicon-remove'></span></button>";
+                            return buttonReject;
+                        }, className: "dt-body-center"
+
+                    }
+                ],
+                "bFilter": false,
+                //"order": [[3, "desc"]],
+                "ordering": false,
+                "bPaginate": true,
+                "sPaginationType": "full_numbers",
+                "iDisplayLength": 15,
+                //"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                //    $("td:first", nRow).html(($('#tbRcAllPO').DataTable().page.info().page * $('#tbRcAllPO').DataTable().page.info().length) + iDisplayIndex + 1);
+                //    return nRow;
+                //}, "scrollX": true
+            });
         }
 
         function CreateTransferBarcode() {
@@ -41,6 +171,8 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form role="form" runat="server">
+                            <asp:HiddenField runat="server" ID="hdDepartment" />
+                            <asp:HiddenField runat="server" ID="hdUserId" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -62,14 +194,14 @@
                                                         แผนกที่โอน
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <select class="form-control" runat="server">
+                                                        <select class="form-control" runat="server" id="ddlFromDepartment">
                                                         </select>
                                                     </div>
                                                     <div class="col-xs-2">
                                                         แผนกที่รับ
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <select class="form-control" runat="server">
+                                                        <select class="form-control" runat="server" id="ddlToDepartment">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -81,7 +213,7 @@
                                                         Barcode เริ่มต้น
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <input type="text" id="txtBarcodeStart" class="form-control"  />
+                                                        <input type="text" id="txtBarcodeStart" class="form-control" />
                                                     </div>
                                                     <div class="col-xs-2">
                                                         ถึง
@@ -122,20 +254,20 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-xs-offset-6">
+                                        <div class="col-xs-12 col-xs-offset-5">
                                             <div class="col-xs-1">
                                                 <button type="button" class="btn btn-info" onclick="SearchByPO()">
-                                                    <span class="glyphicon glyphicon-search"></span> ค้นหา
+                                                    <span class="glyphicon glyphicon-search"></span>ค้นหา
                                                 </button>
                                             </div>
                                             <div class="col-xs-1">
                                                 <button type="button" class="btn" onclick="SearchByPO()">
-                                                    <span class="glyphicon glyphicon-remove"></span> ยกเลิก
+                                                    <span class="glyphicon glyphicon-remove"></span>ยกเลิก
                                                 </button>
                                             </div>
                                             <div class="col-xs-1">
                                                 <button type="button" class="btn btn-success" onclick="CreateTransferBarcode()">
-                                                    <span class="glyphicon glyphicon-transfer"></span> สร้างรายการโอน
+                                                    <span class="glyphicon glyphicon-transfer"></span>สร้างรายการโอน
                                                 </button>
                                             </div>
                                         </div>
@@ -152,7 +284,7 @@
                                                     <div class="tab-pane active" id="tab_1">
                                                         <div class="row">
                                                             <div class="col-xs-12">
-                                                                <table id="tbUnReceive" class="table table-bordered table-striped" width="100%">
+                                                                <table id="tbUnReceive" class="table responsive nowrap" width="100%">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Transfer No.</th>
@@ -175,6 +307,7 @@
                                                     </div>
                                                     <div class="tab-pane" id="tab_3">
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

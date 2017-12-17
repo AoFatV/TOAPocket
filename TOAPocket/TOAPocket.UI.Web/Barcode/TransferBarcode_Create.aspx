@@ -33,6 +33,7 @@
         });
 
         function InitialTrNo() {
+            $("[id*='txtTranferNo']").val('');
             var postUrl = "TransferBarcode_Create.aspx/GetTrRunningNo";
             $.ajax({
                 type: "POST",

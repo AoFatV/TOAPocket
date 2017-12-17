@@ -26,20 +26,25 @@ namespace TOAPocket.UI.Web.Common
         }
 
         [WebMethod]
-        public DataSet GetDepartment(string condition)
+        public string GetDepartment(string condition)
         {
-            DataSet ds = new DataSet();
-            BLDepartment blDepartment = new BLDepartment();
+            string result = "";
             try
             {
+                DataSet ds = new DataSet();
+                BLDepartment blDepartment = new BLDepartment();
+
+                Utility utility = new Utility();
+
                 ds = blDepartment.GetDepartment(condition == "1" ? "DEPT_STATUS = 'T'" : "");
+                result = utility.DataTableToJSONWithJavaScriptSerializer(ds.Tables[0]);
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
 
-            return ds;
+            return result;
         }
     }
 }

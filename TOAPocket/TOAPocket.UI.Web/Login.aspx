@@ -24,8 +24,8 @@
                         <form class="form-horizontal" runat="server">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="txtUserName" class="col-sm-3 control-label">User Name</label>
-                                    <div class="col-sm-9">
+                                    <label for="txtUserName" class="col-sm-5 col-md-5 control-label">User Name</label>
+                                    <div class="col-sm-5">
                                         <input type="text" class="form-control" id="txtUserName" placeholder="" runat="server" required="required" />
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>--%>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="col-sm-offset-5 col-sm-5">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" id="chkRemember" runat="server" />

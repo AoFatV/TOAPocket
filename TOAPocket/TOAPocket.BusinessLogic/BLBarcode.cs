@@ -55,5 +55,10 @@ namespace TOAPocket.BusinessLogic
         {
             return daBarcode.InsertBarcodeTransfer(trNo, fromDept, toDept, startBar, endBar, qty, transDate, createBy);
         }
+
+        public DataSet GetBarcodeTransfer(string department)
+        {
+            return daBarcode.GetBarcodeTransfer(department);
+        }
     }
 }
