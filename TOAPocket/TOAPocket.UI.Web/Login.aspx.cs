@@ -13,6 +13,8 @@ namespace TOAPocket.UI.Web
 {
     public partial class Login : System.Web.UI.Page
     {
+        public string msg;
+        public bool actionResult = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] != null)
@@ -22,7 +24,7 @@ namespace TOAPocket.UI.Web
 
             if (!IsPostBack)
             {
-                
+
             }
         }
 
@@ -32,29 +34,37 @@ namespace TOAPocket.UI.Web
 
             try
             {
-                DataSet dsUsers = blUser.GetUser(txtUserName.Value);
-                if (dsUsers.Tables.Count == 0)
+                DataSet dsUsers = blUser.GetUser(txtUserName.Value, txtPassword.Value);
+                if (dsUsers.Tables.Count > 0)
                 {
-                    //Invalid User
+                    if (dsUsers.Tables[0].Rows.Count == 0)
+                    {
+                        //Invalid User
+                        msg = "Username หรือ Password ผิดพลาด กรุณา Login ใหม่";
+                    }
+                    else
+                    {
+                        actionResult = true;
+                        User users = new User();
+
+                        users.UserId = dsUsers.Tables[0].Rows[0]["USER_ID"].ToString();
+                        users.UserName = dsUsers.Tables[0].Rows[0]["USER_NAME"].ToString();
+                        users.DeptId = dsUsers.Tables[0].Rows[0]["DEPT_ID"].ToString();
+                        users.Email = dsUsers.Tables[0].Rows[0]["EMAIL"].ToString();
+                        users.RoleMenus = new List<string>();
+                        foreach (DataRow dr in dsUsers.Tables[0].Rows)
+                        {
+                            users.RoleMenus.Add(dr["MENU_ID"].ToString());
+                        }
+
+                        Session["User"] = users;
+
+                        Response.Redirect("Home/Index.aspx");
+                    }
                 }
                 else
                 {
-                    //Session["User"] = dsUsers;
-                    User users = new User();
-                    foreach (DataRow dr in dsUsers.Tables[0].Rows)
-                    {
-                        users.UserId = dr["USER_ID"].ToString();
-                        users.UserName = dr["USER_NAME"].ToString();
-                        users.DeptId = dr["DEPT_ID"].ToString();
-                        users.Email = dr["EMAIL"].ToString();
-                    }
-
-                    Session["User"] = users;
-
-                    //FormsAuthentication.SetAuthCookie(dsUsers.Tables[0].Rows[0]["USER_ID"].ToString(), true);
-                    Response.Redirect(!String.IsNullOrEmpty(Request.Params["ReturnUrl"])
-                        ? Request.Params["ReturnUrl"]
-                        : "Home/Index.aspx");
+                    msg = "Username หรือ Password ผิดพลาด กรุณา Login ใหม่";
                 }
             }
             catch (Exception ex)

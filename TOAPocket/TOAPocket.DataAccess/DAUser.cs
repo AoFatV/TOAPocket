@@ -13,7 +13,7 @@ namespace TOAPocket.DataAccess
 {
     public class DAUser : DBHelper
     {
-        public DataSet ValidateUser(string userName)
+        public DataSet ValidateUser(string userName, string password)
         {
             DataSet ds = new DataSet();
             try
@@ -25,11 +25,10 @@ namespace TOAPocket.DataAccess
                 Command.CommandText = "spGetInformationUser";
                 Command.Parameters.Clear();
 
-                if (!String.IsNullOrEmpty(userName))
-                {
-                    Command.Parameters.Add(new SqlParameter("UserName", SqlDbType.VarChar));
-                    Command.Parameters["UserName"].Value = userName;
-                }
+                Command.Parameters.Add(new SqlParameter("UserName", SqlDbType.VarChar));
+                Command.Parameters["UserName"].Value = userName;
+                Command.Parameters.Add(new SqlParameter("Password", SqlDbType.VarChar));
+                Command.Parameters["Password"].Value = password;
 
                 Command.CommandTimeout = 0;
                 if (Transaction != null)

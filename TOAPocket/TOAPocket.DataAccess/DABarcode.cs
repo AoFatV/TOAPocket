@@ -376,7 +376,7 @@ namespace TOAPocket.DataAccess
             return result;
         }
 
-        public DataSet GetBarcodeTransfer(string department)
+        public DataSet GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd)
         {
             DataSet ds = new DataSet();
             try
@@ -388,11 +388,22 @@ namespace TOAPocket.DataAccess
                 Command.CommandText = "spGetBarcodeTransfer";
                 Command.Parameters.Clear();
 
-                if (!String.IsNullOrEmpty(department))
-                {
-                    Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
-                    Command.Parameters["Department"].Value = department;
-                }
+                Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
+                Command.Parameters["Department"].Value = department;
+                Command.Parameters.Add(new SqlParameter("TrNO", SqlDbType.VarChar));
+                Command.Parameters["TrNO"].Value = String.IsNullOrEmpty(trNo) ? (object)DBNull.Value : trNo;
+                Command.Parameters.Add(new SqlParameter("FromDept", SqlDbType.VarChar));
+                Command.Parameters["FromDept"].Value = String.IsNullOrEmpty(fromDept) ? (object)DBNull.Value : fromDept;
+                Command.Parameters.Add(new SqlParameter("ToDept", SqlDbType.VarChar));
+                Command.Parameters["ToDept"].Value = String.IsNullOrEmpty(toDept) ? (object)DBNull.Value : toDept;
+                Command.Parameters.Add(new SqlParameter("BarcodeStart", SqlDbType.VarChar));
+                Command.Parameters["BarcodeStart"].Value = String.IsNullOrEmpty(barcodeStart) ? (object)DBNull.Value : barcodeStart;
+                Command.Parameters.Add(new SqlParameter("BarcodeEnd", SqlDbType.VarChar));
+                Command.Parameters["BarcodeEnd"].Value = String.IsNullOrEmpty(barcodeEnd) ? (object)DBNull.Value : barcodeEnd;
+                Command.Parameters.Add(new SqlParameter("DateStart", SqlDbType.VarChar));
+                Command.Parameters["DateStart"].Value = String.IsNullOrEmpty(dateStart) ? (object)DBNull.Value : dateStart;
+                Command.Parameters.Add(new SqlParameter("DateEnd", SqlDbType.VarChar));
+                Command.Parameters["DateEnd"].Value = String.IsNullOrEmpty(dateEnd) ? (object)DBNull.Value : dateEnd;
 
                 Command.CommandTimeout = 0;
                 if (Transaction != null)
@@ -415,6 +426,35 @@ namespace TOAPocket.DataAccess
             }
 
             return ds;
+        }
+
+        public bool UpdateBarcodeTransfer(string trNo, string updateBy, string status, string remark)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("spUpdBarcodeTransfer");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@trNo", SqlDbType.NVarChar, trNo);
+                db.AddInParameter(sqlCmd, "@updateBy", SqlDbType.NVarChar, updateBy);
+                db.AddInParameter(sqlCmd, "@status", SqlDbType.NVarChar, status);
+                db.AddInParameter(sqlCmd, "@remark", SqlDbType.NVarChar, remark);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
         }
     }
 }

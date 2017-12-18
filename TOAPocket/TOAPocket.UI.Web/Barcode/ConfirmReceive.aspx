@@ -6,8 +6,12 @@
         var actionResult = "<%=actionResult %>";
         var msgResult = "<%=msg %>";
         $(function () {
-            if (actionResult == 'True') {
-                successMsg(msgResult);
+            if (msgResult != "") {
+                if (actionResult == 'True') {
+                    successMsg(msgResult);
+                } else {
+                    dangerMsg(msgResult);
+                }
             }
 
             InitialTbByPO();
@@ -38,7 +42,7 @@
             $.ajax({
                 type: "POST",
                 url: postUrl,
-                data: '{po: " ",barcodeStart:"' + $("[id*='txtBarcodeStart']").val() + '",barcodeEnd:"' + $("[id*='txtBarcodeEnd']").val() + '"}',
+                data: '{po: "",barcodeStart:"' + $("[id*='txtBarcodeStart']").val() + '",barcodeEnd:"' + $("[id*='txtBarcodeEnd']").val() + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: BindTable_2,

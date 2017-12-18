@@ -104,6 +104,8 @@
     <Content Include="Barcode\VoidBarcode.aspx" />
     <Content Include="Barcode\VoidReturn.aspx" />
     <Content Include="Common\FetchData.asmx" />
+    <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\responsive.dataTables.min.css" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\FontAwesome.otf" />
@@ -6496,6 +6498,7 @@
     <Content Include="Scripts\bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="Scripts\bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="Scripts\bower_components\select2\vendor\jquery-2.1.0.js" />
+    <Content Include="Scripts\dataTables.responsive.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\message.js" />
@@ -7326,6 +7329,7 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Menu.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

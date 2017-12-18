@@ -3,7 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="Scripts/message.js"></script>
     <script type="text/javascript">
+        var actionResult = "<%=actionResult %>";
+        var msgResult = "<%=msg %>";
 
+        $(function () {
+            if (msgResult != "") {
+                if (actionResult == 'True') {
+                    successMsg(msgResult);
+                } else {
+                    dangerMsg(msgResult);
+                }
+            }
+        });
 
     </script>
 </asp:Content>
@@ -24,18 +35,17 @@
                         <form class="form-horizontal" runat="server">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="txtUserName" class="col-sm-5 col-md-5 control-label">User Name</label>
+                                    <label for="txtUserName" class="col-sm-3 col-md-5 control-label">User Name</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="txtUserName" placeholder="" runat="server" required="required" />
                                     </div>
                                 </div>
-                                <%--       <div class="form-group">
-                                    <label for="txtPassword" class="col-sm-3 control-label">Password</label>
-
-                                    <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label for="txtPassword" class="col-sm-3 col-md-5 control-label">Password</label>
+                                    <div class="col-sm-5">
                                         <input type="password" class="form-control" id="txtPassword" placeholder="Password" runat="server" required="required" />
                                     </div>
-                                </div>--%>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-5 col-sm-5">
                                         <div class="checkbox">
@@ -49,8 +59,8 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_ServerClick" CssClass="btn btn-info pull-right" Text="Log in"/>
-                               
+                                <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_ServerClick" CssClass="btn btn-info pull-right" Text="Log in" />
+
                             </div>
                             <!-- /.box-footer -->
                         </form>
