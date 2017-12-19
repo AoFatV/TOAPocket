@@ -376,7 +376,7 @@ namespace TOAPocket.DataAccess
             return result;
         }
 
-        public DataSet GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd)
+        public DataSet GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd,string status)
         {
             DataSet ds = new DataSet();
             try
@@ -389,7 +389,7 @@ namespace TOAPocket.DataAccess
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
-                Command.Parameters["Department"].Value = department;
+                Command.Parameters["Department"].Value = String.IsNullOrEmpty(department) ? (object)DBNull.Value : department;
                 Command.Parameters.Add(new SqlParameter("TrNO", SqlDbType.VarChar));
                 Command.Parameters["TrNO"].Value = String.IsNullOrEmpty(trNo) ? (object)DBNull.Value : trNo;
                 Command.Parameters.Add(new SqlParameter("FromDept", SqlDbType.VarChar));
@@ -404,6 +404,8 @@ namespace TOAPocket.DataAccess
                 Command.Parameters["DateStart"].Value = String.IsNullOrEmpty(dateStart) ? (object)DBNull.Value : dateStart;
                 Command.Parameters.Add(new SqlParameter("DateEnd", SqlDbType.VarChar));
                 Command.Parameters["DateEnd"].Value = String.IsNullOrEmpty(dateEnd) ? (object)DBNull.Value : dateEnd;
+                Command.Parameters.Add(new SqlParameter("Status", SqlDbType.VarChar));
+                Command.Parameters["Status"].Value = String.IsNullOrEmpty(status) ? (object)DBNull.Value : status;
 
                 Command.CommandTimeout = 0;
                 if (Transaction != null)

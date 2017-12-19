@@ -14,6 +14,7 @@ namespace TOAPocket.UI.Web
             if (!IsPostBack)
             {
                 Session.Clear();
+                Response.Redirect("Login.aspx");
             }
         }
     }

@@ -24,7 +24,7 @@
         <section class="content">
             <div class="row">
                 <!-- right column -->
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-xs-8 col-md-4 col-md-offset-4 col-xs-offset-2">
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
@@ -35,19 +35,19 @@
                         <form class="form-horizontal" runat="server">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="txtUserName" class="col-sm-3 col-md-5 control-label">User Name</label>
+                                    <label for="txtUserName" class="col-sm-4 col-md-5 control-label">User Name</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" id="txtUserName" placeholder="" runat="server" required="required" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="txtPassword" class="col-sm-3 col-md-5 control-label">Password</label>
+                                    <label for="txtPassword" class="col-sm-4 col-md-5 control-label">Password</label>
                                     <div class="col-sm-5">
                                         <input type="password" class="form-control" id="txtPassword" placeholder="Password" runat="server" required="required" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-5 col-sm-5">
+                                    <div class="col-sm-offset-4 col-sm-5 col-md-5 col-md-offset-5">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" id="chkRemember" runat="server" />

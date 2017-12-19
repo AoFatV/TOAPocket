@@ -124,7 +124,9 @@
                     var data = JSON.parse(response.d);
                     if (data.length > 0) {
                         if (data[0].result) {
-                            alert(1);
+                            successMsg("บันทึกข้อมูลเรียบร้อย");
+                        } else {
+                            dangerMsg("เกิดข้อผิดพลาด");
                         }
                     }
                 },
@@ -150,7 +152,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form role="form" runat="server">
-                            <asp:HiddenField runat="server" ID="hdUserId"/>
+                            <asp:HiddenField runat="server" ID="hdUserId" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -159,6 +161,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         Tranfer No.
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label id="txtTranferNo" class="form-control"></label>
@@ -170,6 +173,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         แผนกที่โอน
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <select class="form-control" runat="server" id="ddlFromDepartment">
@@ -182,6 +186,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         แผนกที่รับ
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <select class="form-control" runat="server" id="ddlToDepartment">
@@ -194,12 +199,14 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         Barcode เริ่มต้น
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <input type="text" id="txtBarcodeStart" class="form-control" onchange="CalBarcodeQty()" />
                                                     </div>
                                                     <div class="col-xs-2">
                                                         ถึง
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <input type="text" id="txtBarcodeEnd" class="form-control" onchange="CalBarcodeQty()" />
@@ -211,6 +218,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         จำนวน
+                                                   
                                                     </div>
                                                     <div class="col-xs-2">
                                                         <label id="lbBarcodeQty" class="form-control"></label>
@@ -222,6 +230,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         วันที่โอน
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <div class="input-group date">
@@ -238,6 +247,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         วันที่รับ
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label class="form-control pull-left" id="txtRcDate" runat="server"></label>
@@ -255,6 +265,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         สถานะ
+                                                   
                                                     </div>
                                                     <div class="col-xs-1">
                                                         <label id="lbStatus" class="form-control">-</label>
@@ -265,9 +276,11 @@
                                                 <div class="col-xs-9 col-xs-offset-3">
                                                     <button type="button" class="btn btn-info" onclick="ConfirmCreateTransfer()">
                                                         <span class="glyphicon glyphicon-save"></span>ยืนยันการโอน
+                                                   
                                                     </button>
                                                     <button type="button" class="btn" onclick="CancelCreateTransfer()">
                                                         <span class="glyphicon glyphicon-remove"></span>ยกเลิก
+                                                   
                                                     </button>
                                                 </div>
                                             </div>

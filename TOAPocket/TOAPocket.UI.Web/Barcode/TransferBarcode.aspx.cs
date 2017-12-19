@@ -30,7 +30,7 @@ namespace TOAPocket.UI.Web.Barcode
         }
 
         [WebMethod]
-        public static string GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd)
+        public static string GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd, string status)
         {
             string result = "";
             try
@@ -38,7 +38,7 @@ namespace TOAPocket.UI.Web.Barcode
                 DataSet ds = new DataSet();
                 BLBarcode blBarcode = new BLBarcode();
                 Utility utility = new Utility();
-                ds = blBarcode.GetBarcodeTransfer(department, trNo, fromDept, toDept, barcodeStart, barcodeEnd, dateStart, dateEnd);
+                ds = blBarcode.GetBarcodeTransfer(department, trNo, fromDept, toDept, barcodeStart, barcodeEnd, dateStart, dateEnd, status);
                 result = utility.DataTableToJSONWithJavaScriptSerializer(ds.Tables[0]);
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace TOAPocket.UI.Web.Barcode
                 //Get Transfer Barcode from TRNo
                 if (!String.IsNullOrEmpty(trNo))
                 {
-                    dsBarTr = blBarcode.GetBarcodeTransfer(department, trNo, fromDept, toDept, barcodeStart, barcodeEnd, dateStart, dateEnd);
+                    dsBarTr = blBarcode.GetBarcodeTransfer(department, trNo, fromDept, toDept, barcodeStart, barcodeEnd, dateStart, dateEnd, "20");
 
                     //Update [QR_STOCK_BARCODE] set ststus = 2
                     if (dsBarTr.Tables.Count > 0)
@@ -89,13 +89,47 @@ namespace TOAPocket.UI.Web.Barcode
                 if (resultUps)
                     resultUps = blBarcode.UpdateBarcodeTransfer(trNo, updateBy, "21", "");
 
+                DataTable dt = new DataTable();
 
-                result = utility.DataTableToJSONWithJavaScriptSerializer(dsBarSt.Tables[0]);
+                dt.Columns.Add("result");
+                dt.Rows.Add("false");
+                if (resultUps)
+                    dt.Rows[0]["result"] = "true";
+
+                result = utility.DataTableToJSONWithJavaScriptSerializer(dt);
 
             }
             catch (Exception ex)
             {
                 //throw ex;
+            }
+
+            return result;
+        }
+
+        [WebMethod]
+        public static string ConfirmRejectBarcode(string trNo, string updateBy, string remark)
+        {
+            string result = "";
+            try
+            {
+                Utility utility = new Utility();
+                bool resultUps = false;
+                BLBarcode blBarcode = new BLBarcode();
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("result");
+                dt.Rows.Add("false");
+
+                resultUps = blBarcode.UpdateBarcodeTransfer(trNo, updateBy, "22", remark);
+                if (resultUps)
+                    dt.Rows[0]["result"] = "true";
+
+                result = utility.DataTableToJSONWithJavaScriptSerializer(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             return result;

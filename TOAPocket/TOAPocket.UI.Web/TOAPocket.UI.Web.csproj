@@ -100,6 +100,7 @@
     <Content Include="Barcode\MatchBarccode.aspx" />
     <Content Include="Barcode\TransferBarcode.aspx" />
     <Content Include="Barcode\TransferBarcode_Create.aspx" />
+    <Content Include="Barcode\TransferBarcode_Detail.aspx" />
     <Content Include="Barcode\UnmatchBarcode.aspx" />
     <Content Include="Barcode\VoidBarcode.aspx" />
     <Content Include="Barcode\VoidReturn.aspx" />
@@ -7271,6 +7272,13 @@
     </Compile>
     <Compile Include="Barcode\TransferBarcode_Create.aspx.designer.cs">
       <DependentUpon>TransferBarcode_Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Barcode\TransferBarcode_Detail.aspx.cs">
+      <DependentUpon>TransferBarcode_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Barcode\TransferBarcode_Detail.aspx.designer.cs">
+      <DependentUpon>TransferBarcode_Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Barcode\UnmatchBarcode.aspx.cs">
       <DependentUpon>UnmatchBarcode.aspx</DependentUpon>

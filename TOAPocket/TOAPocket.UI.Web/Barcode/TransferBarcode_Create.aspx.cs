@@ -99,13 +99,16 @@ namespace TOAPocket.UI.Web.Barcode
                     createBy);
 
                 dt.Columns.Add("result");
-                dt.Rows.Add("true");
+                dt.Rows.Add("false");
+
+                if (result)
+                    dt.Rows[0]["result"] = "true";
 
                 str = DataTableToJSONWithJavaScriptSerializer(dt);
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
 
             return str;
