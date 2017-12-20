@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label for="txtUserName" class="col-sm-4 col-md-5 control-label">User Name</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="txtUserName" placeholder="" runat="server" required="required" />
+                                        <input type="text" class="form-control" id="txtUserName" placeholder="Username" runat="server" required="required" />
                                     </div>
                                 </div>
                                 <div class="form-group">
