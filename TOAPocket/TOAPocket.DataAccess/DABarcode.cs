@@ -458,5 +458,74 @@ namespace TOAPocket.DataAccess
 
             return result;
         }
+
+        public bool InsertBarcodeVoidDamage(string barcode, string createBy, string department)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeVoidDamage");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@Barcode", SqlDbType.NVarChar, barcode);
+                db.AddInParameter(sqlCmd, "@CreateBy", SqlDbType.NVarChar, createBy);
+                db.AddInParameter(sqlCmd, "@Department", SqlDbType.NVarChar, department);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
+
+        public DataSet GetBarcodeVoidDamage(string barcode)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetBarcodeVoidDamage";
+                Command.Parameters.Clear();
+
+                if (!String.IsNullOrEmpty(barcode))
+                {
+                    Command.Parameters.Add(new SqlParameter("Barcode", SqlDbType.VarChar));
+                    Command.Parameters["Barcode"].Value = barcode;
+                }
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
     }
 }

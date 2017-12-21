@@ -2,7 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
+        var actionResult = "<%=actionResult %>";
+        var msgResult = "<%=msg %>";
+
         $(function () {
+            if (msgResult != "") {
+                if (actionResult == 'True') {
+                    successMsg(msgResult);
+
+
+                } else {
+                    dangerMsg(msgResult);
+                }
+            }
 
         });
     </script>
@@ -67,6 +79,15 @@
                     background-color: #eeeeee;
                     border-color: #dddddd;
                 }
+
+
+        .hiddencol {
+            display: none;
+        }
+
+        .visiblecol {
+            display: block;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -91,7 +112,7 @@
                                                 <label for="txtBarcodeScan">Barcode :</label>
                                             </div>
                                             <div class="col-xs-5 col-md-8">
-                                                <asp:TextBox runat="server" class="form-control" ID="txtBarcodeScan" OnTextChanged="txtBarcodeScan_OnTextChanged" AutoPostBack="True"></asp:TextBox>
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtBarcodeScan" OnTextChanged="txtBarcodeScan_OnTextChanged" AutoPostBack="True"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -110,9 +131,25 @@
                                                             </asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    <asp:BoundField DataField="Status" HeaderText="Status" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="text-center" />
                                                 </Columns>
                                                 <PagerStyle CssClass="pagination-ys" />
                                             </asp:GridView>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-3">
+                                            <div class="col-xs-5 col-md-8  col-md-offset-4  col-xs-offset-3">
+                                                <button type="button" class="btn btn-success" runat="server" id="btnSave" OnServerClick="btnSave_ServerClick">
+                                                    <span class="glyphicon glyphicon-save">ยืนยัน</span>
+                                                </button>
+                                                <button type="button" class="btn" runat="server" id="btnCancel" OnServerClick="btnCancel_ServerClick">
+                                                    <span class="glyphicon glyphicon-remove">ยกเลิก</span>
+                                                </button>
+                                                <button type="button" class="btn" runat="server" id="btnBack" OnServerClick="btnBack_OnServerClick">
+                                                    <span class="glyphicon glyphicon-arrow-left">ย้อนกลับ</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

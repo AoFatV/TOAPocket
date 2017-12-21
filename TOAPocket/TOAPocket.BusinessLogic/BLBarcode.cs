@@ -65,5 +65,15 @@ namespace TOAPocket.BusinessLogic
         {
             return daBarcode.UpdateBarcodeTransfer(trNo, updateBy, status, remark);
         }
+
+        public bool InsertBarcodeVoidDamage(string barcode, string createBy, string department)
+        {
+            return daBarcode.InsertBarcodeVoidDamage(barcode, createBy, department);
+        }
+
+        public DataSet GetBarcodeVoidDamage(string barcode)
+        {
+            return daBarcode.GetBarcodeVoidDamage(barcode);
+        }
     }
 }
