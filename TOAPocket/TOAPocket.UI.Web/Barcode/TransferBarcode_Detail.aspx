@@ -6,10 +6,13 @@
 
             InitialDepartment();
 
-            $('#SuccessBox').on('hidden.bs.modal', function () {
-                window.location
-            })
+            //$('#SuccessBox').on('hidden.bs.modal', function () {
+            //    window.location
+            //})
 
+            $("#btnCancel").click(function () {
+                window.location = "TransferBarcode.aspx";
+            });
         });
 
         function InitialDepartment() {
@@ -261,7 +264,7 @@
                                                     <button type="button" class="btn btn-success" onclick="CallConfirm()">
                                                         <span class="glyphicon glyphicon-save"></span>ยืนยันการรับ
                                                     </button>
-                                                    <button type="button" class="btn">
+                                                    <button type="button" class="btn" id="btnCancel">
                                                         <span class="glyphicon glyphicon-remove"></span>ยกเลิก
                                                     </button>
                                                     <button type="button" class="btn btn-danger" onclick="RejectReceiveBarcode()">

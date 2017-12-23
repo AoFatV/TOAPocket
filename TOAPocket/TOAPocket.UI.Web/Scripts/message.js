@@ -80,7 +80,7 @@ $(function () {
         <p></p>\
         </div>\
         <div class="modal-footer">\
-        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>\
+        <button id="btnCloseSuccess" type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>\
         </div>\
         </div>\
         </div>\

@@ -64,7 +64,7 @@
                 "data": (data),
                 "columns": [
                     {
-                        "data": null,
+                        "data": null, className: "dt-body-center"
                     },
                     {
                         "data": "PONo",
@@ -76,12 +76,12 @@
                         },
                         className: "dt-body-center", "orderable": false
                     },
-                    { "data": "PONo", "width": "20%" },
-                    { "data": "Total", "width": "20%" },
-                    { "data": "TotalReceive", "width": "20%" },
+                    { "data": "PONo", "width": "20%", className: "dt-body-center" },
+                    { "data": "Total", "width": "20%", className: "dt-body-center" },
+                    { "data": "TotalReceive", "width": "20%", className: "dt-body-center" },
                     //{ "data": null },
                     {
-                        "data": "Status",
+                        "data": "Status", className: "dt-body-center"
                     }
                 ],
                 "bFilter": false,
@@ -120,7 +120,7 @@
                         "data": null,
                     },
                     {
-                        "data": "ID",
+                        "data": "Barcode",
                         render: function (data, type, row) {
                             if (type === 'display') {
                                 return '<input type="checkbox" value="' + data + '" name="chkBarcode">';
@@ -170,7 +170,7 @@
         }
 
         function PrepareBarcode() {
-            if ($("input[name='chkPchkBarcodeO']:checked").length == 0) {
+            if ($("input[name='chkBarcode']:checked").length == 0) {
                 dangerMsg("กรุณาเลือก Barcode ที่ต้องการยืนยันการรับก่อน!");
                 return false;
             }
@@ -311,16 +311,16 @@
                                                                 <asp:Button ID="btnConfirm" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirm_Click" OnClientClick="return PreparePO()" />
                                                             </div>
                                                             <div class="col-xs-10">
-                                                                <table id="tbRcAllPO" class="table table-bordered table-striped" width="100%">
+                                                                <table id="tbRcAllPO" class="table table-bordered table-striped" >
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>ลำดับ</th>
-                                                                            <th>
+                                                                            <th style="text-align: center;">ลำดับ</th>
+                                                                            <th style="text-align: center;">
                                                                                 <input type="checkbox" name="chkAll" value="1" id="chkAll" /></th>
-                                                                            <th>PO No.</th>
-                                                                            <th>จำนวน</th>
-                                                                            <th>จำนวนที่รับ</th>
-                                                                            <th>สถานะ</th>
+                                                                            <th style="text-align: center;">PO No.</th>
+                                                                            <th style="text-align: center;">จำนวน</th>
+                                                                            <th style="text-align: center;">จำนวนที่รับ</th>
+                                                                            <th style="text-align: center;">สถานะ</th>
                                                                         </tr>
                                                                     </thead>
                                                                 </table>

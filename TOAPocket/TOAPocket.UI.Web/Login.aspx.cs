@@ -48,9 +48,11 @@ namespace TOAPocket.UI.Web
                         User users = new User();
 
                         users.UserId = dsUsers.Tables[0].Rows[0]["USER_ID"].ToString();
-                        users.UserName = dsUsers.Tables[0].Rows[0]["USER_NAME"].ToString();
+                        //users.UserName = dsUsers.Tables[0].Rows[0]["USER_NAME"].ToString();
+                        users.UserName = dsUsers.Tables[0].Rows[0]["CUSTOMER_DESCRIPTION"].ToString();
                         users.DeptId = dsUsers.Tables[0].Rows[0]["DEPT_ID"].ToString();
                         users.Email = dsUsers.Tables[0].Rows[0]["EMAIL"].ToString();
+                        users.DeptName = dsUsers.Tables[0].Rows[0]["DEPT_NAME"].ToString();
                         users.RoleMenus = new List<string>();
                         foreach (DataRow dr in dsUsers.Tables[0].Rows)
                         {

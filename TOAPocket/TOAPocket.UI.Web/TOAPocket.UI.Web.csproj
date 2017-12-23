@@ -104,9 +104,10 @@
     <Content Include="Barcode\UnmatchBarcode.aspx" />
     <Content Include="Barcode\VoidBarcode.aspx" />
     <Content Include="Barcode\VoidReturn.aspx" />
+    <Content Include="Barcode\VoidTintOneShot.aspx" />
     <Content Include="Common\FetchData.asmx" />
-    <Content Include="Content\jquery.dataTables.min.css" />
-    <Content Include="Content\responsive.dataTables.min.css" />
+    <Content Include="Content\jquery.dataTables.min-b.css" />
+    <Content Include="Content\responsive.dataTables.min-b.css" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\FontAwesome.otf" />
@@ -7300,6 +7301,13 @@
     </Compile>
     <Compile Include="Barcode\VoidReturn.aspx.designer.cs">
       <DependentUpon>VoidReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Barcode\VoidTintOneShot.aspx.cs">
+      <DependentUpon>VoidTintOneShot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Barcode\VoidTintOneShot.aspx.designer.cs">
+      <DependentUpon>VoidTintOneShot.aspx</DependentUpon>
     </Compile>
     <Compile Include="Common\FetchData.asmx.cs">
       <DependentUpon>FetchData.asmx</DependentUpon>

@@ -61,6 +61,7 @@ namespace TOAPocket.UI.Web.Barcode
 
                                 gridBarcodeScan.DataSource = dt;
                                 gridBarcodeScan.DataBind();
+                                actionResult = true;
                             }
                             else
                             {
@@ -75,6 +76,7 @@ namespace TOAPocket.UI.Web.Barcode
                             {
                                 //after delete all
                                 SetInitialRow(txtBarcodeScan.Text);
+                                actionResult = true;
                             }
                             else
                             {
@@ -90,6 +92,7 @@ namespace TOAPocket.UI.Web.Barcode
                         {
                             //First Record
                             SetInitialRow(txtBarcodeScan.Text);
+                            actionResult = true;
                         }
                         else
                         {
@@ -99,7 +102,7 @@ namespace TOAPocket.UI.Web.Barcode
                         }
                     }
 
-                    if (gridBarcodeScan.Rows.Count > 0)
+                    if (gridBarcodeScan.Rows.Count > 0 && actionResult)
                     {
                         btnSave.Visible = true;
                         btnCancel.Visible = true;
@@ -147,8 +150,10 @@ namespace TOAPocket.UI.Web.Barcode
             gridBarcodeScan.DataSource = dt;
             gridBarcodeScan.DataBind();
 
+            gridBarcodeScan.Columns[2].Visible = true;
             gridBarcodeScan.Columns[3].Visible = false;
 
+            btnBack.Visible = false;
         }
 
         private bool IsDigitsOnly(string str)
@@ -288,7 +293,7 @@ namespace TOAPocket.UI.Web.Barcode
                     barcode = barcode.Substring(0, barcode.Length - 1);
                 }
 
-                result = blBarcode.InsertBarcodeVoidDamage(barcode, users.UserId, users.DeptId);
+                result = blBarcode.InsertBarcodeVoidDamage(barcode, users.UserName, users.DeptName);
 
                 if (result)
                 {
@@ -307,7 +312,8 @@ namespace TOAPocket.UI.Web.Barcode
                         }
                     }
 
-                    ViewState["gridBarcodeScan"] = dt;
+                    //ViewState["gridBarcodeScan"] = dt;
+                    ViewState["gridBarcodeScan"] = null;
                     gridBarcodeScan.Columns[3].Visible = true;
                     gridBarcodeScan.Columns[2].Visible = false;
 

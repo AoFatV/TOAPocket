@@ -140,13 +140,13 @@
                                     <div class="row">
                                         <div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-3">
                                             <div class="col-xs-5 col-md-8  col-md-offset-4  col-xs-offset-3">
-                                                <button type="button" class="btn btn-success" runat="server" id="btnSave" OnServerClick="btnSave_ServerClick">
+                                                <button type="button" class="btn btn-success" runat="server" id="btnSave" onserverclick="btnSave_ServerClick">
                                                     <span class="glyphicon glyphicon-save">ยืนยัน</span>
                                                 </button>
-                                                <button type="button" class="btn" runat="server" id="btnCancel" OnServerClick="btnCancel_ServerClick">
+                                                <button type="button" class="btn" runat="server" id="btnCancel" onserverclick="btnCancel_ServerClick">
                                                     <span class="glyphicon glyphicon-remove">ยกเลิก</span>
                                                 </button>
-                                                <button type="button" class="btn" runat="server" id="btnBack" OnServerClick="btnBack_OnServerClick">
+                                                <button type="button" class="btn" runat="server" id="btnBack" onserverclick="btnBack_OnServerClick">
                                                     <span class="glyphicon glyphicon-arrow-left">ย้อนกลับ</span>
                                                 </button>
                                             </div>

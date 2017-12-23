@@ -7,13 +7,13 @@
             InitialTrNo();
             InitialDepartment();
 
-            //$("[id*='txtTfDate']").datepicker({
-            //    autoclose: true,
-            //    format: 'dd/mm/yyyy'
+            //$("#btnCloseSuccess").click(function () {
+            //    window.location = "TransferBarcode.aspx";
             //});
 
-            //$("[id*='txtTfDate']").datepicker().datepicker("setDate", new Date());
-            //$("[id*='txtTfDate']").datepicker({ minDate: -1, maxDate: -2 }).prop('readonly', 'readonly');
+            $('#SuccessBox').on('hidden.bs.modal', function () {
+                window.location = "TransferBarcode.aspx";
+            });
 
             var today = new Date();
             var dd = today.getDate();
@@ -101,7 +101,7 @@
                 var bcEnd = $("[id*='txtBarcodeEnd']").val().replace(/[^\d.]/g, '');;
 
 
-                var qty = parseInt(bcEnd) - parseInt(bcStart);
+                var qty = parseInt(bcEnd) - parseInt(bcStart) + 1;
 
                 $("[id*='lbBarcodeQty']").text(qty);
             }
@@ -112,11 +112,11 @@
             $.ajax({
                 type: "POST",
                 url: postUrl,
-                data: '{trNo: "' + $("[id*='txtTranferNo']").text() + '" ,fromDept: "' + $("[id*='ddlFromDepartment']").val() +
-                    '" ,toDept: "' + $("[id*='ddlToDepartment']").val() + '" ,startBar: "' + $("[id*='txtBarcodeStart']").val() +
+                data: '{trNo: "' + $("[id*='txtTranferNo']").text() + '" ,fromDept: "' + $("[id*='ddlFromDepartment'] option:selected").text() +
+                    '" ,toDept: "' + $("[id*='ddlToDepartment'] option:selected").text() + '" ,startBar: "' + $("[id*='txtBarcodeStart']").val() +
                     '" ,endBar: "' + $("[id*='txtBarcodeEnd']").val() + '" ,qty: "' + $("[id*='lbBarcodeQty']").text() +
                     '" ,transDate: "' + $("[id*='txtTfDate']").val() +
-                    '" ,createBy: "' + $("[id*='hdUserId']").val() +
+                    '" ,createBy: "' + $("[id*='hdUserName']").val() +
                     '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -126,7 +126,7 @@
                         if (data[0].result) {
                             successMsg("บันทึกข้อมูลเรียบร้อย");
                         } else {
-                            dangerMsg("เกิดข้อผิดพลาด");
+                            dangerMsg("เกิดข้อผิดพลาด!");
                         }
                     }
                 },
@@ -153,6 +153,7 @@
                         <!-- form start -->
                         <form role="form" runat="server">
                             <asp:HiddenField runat="server" ID="hdUserId" />
+                            <asp:HiddenField runat="server" ID="hdUserName" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">

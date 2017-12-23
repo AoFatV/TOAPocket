@@ -56,7 +56,7 @@ namespace TOAPocket.BusinessLogic
             return daBarcode.InsertBarcodeTransfer(trNo, fromDept, toDept, startBar, endBar, qty, transDate, createBy);
         }
 
-        public DataSet GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd,string status)
+        public DataSet GetBarcodeTransfer(string department, string trNo, string fromDept, string toDept, string barcodeStart, string barcodeEnd, string dateStart, string dateEnd, string status)
         {
             return daBarcode.GetBarcodeTransfer(department, trNo, fromDept, toDept, barcodeStart, barcodeEnd, dateStart, dateEnd, status);
         }
@@ -74,6 +74,26 @@ namespace TOAPocket.BusinessLogic
         public DataSet GetBarcodeVoidDamage(string barcode)
         {
             return daBarcode.GetBarcodeVoidDamage(barcode);
+        }
+
+        public bool InsertBarcodeVoidReturn(string barcode, string createBy, string department)
+        {
+            return daBarcode.InsertBarcodeVoidReturn(barcode, createBy, department);
+        }
+
+        public DataSet GetBarcodeVoidReturn(string barcode)
+        {
+            return daBarcode.GetBarcodeVoidReturn(barcode);
+        }
+
+        public bool InsertBarcodeVoidTintOneShot(string barcode, string createBy, string department)
+        {
+            return daBarcode.InsertBarcodeVoidTintOneShot(barcode, createBy, department);
+        }
+
+        public DataSet GetBarcodeVoidTintOneShot(string barcode)
+        {
+            return daBarcode.GetBarcodeVoidTintOneShot(barcode);
         }
     }
 }

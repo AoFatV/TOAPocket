@@ -10,6 +10,7 @@ namespace TOAPocket.UI.Web.Model
         public string UserId;
         public string UserName;
         public string DeptId;
+        public string DeptName;
         public string Email;
         public List<string> RoleMenus;
     }

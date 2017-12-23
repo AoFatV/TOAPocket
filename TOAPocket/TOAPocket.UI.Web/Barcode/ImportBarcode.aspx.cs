@@ -16,6 +16,8 @@ namespace TOAPocket.UI.Web.Barcode
     public partial class ImportBarcode : System.Web.UI.Page
     {
         public DataTable dtUpload = new DataTable();
+        public string msg;
+        public bool actionResult = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] == null)
@@ -27,7 +29,7 @@ namespace TOAPocket.UI.Web.Barcode
             {
                 BLBarcode blBarcode = new BLBarcode();
                 var users = (User)Session["User"];
-                bool result = blBarcode.ClearBarcodeTemp(users.UserId);
+                bool result = blBarcode.ClearBarcodeTemp(users.UserName);
             }
         }
 
@@ -91,8 +93,8 @@ namespace TOAPocket.UI.Web.Barcode
                 connExcel.Close();
 
                 var users = (User)Session["User"];
-                bool resultClear = blBarcode.ClearBarcodeTemp(users.UserId);
-                bool rsTmp = blBarcode.InsertBarcodeToTemp(dt, users.UserId);
+                bool resultClear = blBarcode.ClearBarcodeTemp(users.UserName);
+                bool rsTmp = blBarcode.InsertBarcodeToTemp(dt, users.UserName);
 
                 if (rsTmp && resultClear)
                 {
@@ -114,11 +116,18 @@ namespace TOAPocket.UI.Web.Barcode
             try
             {
                 var users = (User)Session["User"];
-                ds = blBarcode.InsertBarcode(users.UserId, "");
+                ds = blBarcode.InsertBarcode(users.UserName, "");
                 //result = blBarcode.ClearBarcodeTemp(HttpContext.Current.User.Identity.Name);
+
+                actionResult = false;
+                msg = "เกิดข้อผิดพลาด!";
+
                 if (ds.Tables.Count > 0)
                 {
                     dtUpload = ds.Tables[0];
+
+                    actionResult = true;
+                    msg = "บันทึกข้อมูลสำเร็จ";
                 }
             }
             catch (Exception ex)
@@ -134,7 +143,7 @@ namespace TOAPocket.UI.Web.Barcode
             try
             {
                 var users = (User)Session["User"];
-                result = blBarcode.ClearBarcodeTemp(users.UserId);
+                result = blBarcode.ClearBarcodeTemp(users.UserName);
             }
             catch (Exception ex)
             {

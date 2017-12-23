@@ -26,6 +26,7 @@ namespace TOAPocket.UI.Web.Barcode
             {
                 var users = (User)Session["User"];
                 hdUserId.Value = users.UserId;
+                hdUserName.Value = users.UserName;
             }
         }
 

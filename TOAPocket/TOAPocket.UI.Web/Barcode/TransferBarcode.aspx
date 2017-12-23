@@ -17,7 +17,6 @@
                 format: 'dd/mm/yyyy'
             });
 
-
             InitialTb_1();
             InitialTb_2();
             InitialTb_3();
@@ -29,10 +28,10 @@
             $.ajax({
                 type: "POST",
                 url: postUrl,
-                data: '{department: ' + $("[id*='hdDepartment']").val()
-                    + ',trNo:"' + ""
+                data: '{department: "' + ""
+                    + '",trNo:"' + ""
                     + '",fromDept:"' + ""
-                    + '",toDept:"' + ""
+                    + '",toDept:"' + $("[id*='hdDepartmentName']").val()
                     + '",barcodeStart:"' + ""
                     + '",barcodeEnd:"' + ""
                     + '",dateStart:"' + ""
@@ -56,7 +55,7 @@
                 url: postUrl,
                 data: '{department: "' + ""
                     + '",trNo:"' + ""
-                    + '",fromDept:"' + $("[id*='hdDepartment']").val()
+                    + '",fromDept:"' + $("[id*='hdDepartmentName']").val()
                     + '",toDept:"' + ""
                     + '",barcodeStart:"' + ""
                     + '",barcodeEnd:"' + ""
@@ -207,10 +206,10 @@
                         }, className: "dt-body-center"
                     },
                     {
-                        "data": "FromDept", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-body-center"
                     },
                     {
-                        "data": "ToDept", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-body-center"
                     },
                     {
                         "data": "TOTAL_QTY", className: "dt-body-center"
@@ -320,10 +319,10 @@
                         }, className: "dt-body-center"
                     },
                     {
-                        "data": "FromDept", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-body-center"
                     },
                     {
-                        "data": "ToDept", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-body-center"
                     },
                     {
                         "data": "TOTAL_QTY", className: "dt-body-center"
@@ -417,10 +416,10 @@
                         }, className: "dt-body-center"
                     },
                     {
-                        "data": "FromDept", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-body-center"
                     },
                     {
-                        "data": "ToDept", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-body-center"
                     },
                     {
                         "data": "TOTAL_QTY", className: "dt-body-center"
@@ -472,23 +471,25 @@
                 url: postUrl,
                 data: '{department: ' + $("[id*='hdDepartment']").val()
                     + ',trNo:"' + trUpdate
-                    + '",fromDept:"' + $("[id*='ddlFromDepartment']").val()
-                    + '",toDept:"' + $("[id*='ddlToDepartment']").val()
-                    + '",barcodeStart:"' + $("[id*='txtBarcodeStart']").val()
-                    + '",barcodeEnd:"' + $("[id*='txtBarcodeEnd']").val()
-                    + '",dateStart:"' + $("[id*='txtTfDateStart']").val()
-                    + '",dateEnd:"' + $("[id*='txtTfDateEnd']").val()
-                    + '",updateBy:"' + $("[id*='hdUserId']").val()
+                    + '",fromDept:"' + ""
+                    + '",toDept:"' + ""
+                    + '",barcodeStart:"' + ""
+                    + '",barcodeEnd:"' + ""
+                    + '",dateStart:"' + ""
+                    + '",dateEnd:"' + ""
+                    + '",updateBy:"' + $("[id*='hdUserName']").val()
+                    //+ '",status:"' + "20"
                     + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
                     var data = JSON.parse(response.d);
                     if (data.length > 0) {
-                        if (data[0].result) {
+                        if (data[0].result == "true") {
                             successMsg("บันทึกข้อมูลเรียบร้อย");
+                            Search();
                         } else {
-                            dangerMsg("เกิดข้อผิดพลาด");
+                            dangerMsg("เกิดข้อผิดพลาด!");
                         }
                     }
                 },
@@ -510,17 +511,18 @@
                     url: postUrl,
                     data: '{trNo: "' + trUpdate
                         + '",remark:"' + $("[id*='txtRemark']").val()
-                        + '",updateBy:"' + $("[id*='hdUserId']").val()
+                        + '",updateBy:"' + $("[id*='hdUserName']").val()
                         + '" }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
                         var data = JSON.parse(response.d);
                         if (data.length > 0) {
-                            if (data[0].result) {
+                            if (data[0].result == "true") {
                                 successMsg("บันทึกข้อมูลเรียบร้อย");
+                                Search();
                             } else {
-                                dangerMsg("เกิดข้อผิดพลาด");
+                                dangerMsg("เกิดข้อผิดพลาด!");
                             }
                         }
                     },
@@ -608,6 +610,8 @@
                         <form role="form" runat="server">
                             <asp:HiddenField runat="server" ID="hdDepartment" />
                             <asp:HiddenField runat="server" ID="hdUserId" />
+                            <asp:HiddenField runat="server" ID="hdUserName" />
+                            <asp:HiddenField runat="server" ID="hdDepartmentName" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -731,8 +735,8 @@
                                         <div class="col-xs-12">
                                             <div class="nav-tabs-custom">
                                                 <ul class="nav nav-tabs" id="tabData">
-                                                    <li id="tab1"><a href="#tab_1" data-toggle="tab" onclick="Opentab(1);">รายการค้างรับ</a></li>
-                                                    <li class="active" id="tab2"><a href="#tab_2" data-toggle="tab" onclick="Opentab(2);">ประวัติการโอน</a></li>
+                                                    <li class="active" id="tab1"><a href="#tab_1" data-toggle="tab" onclick="Opentab(1);">รายการค้างรับ</a></li>
+                                                    <li id="tab2"><a href="#tab_2" data-toggle="tab" onclick="Opentab(2);">ประวัติการโอน</a></li>
                                                     <li id="tab3"><a href="#tab_3" data-toggle="tab" onclick="Opentab(3);">ประวัติการรับโอน</a></li>
                                                 </ul>
                                                 <div class="tab-content">

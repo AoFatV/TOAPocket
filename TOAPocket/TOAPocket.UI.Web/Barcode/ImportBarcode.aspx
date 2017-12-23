@@ -5,8 +5,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
+        var actionResult = "<%=actionResult %>";
+        var msgResult = "<%=msg %>";
+
         var totalData = 0;
         $(function () {
+            if (msgResult != "") {
+                if (actionResult == 'True') {
+                    successMsg(msgResult);
+                } else {
+                    dangerMsg(msgResult);
+                }
+            }
 
             $('#tbBarcode').DataTable({
                 'paging': true,

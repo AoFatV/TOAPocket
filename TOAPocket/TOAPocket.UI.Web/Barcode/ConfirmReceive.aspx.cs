@@ -22,6 +22,11 @@ namespace TOAPocket.UI.Web.Barcode
             {
                 Response.Redirect("~/Login.aspx");
             }
+
+            if (!IsPostBack)
+            {
+                
+            }
         }
 
         [WebMethod]
@@ -88,13 +93,18 @@ namespace TOAPocket.UI.Web.Barcode
 
                 foreach (string po in hdText)
                 {
-                    result = blBarcode.UpdateBarcodeByPO(po, "", users.UserId);
+                    result = blBarcode.UpdateBarcodeByPO(po, users.DeptName, users.UserName);
                 }
 
                 if (result)
                 {
                     actionResult = true;
                     msg = "ยืนยันการรับทั้ง PO สำเร็จ";
+                }
+                else
+                {
+                    actionResult = false;
+                    msg = "เกิดข้อผิดพลาด!";
                 }
             }
             catch (Exception ex)
@@ -113,13 +123,18 @@ namespace TOAPocket.UI.Web.Barcode
                 foreach (string barcodeId in hdText)
                 {
                     var users = (User)Session["User"];
-                    result = blBarcode.UpdateBarcodeByBarcode(barcodeId, "", users.UserId);
+                    result = blBarcode.UpdateBarcodeByBarcode(barcodeId, users.DeptName, users.UserName);
                 }
 
                 if (result)
                 {
                     actionResult = true;
                     msg = "ยืนยันการรับ Barcode สำเร็จ";
+                }
+                else
+                {
+                    actionResult = false;
+                    msg = "เกิดข้อผิดพลาด!";
                 }
             }
             catch (Exception ex)

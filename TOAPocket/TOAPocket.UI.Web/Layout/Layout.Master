@@ -144,6 +144,10 @@
                             { %>
                         <li><a href="../Barcode/VoidReturn.aspx"><i class="fa fa-exchange"></i>Void รับสินค้าคืน</a></li>
                         <% }
+                            if (users.RoleMenus.Contains("50"))
+                            { %>
+                        <li><a href="../Barcode/VoidTintOneShot.aspx"><i class="fa fa-exchange"></i>Void Tint One Shot</a></li>
+                        <% }
                             if (users.RoleMenus.Contains("48"))
                             { %>
                         <li><a href="../Barcode/TransferBarcode.aspx"><i class="fa fa-exchange"></i>โอนย้าย Barcode</a></li>
