@@ -66,3 +66,9 @@ D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.
 D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\obj\Debug\TOAPocket.UI.Web.csprojResolveAssemblyReference.cache
 D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\obj\Debug\TOAPocket.UI.Web.dll
 D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\obj\Debug\TOAPocket.UI.Web.pdb
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\ICSharpCode.SharpZipLib.dll
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\NPOI.dll
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\NPOI.OOXML.dll
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\NPOI.OpenXml4Net.dll
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\NPOI.OpenXmlFormats.dll
+D:\Work\Outsource\BU Innovation\2017\QR Code\Code\TOAPocket\TOAPocket\TOAPocket.UI.Web\bin\NPOI.xml

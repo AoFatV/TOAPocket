@@ -64,7 +64,7 @@
                 "data": (data),
                 "columns": [
                     {
-                        "data": null, className: "dt-body-center"
+                        "data": null, className: "dt-center"
                     },
                     {
                         "data": "PONo",
@@ -74,14 +74,14 @@
                             }
                             return data;
                         },
-                        className: "dt-body-center", "orderable": false
+                        className: "dt-center", "orderable": false
                     },
-                    { "data": "PONo", "width": "20%", className: "dt-body-center" },
-                    { "data": "Total", "width": "20%", className: "dt-body-center" },
-                    { "data": "TotalReceive", "width": "20%", className: "dt-body-center" },
+                    { "data": "PONo", "width": "40%", className: "dt-center" },
+                    { "data": "Total", "width": "20%", className: "dt-center" },
+                    { "data": "TotalReceive", "width": "20%", className: "dt-center" },
                     //{ "data": null },
                     {
-                        "data": "Status", className: "dt-body-center"
+                        "data": "Status", className: "dt-center", "width": "20%"
                     }
                 ],
                 "bFilter": false,
@@ -129,8 +129,8 @@
                         },
                         className: "dt-body-center", "orderable": false
                     },
-                    { "data": "PONo", "width": "50%" },
-                    { "data": "Barcode", "width": "50%" }
+                    { "data": "PONo" },
+                    { "data": "Barcode" }
                 ],
                 "bFilter": false,
                 //"order": [[3, "desc"]],
@@ -259,6 +259,12 @@
 
         }
     </script>
+
+    <style type="text/css">
+        th.dt-center, td.dt-center {
+            text-align: center;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content-wrapper" style="min-height: 990px;">
@@ -311,7 +317,7 @@
                                                                 <asp:Button ID="btnConfirm" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirm_Click" OnClientClick="return PreparePO()" />
                                                             </div>
                                                             <div class="col-xs-10">
-                                                                <table id="tbRcAllPO" class="table table-bordered table-striped" >
+                                                                <table id="tbRcAllPO" class="table table-bordered table-striped" width="100%">
                                                                     <thead>
                                                                         <tr>
                                                                             <th style="text-align: center;">ลำดับ</th>

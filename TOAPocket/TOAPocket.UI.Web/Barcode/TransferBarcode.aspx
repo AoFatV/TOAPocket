@@ -4,6 +4,9 @@
     <%--<script src="https://cdn.uni-kl.de/js/datatables/1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>--%>
     <%--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />--%>
     <%--<link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css" />--%>
+    <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
+    <link href="../Content/responsive.dataTables.min2.css" rel="stylesheet" />
+    <script src="../Scripts/dataTables.responsive.js"></script>
     <script type="text/javascript">
         var trUpdate;
         $(function () {

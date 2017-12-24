@@ -24,11 +24,8 @@ namespace TOAPocket.DataAccess
                 Command.CommandText = "spGetDepartment";
                 Command.Parameters.Clear();
 
-                if (!String.IsNullOrEmpty(condition))
-                {
-                    Command.Parameters.Add(new SqlParameter("Condition", SqlDbType.VarChar));
-                    Command.Parameters["Condition"].Value = condition;
-                }
+                Command.Parameters.Add(new SqlParameter("Condition", SqlDbType.VarChar));
+                Command.Parameters["Condition"].Value = String.IsNullOrEmpty(condition) ? (object)DBNull.Value : condition;
 
                 Command.CommandTimeout = 0;
                 if (Transaction != null)

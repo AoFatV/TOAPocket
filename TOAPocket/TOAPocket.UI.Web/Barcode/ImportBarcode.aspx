@@ -150,7 +150,7 @@
                             </div>
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-xs-2  col-sm-offset-3">
+                                    <div class="col-xs-3  col-sm-offset-3">
                                         <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick" OnClientClick="return ImportBarode()" />
                                         <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-success" OnClick="btnCancel_OnClick" />
                                     </div>

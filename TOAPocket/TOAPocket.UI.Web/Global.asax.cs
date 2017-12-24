@@ -23,8 +23,8 @@ namespace TOAPocket.UI.Web
                 "~/Scripts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
                 "~/Scripts/bower_components/fastclick/lib/fastclick.js",
                 "~/Scripts/bower_components/bootstrap/dist/js/bootstrap.min.js",
-                "~/Scripts/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
-                "~/Scripts/dataTables.responsive.js"
+                "~/Scripts/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
+                //"~/Scripts/dataTables.responsive.js"
             ));
 
             BundleTable.Bundles.Add(new StyleBundle("~/content/adminlte").IncludeDirectory("~/admin-lte/css", "*.min.css")

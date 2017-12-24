@@ -119,7 +119,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-xs-5 col-xs-offset-4">
-                                            <asp:gridview runat="server" autogeneratecolumns="false" id="gridBarcodeScan" cssclass="table table-striped table-bordered table-hover" allowpaging="true" pagesize="3"
+                                            <asp:gridview runat="server" autogeneratecolumns="false" id="gridBarcodeScan" cssclass="table table-striped table-bordered table-hover" allowpaging="true" pagesize="5"
                                                 onpageindexchanging="gridBarcodeScan_OnPageIndexChanging" onrowcommand="gridBarcodeScan_OnRowCommand" onrowdeleting="gridBarcodeScan_OnRowDeleting">
                                                 <Columns>
                                                     <asp:BoundField DataField="No" HeaderText="ลำดับ" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="text-center" />

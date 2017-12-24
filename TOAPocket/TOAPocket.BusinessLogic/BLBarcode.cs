@@ -95,5 +95,10 @@ namespace TOAPocket.BusinessLogic
         {
             return daBarcode.GetBarcodeVoidTintOneShot(barcode);
         }
+
+        public DataSet GetStockBarcode(string barcode, string poNo, string lastEditStart, string lastEditEnd, string department, string status)
+        {
+            return daBarcode.GetStockBarcode(barcode, poNo, lastEditStart, lastEditEnd, department, status);
+        }
     }
 }

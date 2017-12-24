@@ -665,5 +665,53 @@ namespace TOAPocket.DataAccess
 
             return ds;
         }
+
+        public DataSet GetStockBarcode(string barcode, string poNo, string lastEditStart, string lastEditEnd, string department, string status)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "spGetStockBarcode";
+                Command.Parameters.Clear();
+
+                Command.Parameters.Add(new SqlParameter("Barcode", SqlDbType.VarChar));
+                Command.Parameters["Barcode"].Value = String.IsNullOrEmpty(barcode) ? (object)DBNull.Value : barcode;
+                Command.Parameters.Add(new SqlParameter("PONo", SqlDbType.VarChar));
+                Command.Parameters["PONo"].Value = String.IsNullOrEmpty(poNo) ? (object)DBNull.Value : poNo;
+                Command.Parameters.Add(new SqlParameter("LastEditStart", SqlDbType.VarChar));
+                Command.Parameters["LastEditStart"].Value = String.IsNullOrEmpty(lastEditStart) ? (object)DBNull.Value : lastEditStart;
+                Command.Parameters.Add(new SqlParameter("LastEditEnd", SqlDbType.VarChar));
+                Command.Parameters["LastEditEnd"].Value = String.IsNullOrEmpty(lastEditEnd) ? (object)DBNull.Value : lastEditEnd;
+                Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
+                Command.Parameters["Department"].Value = String.IsNullOrEmpty(department) ? (object)DBNull.Value : department;
+                Command.Parameters.Add(new SqlParameter("Status", SqlDbType.VarChar));
+                Command.Parameters["Status"].Value = String.IsNullOrEmpty(status) ? (object)DBNull.Value : status;
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
     }
 }
