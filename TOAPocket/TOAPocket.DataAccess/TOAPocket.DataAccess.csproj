@@ -86,7 +86,10 @@
     <Compile Include="BaseClasses\DbQRCodeInfo.cs" />
     <Compile Include="BaseClasses\Encryption.cs" />
     <Compile Include="BaseClasses\IDbDalInfo.cs" />
+    <Compile Include="DABarcode.cs" />
+    <Compile Include="DADepartment.cs" />
     <Compile Include="DARoles.cs" />
+    <Compile Include="DAStatus.cs" />
     <Compile Include="DAUser.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

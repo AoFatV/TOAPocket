@@ -10,9 +10,9 @@ namespace TOAPocket.BusinessLogic
     public class BLUser
     {
         DAUser daUser = new DAUser();
-        public DataSet GetUser(String userName)
+        public DataSet GetUser(String userName, string password)
         {
-            return daUser.ValidateUser(userName);
+            return daUser.ValidateUser(userName, password);
         }
     }
 }
