@@ -7405,7 +7405,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1413</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/TOAPocket</IISUrl>
+          <IISUrl>http://localhost/E-Pocket</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
