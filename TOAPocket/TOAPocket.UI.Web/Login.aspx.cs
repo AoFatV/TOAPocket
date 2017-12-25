@@ -61,6 +61,11 @@ namespace TOAPocket.UI.Web
 
                         Session["User"] = users;
 
+                        if (chkRemember.Checked)
+                        {
+                            Session.Timeout = 3000;
+                        }
+
                         Response.Redirect("Home/Index.aspx");
                     }
                 }

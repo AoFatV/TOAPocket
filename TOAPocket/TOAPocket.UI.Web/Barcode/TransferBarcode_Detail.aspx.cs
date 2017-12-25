@@ -65,7 +65,11 @@ namespace TOAPocket.UI.Web.Barcode
 
                             lbStatus.InnerText = dr["STATUS_NAME"].ToString();
 
-
+                            if (dr["STATUS_ID"].ToString() != "20")
+                            {
+                                btnConfirmReceive.Visible = false;
+                                btnRejectReceive.Visible = false;
+                            }
                         }
                     }
                 }

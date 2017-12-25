@@ -560,8 +560,8 @@
                 url: postUrl,
                 data: '{department: "' + ""
                     + '",trNo:"' + $("[id*='txtTranferNo']").val()
-                    + '",fromDept:"' + $("[id*='ddlFromDepartment']").val()
-                    + '",toDept:"' + $("[id*='ddlToDepartment']").val()
+                    + '",fromDept:"' + $("[id*='ddlFromDepartment'] option:selected").text()
+                    + '",toDept:"' + $("[id*='ddlToDepartment'] option:selected").text()
                     + '",barcodeStart:"' + $("[id*='txtBarcodeStart']").val()
                     + '",barcodeEnd:"' + $("[id*='txtBarcodeEnd']").val()
                     + '",dateStart:"' + $("[id*='txtTfDateStart']").val()
@@ -592,6 +592,16 @@
 
 
 
+        }
+
+        function CancelSearch() {
+            $("[id*='txtTranferNo']").val('');
+            $("[id*='ddlFromDepartment']").val($("[id*='ddlFromDepartment'] option:first").val());
+            $("[id*='ddlToDepartment']").val($("[id*='ddlToDepartment'] option:first").val());
+            $("[id*='txtBarcodeStart']").val('');
+            $("[id*='txtBarcodeEnd']").val('');
+            $("[id*='txtTfDateStart']").val('');
+            $("[id*='txtTfDateEnd']").val('');
         }
     </script>
 
@@ -713,21 +723,21 @@
                                         <div class="col-xs-12 col-xs-offset-5">
                                             <div class="col-xs-2 col-md-1">
                                                 <button type="button" class="btn btn-info" onclick="Search()">
-                                                    <span class="glyphicon glyphicon-search"></span>ค้นหา
+                                                    <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                
                                                
                                                 </button>
                                             </div>
                                             <div class="col-xs-2 col-md-1">
-                                                <button type="button" class="btn" onclick="SearchByPO()">
-                                                    <span class="glyphicon glyphicon-remove"></span>ยกเลิก
+                                                <button type="button" class="btn" onclick="CancelSearch()">
+                                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;ยกเลิก
                                                
                                                
                                                 </button>
                                             </div>
                                             <div class="col-xs-2 col-md-1">
                                                 <button type="button" class="btn btn-success" onclick="CreateTransferBarcode()">
-                                                    <span class="glyphicon glyphicon-transfer"></span>สร้างรายการโอน
+                                                    <span class="glyphicon glyphicon-transfer"></span>&nbsp;สร้างรายการโอน
                                                
                                                
                                                 </button>
@@ -753,9 +763,9 @@
                                                                             <th>Transfer No.</th>
                                                                             <th>วันที่โอน</th>
                                                                             <th>วันที่รับ</th>
-                                                                            <th>แผนกที่โอน</th>
-                                                                            <th>แผนกที่รับ</th>
-                                                                            <th>Qty.</th>
+                                                                            <th data-priority="1">แผนกที่โอน</th>
+                                                                            <th data-priority="1">แผนกที่รับ</th>
+                                                                            <th data-priority="1">Qty.</th>
                                                                             <th data-priority="1">ช่วง Barcode</th>
                                                                             <th data-priority="1">สถานะ</th>
                                                                             <th data-priority="1">ยืนยันการรับ</th>

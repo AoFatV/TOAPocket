@@ -130,23 +130,23 @@
                         <% }
                             if (users.RoleMenus.Contains("46"))
                             { %>
-                        <li><a href="../Barcode/MatchBarccode.aspx"><i class="fa fa-exchange"></i>Match Barcode</a></li>
+                        <li><a href="../Barcode/MatchBarccode.aspx"><i class="fa fa-circle-o"></i>Match Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains("47"))
                             { %>
-                        <li><a href="../Barcode/UnmatchBarcode.aspx"><i class="fa fa-exchange"></i>UnMatch Barcode</a></li>
+                        <li><a href="../Barcode/UnmatchBarcode.aspx"><i class="fa fa-circle-o"></i>UnMatch Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains("48"))
                             { %>
-                        <li><a href="../Barcode/VoidBarcode.aspx"><i class="fa fa-exchange"></i>Void Barcode ชำรุด</a></li>
+                        <li><a href="../Barcode/VoidBarcode.aspx"><i class="fa fa-circle-o"></i>Void Barcode ชำรุด</a></li>
                         <% }
                             if (users.RoleMenus.Contains("49"))
                             { %>
-                        <li><a href="../Barcode/VoidReturn.aspx"><i class="fa fa-exchange"></i>Void รับสินค้าคืน</a></li>
+                        <li><a href="../Barcode/VoidReturn.aspx"><i class="fa fa-circle-o"></i>Void รับสินค้าคืน</a></li>
                         <% }
                             if (users.RoleMenus.Contains("50"))
                             { %>
-                        <li><a href="../Barcode/VoidTintOneShot.aspx"><i class="fa fa-exchange"></i>Void Tint One Shot</a></li>
+                        <li><a href="../Barcode/VoidTintOneShot.aspx"><i class="fa fa-circle-o"></i>Void Tint One Shot</a></li>
                         <% }
                             if (users.RoleMenus.Contains("48"))
                             { %>

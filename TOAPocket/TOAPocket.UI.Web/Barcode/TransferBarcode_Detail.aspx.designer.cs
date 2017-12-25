@@ -128,5 +128,23 @@ namespace TOAPocket.UI.Web.Barcode {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbStatus;
+        
+        /// <summary>
+        /// btnConfirmReceive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnConfirmReceive;
+        
+        /// <summary>
+        /// btnRejectReceive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnRejectReceive;
     }
 }

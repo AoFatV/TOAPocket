@@ -261,13 +261,13 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-9 col-xs-offset-3">
-                                                    <button type="button" class="btn btn-success" onclick="CallConfirm()">
+                                                    <button type="button" class="btn btn-success" onclick="CallConfirm()" runat="server" id="btnConfirmReceive">
                                                         <span class="glyphicon glyphicon-save"></span>ยืนยันการรับ
                                                     </button>
                                                     <button type="button" class="btn" id="btnCancel">
                                                         <span class="glyphicon glyphicon-remove"></span>ยกเลิก
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" onclick="RejectReceiveBarcode()">
+                                                    <button type="button" class="btn btn-danger" onclick="RejectReceiveBarcode()" runat="server" id="btnRejectReceive">
                                                         <span class="glyphicon glyphicon-remove"></span>ไม่รับ Barcode
                                                     </button>
                                                 </div>

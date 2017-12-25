@@ -429,7 +429,7 @@
                                                     </tr>
                                                 </thead>
                                             </table>--%>
-                                            <asp:GridView runat="server" ID="gridStockBarcode" CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" AutoGenerateColumns="False"
+                                            <asp:GridView runat="server" ID="gridStockBarcode" CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="15" AutoGenerateColumns="False"
                                                 OnPageIndexChanging="gridStockBarcode_OnPageIndexChanging">
                                                 <Columns>
                                                     <asp:BoundField DataField="No" HeaderText="ลำดับ" ItemStyle-Width="3%" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="text-center" />

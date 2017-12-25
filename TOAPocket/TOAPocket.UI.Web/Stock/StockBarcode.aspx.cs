@@ -166,7 +166,7 @@ namespace TOAPocket.UI.Web.Stock
         {
             try
             {
-                if (ViewState["gridBarcodeScan"] != null)
+                if (ViewState["gridStockBarcode"] != null)
                 {
                     DataTable dt = (DataTable)ViewState["gridStockBarcode"];
                     gridStockBarcode.PageIndex = e.NewPageIndex;
@@ -312,7 +312,7 @@ namespace TOAPocket.UI.Web.Stock
 
             for (int j = 0; j < listHeader.Length; j++)
             {
-                ICell cell = row1.CreateCell(firstRow);
+                ICell cell = row1.CreateCell(j);
 
                 String columnName = listHeader[j];
                 cell.SetCellValue(columnName);
