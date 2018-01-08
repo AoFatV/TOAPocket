@@ -43,9 +43,17 @@ namespace TOAPocket.UI.Web.Barcode
                     string extension = Path.GetExtension(fileUpload.PostedFile.FileName);
                     string tmpFolderPath = ConfigurationManager.AppSettings["TmpFolderPath"];
 
-                    string FilePath = Server.MapPath(tmpFolderPath + fileName);
-                    fileUpload.SaveAs(FilePath);
-                    ImportToTable(FilePath, extension, true);
+                    if (extension == ".xls" || extension == ".xlsx")
+                    {
+                        string FilePath = Server.MapPath(tmpFolderPath + fileName);
+                        fileUpload.SaveAs(FilePath);
+                        ImportToTable(FilePath, extension, true);
+                    }
+                    else
+                    {
+                        msg = "ไฟล์ Excel ที่อัพโหลดไม่ถูกต้อง";
+                        actionResult = false;
+                    }
                 }
             }
             catch (Exception ex)

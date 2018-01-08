@@ -14,5 +14,10 @@ namespace TOAPocket.BusinessLogic
         {
             return daUser.ValidateUser(userName, password);
         }
+
+        public DataSet GetUserType()
+        {
+            return daUser.GetUserType();
+        }
     }
 }
