@@ -4,7 +4,7 @@ namespace TOAPocket.DataAccess.BaseClasses
 {
     public class DbQRCodeInfo : DbDalBase
     {
-        string _DB_QRCODE = "db_dealerconnect";
+        string _DB_QRCODE = "db_dealer_connect";
         string _ConnStr;
         public DbQRCodeInfo()
         {
