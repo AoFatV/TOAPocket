@@ -133,6 +133,7 @@
     <Content Include="Logout.aspx" />
     <Content Include="News\News.aspx" />
     <Content Include="News\News_Create.aspx" />
+    <Content Include="News\News_Update.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -7002,6 +7003,7 @@
     <Content Include="Scripts\bower_components\select2\src\scss\_dropdown.scss" />
     <Content Include="Scripts\bower_components\select2\src\scss\_multiple.scss" />
     <Content Include="Scripts\bower_components\select2\src\scss\_single.scss" />
+    <Content Include="Common\FileUploadHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7338,6 +7340,9 @@
       <DependentUpon>FetchData.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\FileUploadHandler.ashx.cs">
+      <DependentUpon>FileUploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -7386,6 +7391,13 @@
     <Compile Include="News\News_Create.aspx.designer.cs">
       <DependentUpon>News_Create.aspx</DependentUpon>
     </Compile>
+    <Compile Include="News\News_Update.aspx.cs">
+      <DependentUpon>News_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News\News_Update.aspx.designer.cs">
+      <DependentUpon>News_Update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock\StockBarcode.aspx.cs">
       <DependentUpon>StockBarcode.aspx</DependentUpon>
@@ -7404,6 +7416,7 @@
   <ItemGroup>
     <Folder Include="Barcode\TempFile\" />
     <Folder Include="ProcessOrder\" />
+    <Folder Include="Uploads\Thumbnail\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 
 namespace TOAPocket.DataAccess
 {
@@ -94,6 +96,40 @@ namespace TOAPocket.DataAccess
             }
 
             return ds;
+        }
+
+        public bool InsertNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, byte[] imagedate, string createBy, string detail)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsNews");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@RefNo", SqlDbType.NVarChar, refNo);
+                db.AddInParameter(sqlCmd, "@Name", SqlDbType.NVarChar, newsName);
+                db.AddInParameter(sqlCmd, "@StartDate", SqlDbType.NVarChar, newsStartDate);
+                db.AddInParameter(sqlCmd, "@EndDate", SqlDbType.NVarChar, String.IsNullOrEmpty(newsEndDate) ? (object)DBNull.Value : newsEndDate);
+                db.AddInParameter(sqlCmd, "@UserType", SqlDbType.NVarChar, userType);
+                db.AddInParameter(sqlCmd, "@Status", SqlDbType.NVarChar, status);
+                db.AddInParameter(sqlCmd, "@Detail", SqlDbType.NVarChar, detail);
+                db.AddInParameter(sqlCmd, "@Thumbnail", SqlDbType.VarBinary, imagedate.Length == 0 ? (object)DBNull.Value : imagedate);
+                db.AddInParameter(sqlCmd, "@CreateBy", SqlDbType.NVarChar, createBy);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
         }
     }
 }

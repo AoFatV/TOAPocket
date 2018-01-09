@@ -15,10 +15,15 @@ namespace TOAPocket.BusinessLogic
         {
             return daNews.GetNews(newsName, newsStartDate, newsEndDate, userType, status);
         }
-        
+
         public DataSet GetRefRunningNo()
         {
             return daNews.GetRefRunningNo();
+        }
+
+        public bool InsertNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, byte[] imagedate, string createBy, string detail)
+        {
+            return daNews.InsertNews(refNo, newsName, newsStartDate, newsEndDate, userType, status, imagedate, createBy, detail);
         }
     }
 }

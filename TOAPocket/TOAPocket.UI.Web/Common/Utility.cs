@@ -25,5 +25,20 @@ namespace TOAPocket.UI.Web.Common
             }
             return jsSerializer.Serialize(parentRow);
         }
+
+        public byte[] GetImageDate(string Path, string FileName)
+        {
+            byte[] data = null;
+            try
+            {
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return data;
+        }
     }
 }

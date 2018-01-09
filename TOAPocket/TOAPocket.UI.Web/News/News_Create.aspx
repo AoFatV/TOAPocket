@@ -4,6 +4,7 @@
     <script src="../Scripts/bower_components/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
+        var hasUpload = false;
         $(function () {
 
             $("[id*='txtStartDate']").datepicker({
@@ -19,6 +20,10 @@
             CKEDITOR.replace('editor1');
 
             InitialRefNo();
+
+            $('#SuccessBox').on('hidden.bs.modal', function () {
+                window.location = "News.aspx";
+            });
         });
 
         function ConfirmCreateNews() {
@@ -32,15 +37,49 @@
             } else if (CKEDITOR.instances.editor1.getData() == "") {
                 dangerMsg("กรุณาระบุ เนื้อหา!");
                 valid = false;
+            } else if (!hasUpload) {
+                dangerMsg("กรุณาอัพโหลด Thumbnail!");
+                valid = false;
             }
 
             if (valid) {
-                CreateNews();
+                UploadImage();
             }
         }
 
-        function CreateNews() {
-            
+        function CreateNews(extension) {
+
+            var postUrl = "News_Create.aspx/CreateNews";
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                data: '{refNo: "' + $("[id*='txtRefNo']").text()
+                    + '",newsName:"' + $("[id*='txtNewsName']").val()
+                    + '",newsStartDate:"' + $("[id*='txtStartDate']").val()
+                    + '",newsEndDate:"' + $("[id*='txtEndDate']").val()
+                    + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
+                    + '",status:"' + $("[id*='rdStatus'] :checked").val()
+                    + '",extension:"' + extension
+                    + '",createBy: "' + $("[id*='hdUserName']").val()
+                    + '",detail: "' + CKEDITOR.instances.editor1.getData()
+                    + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var data = JSON.parse(response.d);
+                    if (data.length > 0) {
+                        if (data[0].result) {
+                            successMsg("บันทึกข้อมูลเรียบร้อย");
+                        } else {
+                            dangerMsg("เกิดข้อผิดพลาด!");
+                        }
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.d);
+                }
+            });
+
         }
 
         function InitialRefNo() {
@@ -67,14 +106,59 @@
             }
         }
 
-        function showImage(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagepreview').prop('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+        function previewFile() {
+            var preview = document.querySelector("[id*='imgPreview']");
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
             }
+
+            if (file) {
+                reader.readAsDataURL(file);
+
+                hasUpload = true;
+            } else {
+                preview.src = "";
+
+                hasUpload = false;
+            }
+        }
+
+        function UploadImage() {
+            //$("#btnUpload").click(function (evt) {
+            var fileUpload = $("[id*='fileThumbnail']").get(0);
+            var files = fileUpload.files;
+            var extension = "";
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+                //console.log(files[i].name);
+                extension = files[i].name.split('.').pop();
+            }
+
+            $.ajax({
+                url: "../Common/FileUploadHandler.ashx",
+                type: "POST",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    CreateNews(extension);
+                    //alert(result);
+                },
+                error: function (err) {
+                    //alert(err.statusText);
+                }
+            });
+
+            //    evt.preventDefault();
+            //});
+        }
+
+        function CancelCreateNews() {
+            window.location = "News.aspx";
         }
     </script>
 </asp:Content>
@@ -97,7 +181,7 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-xs-12">
+                                        <div class="col-xs-9">
                                             <div class="row">
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
@@ -116,13 +200,10 @@
                                                     <div class="col-xs-2">
                                                         ชื่อเรื่อง
                                                     </div>
-                                                    <div class="col-xs-6">
+                                                    <div class="col-xs-10">
                                                         <asp:TextBox runat="server" ID="txtNewsName" class="form-control"></asp:TextBox>
                                                     </div>
-                                                    <div class="col-xs-4">
-                                                        <input type='file' onchange="showImage(this);" /> 
-                                                        <img id="imagepreview" src="" alt="your image" /> 
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <br />
@@ -197,9 +278,24 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <button type="button" class="btn btn-info" onclick="document.getElementById('fileThumbnail').click();">
+                                                        <span class="glyphicon glyphicon-folder-open"></span>&nbsp;Browse
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <img id="imgPreview" width="150" height="150" alt="" />
+                                                    <input id="fileThumbnail" type="file" onchange="previewFile()" style="display: none;" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
