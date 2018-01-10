@@ -89,7 +89,8 @@
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15,
+                //"iDisplayLength": 15,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                     $("td:first", nRow).html(($('#tbRcAllPO').DataTable().page.info().page * $('#tbRcAllPO').DataTable().page.info().length) + iDisplayIndex + 1);
                     return nRow;
@@ -117,7 +118,7 @@
                 "data": (data),
                 "columns": [
                     {
-                        "data": null,
+                        "data": null, className: "dt-center", "width": "3%"
                     },
                     {
                         "data": "Barcode",
@@ -127,17 +128,18 @@
                             }
                             return data;
                         },
-                        className: "dt-body-center", "orderable": false
+                        "orderable": false, className: "dt-center", "width": "10%"
                     },
-                    { "data": "PONo" },
-                    { "data": "Barcode" }
+                    { "data": "PONo", className: "dt-center" },
+                    { "data": "Barcode", className: "dt-center" }
                 ],
                 "bFilter": false,
                 //"order": [[3, "desc"]],
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15,
+                //"iDisplayLength": 15,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                     $("td:first", nRow).html(($('#tbRcBarcode').DataTable().page.info().page * $('#tbRcBarcode').DataTable().page.info().length) + iDisplayIndex + 1);
                     return nRow;
@@ -287,7 +289,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="nav-tabs-custom">
-                                                <ul class="nav nav-tabs">
+                                                <ul class="nav nav-pills">
                                                     <li class="active"><a href="#tab_1" data-toggle="tab" onclick="Opentab(1);">รับทั้ง PO</a></li>
                                                     <li><a href="#tab_2" data-toggle="tab" onclick="Opentab(2);">รับบางส่วน</a></li>
                                                 </ul>
@@ -372,11 +374,11 @@
                                                                 <table id="tbRcBarcode" class="table table-bordered table-striped" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>ลำดับ</th>
-                                                                            <th>
+                                                                            <th style="text-align: center;">ลำดับ</th>
+                                                                            <th style="text-align: center;">
                                                                                 <input type="checkbox" name="chkAllBarcode" value="1" id="chkAllBarcode" /></th>
-                                                                            <th>PO No.</th>
-                                                                            <th>Barcode</th>
+                                                                            <th style="text-align: center;">PO No.</th>
+                                                                            <th style="text-align: center;">Barcode</th>
                                                                         </tr>
                                                                     </thead>
                                                                 </table>

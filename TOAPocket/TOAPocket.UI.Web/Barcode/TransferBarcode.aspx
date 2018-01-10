@@ -157,14 +157,14 @@
                         "data": null,
                         render: function (data, type, row) {
                             return "";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
 
                     },
                     {
                         "data": "TR_NO",
                         render: function (data, type, row) {
                             return "<a href='TransferBarcode_Detail.aspx?trNO=" + row.TR_NO + "' >" + row.TR_NO + "</a>";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "TR_DATE",
@@ -184,7 +184,7 @@
 
                             date = dd + '/' + mm + '/' + yyyy;
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "RECEIVE_DATE",
@@ -206,32 +206,32 @@
                                 date = dd + '/' + mm + '/' + yyyy;
                             }
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
-                        "data": "TR_FROM", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-center"
                     },
                     {
-                        "data": "TR_TO", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-center"
                     },
                     {
-                        "data": "TOTAL_QTY", className: "dt-body-center"
+                        "data": "TOTAL_QTY", className: "dt-center"
                     },
                     {
                         "data": null,
                         render: function (data, type, row) {
                             var value = row.BARCODE_FROM + "-" + row.BARCODE_TO;
                             return value;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     }, {
-                        "data": "STATUS_NAME", className: "dt-body-center"
+                        "data": "STATUS_NAME", className: "dt-center"
                     }, {
                         "data": null,
                         render: function (data, type, row) {
                             var data = "'" + row.TR_NO + "'";
                             var buttonOk = '<button type="button" class="btn btn-success" onclick="CallConfirm(' + data + ');"><span class="glyphicon glyphicon-ok"></span></button>';
                             return buttonOk;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
 
                     }, {
                         "data": null,
@@ -239,7 +239,7 @@
                             var data = "'" + row.TR_NO + "'";
                             var buttonReject = '<button type="button" class="btn btn-danger" onclick="CallReject(' + data + ');"><span class="glyphicon glyphicon-remove"></span></button>';
                             return buttonReject;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
 
                     }
                 ],
@@ -248,7 +248,8 @@
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15
+                //"iDisplayLength": 15
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
             });
         }
 
@@ -270,14 +271,14 @@
                         "data": null,
                         render: function (data, type, row) {
                             return "";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
 
                     },
                     {
                         "data": "TR_NO",
                         render: function (data, type, row) {
                             return "<a href='TransferBarcode_Detail.aspx?trNO=" + row.TR_NO + "' >" + row.TR_NO + "</a>";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "TR_DATE",
@@ -297,7 +298,7 @@
 
                             date = dd + '/' + mm + '/' + yyyy;
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "RECEIVE_DATE",
@@ -319,25 +320,25 @@
                                 date = dd + '/' + mm + '/' + yyyy;
                             }
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
-                        "data": "TR_FROM", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-center"
                     },
                     {
-                        "data": "TR_TO", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-center"
                     },
                     {
-                        "data": "TOTAL_QTY", className: "dt-body-center"
+                        "data": "TOTAL_QTY", className: "dt-center"
                     },
                     {
                         "data": null,
                         render: function (data, type, row) {
                             var value = row.BARCODE_FROM + "-" + row.BARCODE_TO;
                             return value;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     }, {
-                        "data": "STATUS_NAME", className: "dt-body-center"
+                        "data": "STATUS_NAME", className: "dt-center"
                     }
                 ],
                 "bFilter": false,
@@ -345,7 +346,8 @@
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15
+                //"iDisplayLength": 15
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
             });
         }
 
@@ -367,14 +369,14 @@
                         "data": null,
                         render: function (data, type, row) {
                             return "";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
 
                     },
                     {
                         "data": "TR_NO",
                         render: function (data, type, row) {
                             return "<a href='TransferBarcode_Detail.aspx?trNO=" + row.TR_NO + "' >" + row.TR_NO + "</a>";
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "TR_DATE",
@@ -394,7 +396,7 @@
 
                             date = dd + '/' + mm + '/' + yyyy;
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "RECEIVE_DATE",
@@ -416,25 +418,25 @@
                                 date = dd + '/' + mm + '/' + yyyy;
                             }
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
-                        "data": "TR_FROM", className: "dt-body-center"
+                        "data": "TR_FROM", className: "dt-center"
                     },
                     {
-                        "data": "TR_TO", className: "dt-body-center"
+                        "data": "TR_TO", className: "dt-center"
                     },
                     {
-                        "data": "TOTAL_QTY", className: "dt-body-center"
+                        "data": "TOTAL_QTY", className: "dt-center"
                     },
                     {
                         "data": null,
                         render: function (data, type, row) {
                             var value = row.BARCODE_FROM + "-" + row.BARCODE_TO;
                             return value;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     }, {
-                        "data": "STATUS_NAME", className: "dt-body-center"
+                        "data": "STATUS_NAME", className: "dt-center"
                     }
                 ],
                 "bFilter": false,
@@ -442,7 +444,8 @@
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15
+                //"iDisplayLength": 15
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
             });
         }
 
@@ -605,7 +608,11 @@
         }
     </script>
 
-
+    <style type="text/css">
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content-wrapper" style="min-height: 990px;">
@@ -720,7 +727,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-xs-offset-5">
+                                        <div class="col-xs-9 col-xs-offset-6 col-md-12 col-md-offset-8">
                                             <div class="col-xs-2 col-md-1">
                                                 <button type="button" class="btn btn-info" onclick="Search()">
                                                     <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
@@ -747,7 +754,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="nav-tabs-custom">
-                                                <ul class="nav nav-tabs" id="tabData">
+                                                <ul class="nav nav-pills" id="tabData">
                                                     <li class="active" id="tab1"><a href="#tab_1" data-toggle="tab" onclick="Opentab(1);">รายการค้างรับ</a></li>
                                                     <li id="tab2"><a href="#tab_2" data-toggle="tab" onclick="Opentab(2);">ประวัติการโอน</a></li>
                                                     <li id="tab3"><a href="#tab_3" data-toggle="tab" onclick="Opentab(3);">ประวัติการรับโอน</a></li>
@@ -759,17 +766,17 @@
                                                                 <table id="tbUnReceive" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th style="width: 1%;"></th>
-                                                                            <th>Transfer No.</th>
-                                                                            <th>วันที่โอน</th>
-                                                                            <th>วันที่รับ</th>
-                                                                            <th data-priority="1">แผนกที่โอน</th>
-                                                                            <th data-priority="1">แผนกที่รับ</th>
-                                                                            <th data-priority="1">Qty.</th>
-                                                                            <th data-priority="1">ช่วง Barcode</th>
-                                                                            <th data-priority="1">สถานะ</th>
-                                                                            <th data-priority="1">ยืนยันการรับ</th>
-                                                                            <th data-priority="2">ปฏิเสธการรับ</th>
+                                                                            <th style="width: 1%; text-align: center;"></th>
+                                                                            <th style="text-align: center;">Transfer No.</th>
+                                                                            <th style="text-align: center;">วันที่โอน</th>
+                                                                            <th style="text-align: center;">วันที่รับ</th>
+                                                                            <th data-priority="1" style="text-align: center;">แผนกที่โอน</th>
+                                                                            <th data-priority="1" style="text-align: center;">แผนกที่รับ</th>
+                                                                            <th data-priority="1" style="text-align: center;">Qty.</th>
+                                                                            <th data-priority="1" style="text-align: center;">ช่วง Barcode</th>
+                                                                            <th data-priority="1" style="text-align: center;">สถานะ</th>
+                                                                            <th data-priority="1" style="text-align: center;">ยืนยันการรับ</th>
+                                                                            <th data-priority="2" style="text-align: center;">ปฏิเสธการรับ</th>
                                                                         </tr>
                                                                     </thead>
                                                                 </table>
@@ -782,15 +789,15 @@
                                                                 <table id="tbTransferHistory" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th style="width: 1%;"></th>
-                                                                            <th>Transfer No.</th>
-                                                                            <th>วันที่โอน</th>
-                                                                            <th>วันที่รับ</th>
-                                                                            <th>แผนกที่โอน</th>
-                                                                            <th>แผนกที่รับ</th>
-                                                                            <th>Qty.</th>
-                                                                            <th data-priority="1">ช่วง Barcode</th>
-                                                                            <th data-priority="1">สถานะ</th>
+                                                                            <th style="width: 1%; text-align: center;"></th>
+                                                                            <th style="text-align: center;">Transfer No.</th>
+                                                                            <th style="text-align: center;">วันที่โอน</th>
+                                                                            <th style="text-align: center;">วันที่รับ</th>
+                                                                            <th style="text-align: center;">แผนกที่โอน</th>
+                                                                            <th style="text-align: center;">แผนกที่รับ</th>
+                                                                            <th style="text-align: center;">Qty.</th>
+                                                                            <th data-priority="1" style="text-align: center;">ช่วง Barcode</th>
+                                                                            <th data-priority="1" style="text-align: center;">สถานะ</th>
                                                                         </tr>
                                                                     </thead>
                                                                 </table>
@@ -803,15 +810,15 @@
                                                                 <table id="tbReceiveHistory" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th style="width: 1%;"></th>
-                                                                            <th>Transfer No.</th>
-                                                                            <th>วันที่โอน</th>
-                                                                            <th>วันที่รับ</th>
-                                                                            <th>แผนกที่โอน</th>
-                                                                            <th>แผนกที่รับ</th>
-                                                                            <th>Qty.</th>
-                                                                            <th data-priority="1">ช่วง Barcode</th>
-                                                                            <th data-priority="1">สถานะ</th>
+                                                                            <th style="width: 1%; text-align: center;"></th>
+                                                                            <th style="text-align: center;">Transfer No.</th>
+                                                                            <th style="text-align: center;">วันที่โอน</th>
+                                                                            <th style="text-align: center;">วันที่รับ</th>
+                                                                            <th style="text-align: center;">แผนกที่โอน</th>
+                                                                            <th style="text-align: center;">แผนกที่รับ</th>
+                                                                            <th style="text-align: center;">Qty.</th>
+                                                                            <th data-priority="1" style="text-align: center;">ช่วง Barcode</th>
+                                                                            <th data-priority="1" style="text-align: center;">สถานะ</th>
                                                                         </tr>
                                                                     </thead>
                                                                 </table>

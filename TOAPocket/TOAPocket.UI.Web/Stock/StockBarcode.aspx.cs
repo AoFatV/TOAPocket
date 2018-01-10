@@ -63,6 +63,8 @@ namespace TOAPocket.UI.Web.Stock
 
                 ddlStatus.Items.Insert(0, new ListItem("ALL", ""));
 
+                ddlDepartment.SelectedValue = hdDepartment.Value;
+
             }
             catch (Exception ex)
             {

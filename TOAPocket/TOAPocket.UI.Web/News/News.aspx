@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="News.aspx.cs" Inherits="TOAPocket.UI.Web.News.News" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
     <script type="text/javascript">
         $(function () {
 
@@ -32,6 +33,7 @@
                     + '",newsEndDate:"' + $("[id*='txtNewsEnd']").val()
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
                     + '",status:"' + $("[id*='ddlStatus'] option:selected").val()
+                    + '",refNo:"' + ""
                     + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -58,7 +60,9 @@
                     },
                     {
                         "data": "REF_NO",
-                        className: "dt-center"
+                        render: function (data, type, row) {
+                            return "<a href='News_Update.aspx?refNO=" + row.REF_NO + "' >" + row.REF_NO + "</a>";
+                        }, className: "dt-center"
                     },
                     { "data": "SUBJECT", className: "dt-center" },
                     { "data": "USER_TYPE_NAME", className: "dt-center" },
@@ -81,7 +85,7 @@
                                 date = dd + '/' + mm + '/' + yyyy;
                             }
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "DATE_TO", render: function (data, type, row) {
@@ -102,7 +106,7 @@
                                 date = dd + '/' + mm + '/' + yyyy;
                             }
                             return date;
-                        }, className: "dt-body-center"
+                        }, className: "dt-center"
                     },
                     {
                         "data": "Status", className: "dt-center", "width": "10%"
@@ -113,7 +117,7 @@
                 "ordering": false,
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
-                "iDisplayLength": 15,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                     $("td:first", nRow).html(($('#tbNews').DataTable().page.info().page * $('#tbNews').DataTable().page.info().length) + iDisplayIndex + 1);
                     return nRow;
@@ -132,6 +136,7 @@
                     + '",newsEndDate:"' + $("[id*='txtNewsEnd']").val()
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
                     + '",status:"' + $("[id*='ddlStatus'] option:selected").val()
+                    + '",refNo:"' + ""
                     + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -216,6 +221,10 @@
                     background-color: #eeeeee;
                     border-color: #dddddd;
                 }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -300,13 +309,13 @@
                                             <table id="tbNews" class="table table-bordered table-striped" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th style="width: 1%;">ลำดับ</th>
-                                                        <th>Ref No.</th>
-                                                        <th>ชื่อเรื่อง</th>
-                                                        <th>กลุ่มผู้รับข่าว</th>
-                                                        <th>วันที่เริ่มต้น</th>
-                                                        <th>วันที่สิ้นสุด</th>
-                                                        <th>สถานะ</th>
+                                                        <th style="width: 1%; text-align: center;">ลำดับ</th>
+                                                        <th style="text-align: center;">Ref No.</th>
+                                                        <th style="text-align: center;">ชื่อเรื่อง</th>
+                                                        <th style="text-align: center;">กลุ่มผู้รับข่าว</th>
+                                                        <th style="text-align: center;">วันที่เริ่มต้น</th>
+                                                        <th style="text-align: center;">วันที่สิ้นสุด</th>
+                                                        <th style="text-align: center;">สถานะ</th>
                                                     </tr>
                                                 </thead>
                                             </table>

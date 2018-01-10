@@ -178,6 +178,7 @@
                         <form role="form" runat="server">
                             <asp:HiddenField runat="server" ID="hdUserId" />
                             <asp:HiddenField runat="server" ID="hdUserName" />
+                            <asp:HiddenField runat="server" ID="hdEditor" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -296,6 +297,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>

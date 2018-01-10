@@ -11,9 +11,9 @@ namespace TOAPocket.BusinessLogic
     {
         DANews daNews = new DANews();
 
-        public DataSet GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status)
+        public DataSet GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status, string news)
         {
-            return daNews.GetNews(newsName, newsStartDate, newsEndDate, userType, status);
+            return daNews.GetNews(newsName, newsStartDate, newsEndDate, userType, status, news);
         }
 
         public DataSet GetRefRunningNo()

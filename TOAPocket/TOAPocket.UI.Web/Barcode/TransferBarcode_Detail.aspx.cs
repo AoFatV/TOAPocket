@@ -26,6 +26,8 @@ namespace TOAPocket.UI.Web.Barcode
                     var users = (User)Session["User"];
                     hdUserId.Value = users.UserId;
                     hdDepartment.Value = users.DeptId;
+                    hdUserName.Value = users.UserName;
+                    hdDepartmentName.Value = users.DeptName;
 
                     SetDataTransfer(hdDepartment.Value, Request.Params["trNo"]);
                 }
@@ -65,7 +67,7 @@ namespace TOAPocket.UI.Web.Barcode
 
                             lbStatus.InnerText = dr["STATUS_NAME"].ToString();
 
-                            if (dr["STATUS_ID"].ToString() != "20")
+                            if (dr["STATUS_ID"].ToString().Trim() != "20")
                             {
                                 btnConfirmReceive.Visible = false;
                                 btnRejectReceive.Visible = false;

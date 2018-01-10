@@ -11,7 +11,7 @@ namespace TOAPocket.DataAccess
 {
     public class DANews : DBHelper
     {
-        public DataSet GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status)
+        public DataSet GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status,string refNo)
         {
             DataSet ds = new DataSet();
             try
@@ -33,6 +33,8 @@ namespace TOAPocket.DataAccess
                 Command.Parameters["UserType"].Value = String.IsNullOrEmpty(userType) ? (object)DBNull.Value : userType;
                 Command.Parameters.Add(new SqlParameter("Status", SqlDbType.VarChar));
                 Command.Parameters["Status"].Value = String.IsNullOrEmpty(status) ? (object)DBNull.Value : status;
+                Command.Parameters.Add(new SqlParameter("RefNo", SqlDbType.VarChar));
+                Command.Parameters["RefNo"].Value = String.IsNullOrEmpty(refNo) ? (object)DBNull.Value : refNo;
 
                 Command.CommandTimeout = 0;
                 if (Transaction != null)
