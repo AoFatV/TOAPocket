@@ -71,7 +71,7 @@ namespace TOAPocket.UI.Web.News
         }
 
         [WebMethod]
-        public static string CreateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, string extension, string createBy, string detail)
+        public static string CreateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, string fileName, string createBy, string detail)
         {
             string str = "";
             try
@@ -82,11 +82,11 @@ namespace TOAPocket.UI.Web.News
 
                 Utility utility = new Utility();
                 byte[] data = null;
-                if (!String.IsNullOrEmpty(extension))
+                if (!String.IsNullOrEmpty(fileName))
                 {
                     string filePath =
                         System.Web.Hosting.HostingEnvironment.MapPath(
-                            "~/Uploads/Thumbnail/" + "TmpThumbnail" + "." + extension);
+                            "~/Uploads/Thumbnail/" + fileName);
                     data = System.IO.File.ReadAllBytes(filePath);
                 }
 

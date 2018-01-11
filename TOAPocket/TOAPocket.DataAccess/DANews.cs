@@ -133,5 +133,39 @@ namespace TOAPocket.DataAccess
 
             return result;
         }
+
+        public bool UpdateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, byte[] imagedate, string updateBy, string detail)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_UpdNews");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@RefNo", SqlDbType.NVarChar, refNo);
+                db.AddInParameter(sqlCmd, "@Name", SqlDbType.NVarChar, newsName);
+                db.AddInParameter(sqlCmd, "@StartDate", SqlDbType.NVarChar, newsStartDate);
+                db.AddInParameter(sqlCmd, "@EndDate", SqlDbType.NVarChar, String.IsNullOrEmpty(newsEndDate) ? (object)DBNull.Value : newsEndDate);
+                db.AddInParameter(sqlCmd, "@UserType", SqlDbType.NVarChar, userType);
+                db.AddInParameter(sqlCmd, "@Status", SqlDbType.NVarChar, status);
+                db.AddInParameter(sqlCmd, "@Detail", SqlDbType.NVarChar, detail);
+                db.AddInParameter(sqlCmd, "@Thumbnail", SqlDbType.VarBinary, imagedate == null ? (object)DBNull.Value : imagedate);
+                db.AddInParameter(sqlCmd, "@UpdateBy", SqlDbType.NVarChar, updateBy);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
     }
 }

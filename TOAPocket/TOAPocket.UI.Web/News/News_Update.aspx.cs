@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using TOAPocket.BusinessLogic;
+using TOAPocket.UI.Web.Common;
 using TOAPocket.UI.Web.Model;
 using Image = System.Drawing;
 
@@ -28,6 +30,7 @@ namespace TOAPocket.UI.Web.News
                     hdUserName.Value = users.UserName;
 
                     InitialDropdown();
+                    InitialRadio();
 
                     SetDataNews(Request.Params["refNo"]);
                 }
@@ -53,6 +56,19 @@ namespace TOAPocket.UI.Web.News
             }
         }
 
+        private void InitialRadio()
+        {
+            try
+            {
+                rdStatus.Items.Add(new ListItem("Active", "Y"));
+                rdStatus.Items.Add(new ListItem("InActive", "N"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void SetDataNews(string refNo)
         {
             try
@@ -70,7 +86,8 @@ namespace TOAPocket.UI.Web.News
                             txtNewsName.Text = dr["SUBJECT"].ToString();
                             ddlUserType.Items.FindByText(dr["USER_TYPE_NAME"].ToString()).Selected = true;
 
-                            rdStatus.SelectedValue = dr["STATUS"].ToString();
+                            rdStatus.SelectedValue = dr["IS_ACTIVE"].ToString();
+                            //.Items.FindByValue(dr["STATUS"].ToString()).Selected = true;
 
                             if (!String.IsNullOrEmpty(dr["DATE_FROM"].ToString()))
                             {
@@ -88,9 +105,10 @@ namespace TOAPocket.UI.Web.News
 
                             if (!String.IsNullOrEmpty(dr["THUMBNAIL"].ToString()))
                             {
-                                byte[] bytes = (byte[]) dr["THUMBNAIL"];
+                                byte[] bytes = (byte[])dr["THUMBNAIL"];
                                 string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
                                 imgPreview.Src = "data:image/jpg;base64," + base64String;
+                                hdHasImage.Value = "Y";
                             }
                         }
                     }
@@ -103,6 +121,45 @@ namespace TOAPocket.UI.Web.News
             {
                 throw ex;
             }
+        }
+
+        [WebMethod]
+        public static string UpdateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, string fileName, string updateBy, string detail)
+        {
+            string str = "";
+            try
+            {
+                BLNews blNews = new BLNews();
+                bool result = false;
+                DataTable dt = new DataTable();
+
+                Utility utility = new Utility();
+                byte[] data = null;
+                if (!String.IsNullOrEmpty(fileName))
+                {
+                    string filePath =
+                        System.Web.Hosting.HostingEnvironment.MapPath(
+                            "~/Uploads/Thumbnail/" + fileName);
+                    data = System.IO.File.ReadAllBytes(filePath);
+                }
+
+                result = blNews.UpdateNews(refNo, newsName, newsStartDate, newsEndDate, userType, status, data, updateBy, detail);
+
+                dt.Columns.Add("result");
+                dt.Rows.Add("false");
+
+                if (result)
+                    dt.Rows[0]["result"] = "true";
+
+                str = utility.DataTableToJSONWithJavaScriptSerializer(dt);
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+            }
+
+            return str;
+
         }
     }
 

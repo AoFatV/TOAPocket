@@ -24,6 +24,11 @@
             $('#SuccessBox').on('hidden.bs.modal', function () {
                 window.location = "News.aspx";
             });
+
+            //$("[id*='btnUpload']").click(function () {
+            //    $("[id*='fileThumbnail']").click();
+            //});
+
         });
 
         function ConfirmCreateNews() {
@@ -47,7 +52,7 @@
             }
         }
 
-        function CreateNews(extension) {
+        function CreateNews(fileName) {
 
             var postUrl = "News_Create.aspx/CreateNews";
             $.ajax({
@@ -59,7 +64,7 @@
                     + '",newsEndDate:"' + $("[id*='txtEndDate']").val()
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
                     + '",status:"' + $("[id*='rdStatus'] :checked").val()
-                    + '",extension:"' + extension
+                    + '",fileName:"' + fileName
                     + '",createBy: "' + $("[id*='hdUserName']").val()
                     + '",detail: "' + CKEDITOR.instances.editor1.getData()
                     + '" }',
@@ -130,12 +135,13 @@
             //$("#btnUpload").click(function (evt) {
             var fileUpload = $("[id*='fileThumbnail']").get(0);
             var files = fileUpload.files;
-            var extension = "";
+            var filename = "";
             var data = new FormData();
             for (var i = 0; i < files.length; i++) {
                 data.append(files[i].name, files[i]);
                 //console.log(files[i].name);
-                extension = files[i].name.split('.').pop();
+                filename = files[i].name;
+                //.split('.').pop();
             }
 
             $.ajax({
@@ -145,7 +151,7 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
-                    CreateNews(extension);
+                    CreateNews(filename);
                     //alert(result);
                 },
                 error: function (err) {
@@ -186,10 +192,11 @@
                                             <div class="row">
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
-                                                        Ref No.
+                                                        RefNo.
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <label id="txtRefNo" class="form-control"></label>
+                                                        <label id="txtRefNo" ></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-3">
@@ -200,6 +207,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         ชื่อเรื่อง
+                                                   
                                                     </div>
                                                     <div class="col-xs-10">
                                                         <asp:TextBox runat="server" ID="txtNewsName" class="form-control"></asp:TextBox>
@@ -212,6 +220,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         กลุ่มผู้รับข่าว
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <select class="form-control" runat="server" id="ddlUserType">
@@ -219,6 +228,7 @@
                                                     </div>
                                                     <div class="col-xs-2">
                                                         สถานะ
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <asp:RadioButtonList runat="server" ID="rdStatus" RepeatDirection="Horizontal" CellPadding="20" CellSpacing="20">
@@ -236,6 +246,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         วันที่เริ่มต้น
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <div class="input-group date">
@@ -247,6 +258,7 @@
                                                     </div>
                                                     <div class="col-xs-2">
                                                         วันที่สิ้นสุด
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <div class="input-group date">
@@ -271,9 +283,11 @@
                                                     <button type="button" class="btn btn-success" onclick="ConfirmCreateNews()">
                                                         <span class="glyphicon glyphicon-save"></span>บันทึก
                                                    
+                                                   
                                                     </button>
                                                     <button type="button" class="btn" onclick="CancelCreateNews()">
                                                         <span class="glyphicon glyphicon-remove"></span>ยกเลิก
+                                                   
                                                    
                                                     </button>
                                                 </div>
@@ -282,8 +296,9 @@
                                         <div class="col-xs-3">
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <button type="button" class="btn btn-info" onclick="document.getElementById('fileThumbnail').click();">
+                                                    <button type="button" id="btnUpload" class="btn btn-info" onclick="document.getElementById('fileThumbnail').click();">
                                                         <span class="glyphicon glyphicon-folder-open"></span>&nbsp;Browse
+                                                   
                                                     </button>
                                                 </div>
                                             </div>

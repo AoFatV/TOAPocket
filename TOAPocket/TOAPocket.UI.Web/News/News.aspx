@@ -28,7 +28,7 @@
             $.ajax({
                 type: "POST",
                 url: postUrl,
-                data: '{newsName: "' + $("[id*='txtNewsName']").val()
+                data: '{newsName: "' + ""
                     + '",newsStartDate:"' + $("[id*='txtNewsStart']").val()
                     + '",newsEndDate:"' + $("[id*='txtNewsEnd']").val()
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
@@ -159,6 +159,14 @@
 
         function CreateNews() {
             window.location = "News_Create.aspx";
+        }
+
+        function CancelSearch() {
+            $("[id*='txtNewsName']").val("");
+            $("[id*='txtNewsStart']").datepicker("setDate", new Date());
+            $("[id*='txtNewsEnd']").datepicker("setDate", new Date());
+            $("[id*='ddlUserType']").val("");
+            $("[id*='ddlStatus']").val("");
         }
     </script>
     <style type="text/css">

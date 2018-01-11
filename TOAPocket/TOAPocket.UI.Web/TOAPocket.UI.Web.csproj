@@ -131,6 +131,7 @@
     <Content Include="Content\dt\responsive.dataTables.min.css" />
     <Content Include="Content\jquery.dataTables.min2.css" />
     <Content Include="Content\responsive.dataTables.min2.css" />
+    <Content Include="Dealer\Dealer.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="News\News.aspx" />
     <Content Include="News\News_Create.aspx" />
@@ -7345,6 +7346,13 @@
       <DependentUpon>FileUploadHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="Dealer\Dealer.aspx.cs">
+      <DependentUpon>Dealer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dealer\Dealer.aspx.designer.cs">
+      <DependentUpon>Dealer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

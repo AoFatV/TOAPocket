@@ -40,6 +40,15 @@ namespace TOAPocket.UI.Web.News {
         protected global::System.Web.UI.WebControls.HiddenField hdEditor;
         
         /// <summary>
+        /// hdHasImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdHasImage;
+        
+        /// <summary>
         /// txtRefNo control.
         /// </summary>
         /// <remarks>

@@ -22,7 +22,8 @@ namespace TOAPocket.UI.Web.Common
                     {
                         HttpPostedFile file = files[i];
                         string extension = System.IO.Path.GetExtension(file.FileName);
-                        string fname = context.Server.MapPath("~/Uploads/Thumbnail/" + "TmpThumbnail" + extension);
+                        //string fname = context.Server.MapPath("~/Uploads/Thumbnail/" + "TmpThumbnail" + extension);
+                        string fname = context.Server.MapPath("~/Uploads/Thumbnail/" + file.FileName);
                         file.SaveAs(fname);
                     }
                     context.Response.ContentType = "text/plain";

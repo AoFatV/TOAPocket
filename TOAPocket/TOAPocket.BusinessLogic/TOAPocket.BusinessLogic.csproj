@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLBarcode.cs" />
+    <Compile Include="BLDealer.cs" />
     <Compile Include="BLDepartment.cs" />
     <Compile Include="BLNews.cs" />
     <Compile Include="BLRoles.cs" />

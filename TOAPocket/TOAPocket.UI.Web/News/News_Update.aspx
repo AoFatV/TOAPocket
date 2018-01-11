@@ -24,9 +24,18 @@
             $('#SuccessBox').on('hidden.bs.modal', function () {
                 window.location = "News.aspx";
             });
+
+
+            if ($("[id*='hdHasImage']").val() == "Y") {
+                hasUpload = true;
+            }
+
+            $("[id*='btnUpload']").click(function () {
+                $("[id*='fileThumbnail']").click();
+            });
         });
 
-        function ConfirmCreateNews() {
+        function ConfirmUpdateNews() {
             var valid = true;
             if ($("[id*='txtNewsName']").val() == "") {
                 dangerMsg("กรุณาระบุ ชื่อเรื่อง!");
@@ -47,9 +56,9 @@
             }
         }
 
-        function UpdateNews(extension) {
+        function UpdateNews(fileName) {
 
-            var postUrl = "News_Create.aspx/UpdateNews";
+            var postUrl = "News_Update.aspx/UpdateNews";
             $.ajax({
                 type: "POST",
                 url: postUrl,
@@ -59,8 +68,8 @@
                     + '",newsEndDate:"' + $("[id*='txtEndDate']").val()
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
                     + '",status:"' + $("[id*='rdStatus'] :checked").val()
-                    + '",extension:"' + extension
-                    + '",createBy: "' + $("[id*='hdUserName']").val()
+                    + '",fileName:"' + fileName
+                    + '",updateBy: "' + $("[id*='hdUserName']").val()
                     + '",detail: "' + CKEDITOR.instances.editor1.getData()
                     + '" }',
                 contentType: "application/json; charset=utf-8",
@@ -127,34 +136,38 @@
         }
 
         function UploadImage() {
-            //$("#btnUpload").click(function (evt) {
-            var fileUpload = $("[id*='fileThumbnail']").get(0);
-            var files = fileUpload.files;
-            var extension = "";
-            var data = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                data.append(files[i].name, files[i]);
-                //console.log(files[i].name);
-                extension = files[i].name.split('.').pop();
-            }
 
-            $.ajax({
-                url: "../Common/FileUploadHandler.ashx",
-                type: "POST",
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    UpdateNews(extension);
-                    //alert(result);
-                },
-                error: function (err) {
-                    //alert(err.statusText);
+            if (hasUpload) {
+
+                var fileUpload = $("[id*='fileThumbnail']").get(0);
+                var files = fileUpload.files;
+                var filename = "";
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                    //console.log(files[i].name);
+                    filename = files[i].name;
+                    //.split('.').pop();
                 }
-            });
 
-            //    evt.preventDefault();
-            //});
+                $.ajax({
+                    url: "../Common/FileUploadHandler.ashx",
+                    type: "POST",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        UpdateNews(filename);
+                        //alert(result);
+                    },
+                    error: function (err) {
+                        //alert(err.statusText);
+                    }
+                });
+
+            } else {
+                UpdateNews("");
+            }
         }
 
         function CancelCreateNews() {
@@ -179,6 +192,7 @@
                             <asp:HiddenField runat="server" ID="hdUserId" />
                             <asp:HiddenField runat="server" ID="hdUserName" />
                             <asp:HiddenField runat="server" ID="hdEditor" />
+                            <asp:HiddenField runat="server" ID="hdHasImage" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -186,10 +200,10 @@
                                             <div class="row">
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
-                                                        Ref No.
+                                                        RefNo.
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <label id="txtRefNo" class="form-control" runat="server"></label>
+                                                        <label id="txtRefNo"  runat="server"></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-3">
@@ -200,6 +214,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         ชื่อเรื่อง
+                                                   
                                                     </div>
                                                     <div class="col-xs-10">
                                                         <asp:TextBox runat="server" ID="txtNewsName" class="form-control"></asp:TextBox>
@@ -212,6 +227,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         กลุ่มผู้รับข่าว
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <select class="form-control" runat="server" id="ddlUserType">
@@ -219,14 +235,15 @@
                                                     </div>
                                                     <div class="col-xs-2">
                                                         สถานะ
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <asp:RadioButtonList runat="server" ID="rdStatus" RepeatDirection="Horizontal" CellPadding="20" CellSpacing="20">
-                                                            <asp:ListItem Text="Active"
+                                                            <%--<asp:ListItem Text="Active"
                                                                 Value="Y"
                                                                 Selected="True" />
                                                             <asp:ListItem Text="InActive"
-                                                                Value="N" />
+                                                                Value="N" />--%>
                                                         </asp:RadioButtonList>
                                                     </div>
                                                 </div>
@@ -236,6 +253,7 @@
                                                 <div class="col-xs-9 col-xs-offset-1">
                                                     <div class="col-xs-2">
                                                         วันที่เริ่มต้น
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <div class="input-group date">
@@ -247,6 +265,7 @@
                                                     </div>
                                                     <div class="col-xs-2">
                                                         วันที่สิ้นสุด
+                                                   
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <div class="input-group date">
@@ -268,12 +287,14 @@
                                             <br />
                                             <div class="row">
                                                 <div class="col-xs-9 col-xs-offset-3">
-                                                    <button type="button" class="btn btn-success" onclick="ConfirmCreateNews()">
+                                                    <button type="button" class="btn btn-success" onclick="ConfirmUpdateNews()">
                                                         <span class="glyphicon glyphicon-save"></span>บันทึก
+                                                   
                                                    
                                                     </button>
                                                     <button type="button" class="btn" onclick="CancelCreateNews()">
                                                         <span class="glyphicon glyphicon-remove"></span>ยกเลิก
+                                                   
                                                    
                                                     </button>
                                                 </div>
@@ -282,15 +303,16 @@
                                         <div class="col-xs-3">
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <button type="button" class="btn btn-info" onclick="document.getElementById('fileThumbnail').click();">
+                                                    <button type="button" class="btn btn-info" id="btnUpload">
                                                         <span class="glyphicon glyphicon-folder-open"></span>&nbsp;Browse
+                                                   
                                                     </button>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <img id="imgPreview" width="150" height="150" alt="" runat="server"/>
+                                                    <img id="imgPreview" width="150" height="150" alt="" runat="server" />
                                                     <input id="fileThumbnail" type="file" onchange="previewFile()" style="display: none;" runat="server" />
                                                 </div>
                                             </div>

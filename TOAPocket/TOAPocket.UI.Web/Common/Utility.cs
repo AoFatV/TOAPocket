@@ -31,7 +31,7 @@ namespace TOAPocket.UI.Web.Common
             byte[] data = null;
             try
             {
-               
+
             }
             catch (Exception ex)
             {
@@ -39,6 +39,23 @@ namespace TOAPocket.UI.Web.Common
             }
 
             return data;
+        }
+
+        public string MatchPageMenu(string page, string[] menu)
+        {
+            bool match = false;
+
+            foreach (var m in menu)
+            {
+                if (page.ToLower().Equals(m.ToLower()))
+                {
+                    match = true;
+                }
+            }
+
+            if (match) return "active";
+            return "";
+
         }
     }
 }

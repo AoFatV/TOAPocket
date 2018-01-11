@@ -25,5 +25,10 @@ namespace TOAPocket.BusinessLogic
         {
             return daNews.InsertNews(refNo, newsName, newsStartDate, newsEndDate, userType, status, imagedate, createBy, detail);
         }
+
+        public bool UpdateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, byte[] imagedate, string updateBy, string detail)
+        {
+            return daNews.UpdateNews(refNo, newsName, newsStartDate, newsEndDate, userType, status, imagedate, updateBy, detail);
+        }
     }
 }
