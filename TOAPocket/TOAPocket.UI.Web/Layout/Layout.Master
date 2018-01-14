@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="TOAPocket.UI.Web.Layout.Layout" %>
 
+<%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="TOAPocket.UI.Web.Model" %>
+<%@ Import Namespace="TOAPocket.UI.Web.Common" %>
 
 <!DOCTYPE html>
 
@@ -20,6 +22,9 @@
 <body class="skin-red sidebar-mini">
     <% if (Session["User"] != null)
         {
+            Utility utility = new Utility();
+            string page = Path.GetFileName(Request.Path);
+            string pageName = page.Split('.')[0];
             User users = (User)Session["User"];
     %>
     <header class="main-header">
@@ -104,14 +109,19 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Main Menus</li>
-                <li>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"Index"} ) %>">
                     <a href="../Home/Index.aspx">
                         <i class="fa fa-th"></i><span>Home</span>
                     </a>
                 </li>
                 <% if (users.RoleMenus.Contains(Menus.Barcode))
                     {%>
-                <li class="treeview active">
+                <li class="treeview <%=utility.MatchPageMenu(pageName,
+                    new string []
+                    {
+                        "ImportBarcode","ConfirmReceive","MatchBarccode","UnmatchBarcode","VoidBarcode","VoidReturn"
+                        ,"VoidTintOneShot","TransferBarcode"
+                    } ) %>">
                     <a href="#">
                         <i class="fa fa-barcode"></i><span>BarCode</span>
                         <span class="pull-right-container">
@@ -122,42 +132,42 @@
                         <%
                             if (users.RoleMenus.Contains(Menus.ImportBarcode))
                             { %>
-                        <li><a href="../Barcode/ImportBarcode.aspx"><i class="fa fa-file"></i>Import Barcode</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ImportBarcode"} ) %>"><a href="../Barcode/ImportBarcode.aspx"><i class="fa fa-file"></i>Import Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.ConfirmReceive))
                             { %>
-                        <li><a href="../Barcode/ConfirmReceive.aspx"><i class="fa fa-circle-o"></i>รับ Barcode ตั้งต้น</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ConfirmReceive"}) %>"><a href="../Barcode/ConfirmReceive.aspx"><i class="fa fa-circle-o"></i>รับ Barcode ตั้งต้น</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.MatchBarcode))
                             { %>
-                        <li><a href="../Barcode/MatchBarccode.aspx"><i class="fa fa-circle-o"></i>Match Barcode</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"MatchBarccode"}) %>"><a href="../Barcode/MatchBarccode.aspx"><i class="fa fa-circle-o"></i>Match Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.UnmatchBarcode))
                             { %>
-                        <li><a href="../Barcode/UnmatchBarcode.aspx"><i class="fa fa-circle-o"></i>UnMatch Barcode</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"UnmatchBarcode"}) %>"><a href="../Barcode/UnmatchBarcode.aspx"><i class="fa fa-circle-o"></i>UnMatch Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.VoidBarcode))
                             { %>
-                        <li><a href="../Barcode/VoidBarcode.aspx"><i class="fa fa-circle-o"></i>Void Barcode ชำรุด</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"VoidBarcode"}) %>"><a href="../Barcode/VoidBarcode.aspx"><i class="fa fa-circle-o"></i>Void Barcode ชำรุด</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.VoidReturn))
                             { %>
-                        <li><a href="../Barcode/VoidReturn.aspx"><i class="fa fa-circle-o"></i>Void รับสินค้าคืน</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"VoidReturn"}) %>"><a href="../Barcode/VoidReturn.aspx"><i class="fa fa-circle-o"></i>Void รับสินค้าคืน</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.VoidTintOneShort))
                             { %>
-                        <li><a href="../Barcode/VoidTintOneShot.aspx"><i class="fa fa-circle-o"></i>Void Tint One Shot</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"VoidTintOneShot"}) %>"><a href="../Barcode/VoidTintOneShot.aspx"><i class="fa fa-circle-o"></i>Void Tint One Shot</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.TransferBarcode))
                             { %>
-                        <li><a href="../Barcode/TransferBarcode.aspx"><i class="fa fa-exchange"></i>โอนย้าย Barcode</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"TransferBarcode"}) %>"><a href="../Barcode/TransferBarcode.aspx"><i class="fa fa-exchange"></i>โอนย้าย Barcode</a></li>
                         <% } %>
                     </ul>
                 </li>
                 <% }
                     if (users.RoleMenus.Contains(Menus.StockBarcode))
                     { %>
-                <li>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"StockBarcode"}) %>">
                     <a href="../Stock/StockBarcode.aspx">
                         <i class="fa fa-th"></i><span>Stock Barcode</span>
                     </a>
@@ -165,12 +175,44 @@
                 <% }
                     if (users.RoleMenus.Contains(Menus.News))
                     { %>
-                <li>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"News"}) %>">
                     <a href="../News/News.aspx">
                         <i class="fa fa-th"></i><span>ข่าวกิจกรรม</span>
                     </a>
                 </li>
                 <% } %>
+
+
+                <% if (users.RoleMenus.Contains(Menus.Settings))
+                    {%>
+                <li class="treeview <%=utility.MatchPageMenu(pageName,
+                    new string []
+                    {
+                        "Dealer","News","Painter"
+                    } ) %>">
+                    <a href="#">
+                        <i class="fa fa-cog"></i><span>กำหนดค่าตั้งต้นระบบ</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <%
+                            if (users.RoleMenus.Contains(Menus.Dealer))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"Dealer"} ) %>"><a href="../Dealer/Dealer.aspx"><i class="fa fa-file"></i>Dealer</a></li>
+                        <% }
+                            if (users.RoleMenus.Contains(Menus.News))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"News"}) %>"><a href="../News/News.aspx"><i class="fa fa-file"></i>ข่าวสาร</a></li>
+                        <% }
+                            if (users.RoleMenus.Contains(Menus.Painter))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"Painter"}) %>"><a href="../Painter/Painter.aspx"><i class="fa fa-file"></i>Painter</a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% }  %>
             </ul>
         </section>
     </aside>

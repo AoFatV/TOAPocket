@@ -25,8 +25,9 @@ namespace TOAPocket.UI.Web.News
             {
                 var users = (User)Session["User"];
                 hdUserId.Value = users.UserId;
+                hdUserName.Value = users.UserName;
 
-
+                InitialDropdown();
             }
         }
 
@@ -50,19 +51,61 @@ namespace TOAPocket.UI.Web.News
             return result;
         }
 
-        [WebMethod]
-        public static string CreateNews()
+        private void InitialDropdown()
         {
             try
             {
+                BLUser blUser = new BLUser();
+                DataSet ds = new DataSet();
+                ds = blUser.GetUserType();
+                ddlUserType.DataSource = ds;
+                ddlUserType.DataTextField = "USER_TYPE_NAME";
+                ddlUserType.DataValueField = "USER_TYPE_ID";
+                ddlUserType.DataBind();
+                ddlUserType.Items.Insert(0, new ListItem("ALL", ""));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        [WebMethod]
+        public static string CreateNews(string refNo, string newsName, string newsStartDate, string newsEndDate, string userType, string status, string fileName, string createBy, string detail)
+        {
+            string str = "";
+            try
+            {
+                BLNews blNews = new BLNews();
+                bool result = false;
+                DataTable dt = new DataTable();
+
+                Utility utility = new Utility();
+                byte[] data = null;
+                if (!String.IsNullOrEmpty(fileName))
+                {
+                    string filePath =
+                        System.Web.Hosting.HostingEnvironment.MapPath(
+                            "~/Uploads/Thumbnail/" + fileName);
+                    data = System.IO.File.ReadAllBytes(filePath);
+                }
+
+                result = blNews.InsertNews(refNo, newsName, newsStartDate, newsEndDate, userType, status, data, createBy, detail);
+
+                dt.Columns.Add("result");
+                dt.Rows.Add("false");
+
+                if (result)
+                    dt.Rows[0]["result"] = "true";
+
+                str = utility.DataTableToJSONWithJavaScriptSerializer(dt);
             }
             catch (Exception ex)
             {
                 //throw ex;
             }
 
-            return "";
+            return str;
 
         }
     }

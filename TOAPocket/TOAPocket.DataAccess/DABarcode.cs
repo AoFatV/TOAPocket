@@ -20,7 +20,7 @@ namespace TOAPocket.DataAccess
             foreach (DataRow dr in dt.Rows)
             {
                 SqlDatabase db = new SqlDatabase(_ConnString);
-                DbCommand sqlCmd = db.GetStoredProcCommand("spINSBarcodeTmp");
+                DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeTmp");
 
                 try
                 {
@@ -61,7 +61,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcode";
+                Command.CommandText = "sp_EP_GetBarcode";
                 Command.Parameters.Clear();
 
                 if (!String.IsNullOrEmpty(condition))
@@ -104,7 +104,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spINSBarcode";
+                Command.CommandText = "sp_EP_InsBarcode";
                 Command.Parameters.Clear();
 
                 //if (!String.IsNullOrEmpty(createBy) && !String.IsNullOrEmpty(department))
@@ -143,7 +143,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spDELBarcodeTmp");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_DelBarcodeTmp");
 
             try
             {
@@ -172,7 +172,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeByPO";
+                Command.CommandText = "sp_EP_GetBarcodeByPO";
                 Command.Parameters.Clear();
 
                 if (!String.IsNullOrEmpty(po))
@@ -210,7 +210,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spUPDBarcodeByPO");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_UpdBarcodeByPO");
 
             try
             {
@@ -241,7 +241,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeByBarcode";
+                Command.CommandText = "sp_EP_GetBarcodeByBarcode";
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("PONo", SqlDbType.VarChar));
@@ -280,7 +280,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spUPDBarcodeByBarcode");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_UpdBarcodeByBarcode");
 
             try
             {
@@ -311,7 +311,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeTransferRunningNo";
+                Command.CommandText = "sp_EP_GetBarcodeTransferRunningNo";
                 Command.Parameters.Clear();
 
                 //if (!String.IsNullOrEmpty(condition))
@@ -349,7 +349,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeTransfer");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeTransfer");
 
             try
             {
@@ -385,7 +385,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeTransfer";
+                Command.CommandText = "sp_EP_GetBarcodeTransfer";
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("Department", SqlDbType.VarChar));
@@ -436,7 +436,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spUpdBarcodeTransfer");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_UpdBarcodeTransfer");
 
             try
             {
@@ -465,7 +465,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeVoidDamage");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeVoidDamage");
 
             try
             {
@@ -496,7 +496,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeVoidDamage";
+                Command.CommandText = "sp_EP_GetBarcodeVoidDamage";
                 Command.Parameters.Clear();
 
                 if (!String.IsNullOrEmpty(barcode))
@@ -534,7 +534,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeVoidReturn");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeVoidReturn");
 
             try
             {
@@ -565,7 +565,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeVoidReturn";
+                Command.CommandText = "sp_EP_GetBarcodeVoidReturn";
                 Command.Parameters.Clear();
 
                 if (!String.IsNullOrEmpty(barcode))
@@ -603,7 +603,7 @@ namespace TOAPocket.DataAccess
             DataSet ds = new DataSet();
 
             SqlDatabase db = new SqlDatabase(_ConnString);
-            DbCommand sqlCmd = db.GetStoredProcCommand("spInsBarcodeVoidTintOneShot");
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeVoidTintOneShot");
 
             try
             {
@@ -634,7 +634,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetBarcodeVoidTintOneShot";
+                Command.CommandText = "sp_EP_GetBarcodeVoidTintOneShot";
                 Command.Parameters.Clear();
 
                 if (!String.IsNullOrEmpty(barcode))
@@ -675,7 +675,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetStockBarcode";
+                Command.CommandText = "sp_EP_GetStockBarcode";
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("Barcode", SqlDbType.VarChar));

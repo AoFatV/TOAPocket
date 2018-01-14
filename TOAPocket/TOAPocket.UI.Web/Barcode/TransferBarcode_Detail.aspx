@@ -52,6 +52,12 @@
 
             $("[id*='ddlFromDepartment']").val($("[id*='hdFromDept']").val());
             $("[id*='ddlToDepartment']").val($("[id*='hdToDept']").val());
+
+            var fromDept = $("[id*='ddlFromDepartment'] option").filter(function () { return $(this).html() == $("[id*='hdFromDept']").val(); }).val();
+            var toDept = $("[id*='ddlToDepartment'] option").filter(function () { return $(this).html() == $("[id*='hdToDept']").val(); }).val();
+
+            $("[id*='ddlFromDepartment']").val(fromDept);
+            $("[id*='ddlToDepartment']").val(toDept);
         }
 
         function CallConfirm() {
@@ -148,6 +154,8 @@
                             <asp:HiddenField runat="server" ID="hdUserId" />
                             <asp:HiddenField runat="server" ID="hdFromDept" />
                             <asp:HiddenField runat="server" ID="hdToDept" />
+                            <asp:HiddenField runat="server" ID="hdUserName" />
+                            <asp:HiddenField runat="server" ID="hdDepartmentName" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">

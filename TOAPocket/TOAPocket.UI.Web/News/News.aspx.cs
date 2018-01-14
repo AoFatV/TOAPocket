@@ -52,7 +52,7 @@ namespace TOAPocket.UI.Web.News
         }
 
         [WebMethod]
-        public static string GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status)
+        public static string GetNews(string newsName, string newsStartDate, string newsEndDate, string userType, string status, string refNo)
         {
 
             string result = "";
@@ -63,7 +63,7 @@ namespace TOAPocket.UI.Web.News
                 DataSet ds = new DataSet();
                 Utility utility = new Utility();
 
-                ds = blNews.GetNews(newsName, newsStartDate, newsEndDate, userType, status);
+                ds = blNews.GetNews(newsName, newsStartDate, newsEndDate, userType, status, refNo);
                 result = utility.DataTableToJSONWithJavaScriptSerializer(ds.Tables[0]);
             }
             catch (Exception ex)

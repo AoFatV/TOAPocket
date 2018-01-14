@@ -25,5 +25,37 @@ namespace TOAPocket.UI.Web.Common
             }
             return jsSerializer.Serialize(parentRow);
         }
+
+        public byte[] GetImageDate(string Path, string FileName)
+        {
+            byte[] data = null;
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return data;
+        }
+
+        public string MatchPageMenu(string page, string[] menu)
+        {
+            bool match = false;
+
+            foreach (var m in menu)
+            {
+                if (page.ToLower().Equals(m.ToLower()))
+                {
+                    match = true;
+                }
+            }
+
+            if (match) return "active";
+            return "";
+
+        }
     }
 }

@@ -102,7 +102,7 @@ namespace TOAPocket.UI.Web.Barcode
                         }
                     }
 
-                    if (gridBarcodeScan.Rows.Count > 0 && actionResult)
+                    if (gridBarcodeScan.Rows.Count > 0 || actionResult)
                     {
                         btnSave.Visible = true;
                         btnCancel.Visible = true;

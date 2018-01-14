@@ -87,8 +87,10 @@
     <Compile Include="BaseClasses\Encryption.cs" />
     <Compile Include="BaseClasses\IDbDalInfo.cs" />
     <Compile Include="DABarcode.cs" />
+    <Compile Include="DADealer.cs" />
     <Compile Include="DADepartment.cs" />
     <Compile Include="DANews.cs" />
+    <Compile Include="DAPainter.cs" />
     <Compile Include="DARoles.cs" />
     <Compile Include="DAStatus.cs" />
     <Compile Include="DAUser.cs" />
