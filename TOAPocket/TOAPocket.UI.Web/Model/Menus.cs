@@ -17,6 +17,14 @@ namespace TOAPocket.UI.Web.Model
         public static string VoidTintOneShort = "50";
         public static string TransferBarcode = "51";
         public static string StockBarcode = "52";
-        public static string News = "103";
+
+        public static string Settings = "135";
+        public static string Dealer = "136";
+        public static string Painter = "137";
+        public static string Product = "138";
+        public static string Lid = "139";
+        public static string Promotion = "140";
+        public static string UserGroup = "141";
+        public static string News = "142";
     }
 }

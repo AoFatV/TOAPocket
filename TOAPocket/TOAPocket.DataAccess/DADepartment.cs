@@ -21,7 +21,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetDepartment";
+                Command.CommandText = "sp_EP_GetDepartment";
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("Condition", SqlDbType.VarChar));

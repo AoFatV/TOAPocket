@@ -24,13 +24,21 @@
 
         function InitialTbNews() {
 
+            //data: '{newsName: "' + ""
+            //      + '",newsStartDate:"' + $("[id*='txtNewsStart']").val()
+            //      + '",newsEndDate:"' + $("[id*='txtNewsEnd']").val()
+            //      + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
+            //      + '",status:"' + $("[id*='ddlStatus'] option:selected").val()
+            //      + '",refNo:"' + ""
+            //      + '" }',
+
             var postUrl = "News.aspx/GetNews";
             $.ajax({
                 type: "POST",
                 url: postUrl,
                 data: '{newsName: "' + ""
-                    + '",newsStartDate:"' + $("[id*='txtNewsStart']").val()
-                    + '",newsEndDate:"' + $("[id*='txtNewsEnd']").val()
+                    + '",newsStartDate:"' + ""
+                    + '",newsEndDate:"' + ""
                     + '",userType:"' + $("[id*='ddlUserType'] option:selected").text()
                     + '",status:"' + $("[id*='ddlStatus'] option:selected").val()
                     + '",refNo:"' + ""

@@ -16,5 +16,15 @@ namespace TOAPocket.BusinessLogic
             return daDealer.GetDealer(search);
         }
 
+        public DataSet GetDealerById(string dealerId)
+        {
+            return daDealer.GetDealerById(dealerId);
+        }
+
+        public bool UpdateDealer(string dealerId, string maxReceive, string updateBy)
+        {
+            return daDealer.UpdateDealer(dealerId, maxReceive, updateBy);
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="Dealer.aspx.cs" Inherits="TOAPocket.UI.Web.Dealer.Dealer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="Painter.aspx.cs" Inherits="TOAPocket.UI.Web.Painter.Painter" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
         });
 
         function InitialTb() {
-            var postUrl = "Dealer.aspx/GetDealer";
+            var postUrl = "Painter.aspx/GetPainter";
             $.ajax({
                 type: "POST",
                 url: postUrl,
@@ -32,8 +32,8 @@
         function BindTb(response) {
 
             var data = JSON.parse(response.d);
-            //console.log(data);
-            var table = $('#tbDealer').DataTable({
+            console.log(data);
+            var table = $('#tbPainter').DataTable({
                 //"processing": true,
                 "responsive": true,
                 "data": (data),
@@ -51,37 +51,37 @@
 
                     },
                     {
-                        "data": "DEALER_ID",
+                        "data": "PAINTER_NO",
                         render: function (data, type, row) {
-                            return "<a href='Dealer_Detail.aspx?Dealer=" + row.DEALER_ID + "' >" + row.DEALER_ID + "</a>";
+                            return "<a href='Painter_Detail.aspx?Id=" + row.ID + "' >" + row.PAINTER_NO + "</a>";
                         }, className: "dt-center"
                     },
                     {
-                        "data": "DEALER_NAME", className: "dt-center"
-                    },
-                    {
-                        "data": "CITY_DESC", className: "dt-center"
-                    },
-                    {
-                        "data": "MOBILE", className: "dt-center"
+                        "data": "FIRST_NAME", className: "dt-center",
+                        render: function (data, type, row) {
+                            var name = row.FIRST_NAME + " " + row.LAST_NAME;
+                            return name;
+                        }
                     },
                     {
                         "data": "EMAIL", className: "dt-center"
                     },
                     {
-                        "data": "SALES_TA_NAME", className: "dt-center"
+                        "data": "AREA_DESC", className: "dt-center"
                     },
                     {
-                        "data": "SALES_TB_NAME", className: "dt-center"
+                        "data": "OCCUPATION_DESC", className: "dt-center"
                     },
                     {
-                        "data": "RECEIVE_MAX_QTY", className: "dt-center"
-                    },
-                    {
-                        "data": "TAX_NO_3", className: "dt-center"
-                    },
-                    {
-                        "data": "VENDOR_CODE", className: "dt-center"
+                        "data": "IS_REGISTER", className: "dt-center",
+                        render: function (data, type, row) {
+                            if (row.IS_REGISTER == "Y") {
+                                var buttonOk = '<button type="button" class="btn btn-success btn-circle"><span class="glyphicon glyphicon-ok"></span></button>';
+                            } else {
+                                var buttonOk = '<button type="button" class="btn btn-danger btn-circle"><span class="glyphicon glyphicon-remove"></span></button>';
+                            }
+                            return buttonOk;
+                        }
                     }
                 ],
                 "bFilter": false,
@@ -91,15 +91,15 @@
                 "sPaginationType": "full_numbers",
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
-                    $("td:first", nRow).html(($('#tbDealer').DataTable().page.info().page * $('#tbDealer').DataTable().page.info().length) + iDisplayIndex + 1);
+                    $("td:first", nRow).html(($('#tbPainter').DataTable().page.info().page * $('#tbPainter').DataTable().page.info().length) + iDisplayIndex + 1);
                     return nRow;
                 }, "scrollX": true
             });
         }
 
-        function SearchDealer() {
-            var dt = $('#tbDealer').dataTable();
-            var postUrl = "Dealer.aspx/GetDealer";
+        function SearchPainter() {
+            var dt = $('#tbPainter').dataTable();
+            var postUrl = "Painter.aspx/GetPainter";
             $.ajax({
                 type: "POST",
                 url: postUrl,
@@ -129,6 +129,16 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px;
         }
+
+        .btn-circle {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.42;
+            border-radius: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -140,7 +150,7 @@
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">ข้อมูล Dealer</h3>
+                            <h3 class="box-title">ข้อมูล Painter</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -162,7 +172,7 @@
                                                         <input type="text" id="txtSearch" class="form-control" runat="server" />
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <button type="button" class="btn btn-info" onclick="SearchDealer()">
+                                                        <button type="button" class="btn btn-info" onclick="SearchPainter()">
                                                             <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                         </button>
                                                     </div>
@@ -171,20 +181,16 @@
                                             <br />
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <table id="tbDealer" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+                                                    <table id="tbPainter" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
                                                                 <th style="width: 1%; text-align: center;"></th>
-                                                                <th style="text-align: center;">Dealer ID</th>
-                                                                <th style="text-align: center;">ชื่อร้านค้า</th>
-                                                                <th style="text-align: center;">City</th>
-                                                                <th style="text-align: center;">Mobile</th>
-                                                                <th style="text-align: center;">E-mail</th>
-                                                                <th style="text-align: center;">ชื่อ Sale TA</th>
-                                                                <th style="text-align: center;">ชื่อ Sale TB</th>
-                                                                <th style="text-align: center;">Sale รับได้สูงสุด</th>
-                                                                <th style="text-align: center;">Tax No.3</th>
-                                                                <th style="text-align: center;">Vendor Code</th>
+                                                                <th style="text-align: center;">Painter No.</th>
+                                                                <th style="text-align: center;">ชื่อ</th>
+                                                                <th style="text-align: center;">E-Mail</th>
+                                                                <th style="text-align: center;">เขตพื้นที่</th>
+                                                                <th style="text-align: center;">อาชีพ</th>
+                                                                <th style="text-align: center;">Register</th>
                                                             </tr>
                                                         </thead>
                                                     </table>

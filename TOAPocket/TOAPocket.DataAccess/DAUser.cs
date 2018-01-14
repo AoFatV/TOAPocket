@@ -22,7 +22,7 @@ namespace TOAPocket.DataAccess
                 Command = new SqlCommand();
                 Command.Connection = Connection;
                 Command.CommandType = CommandType.StoredProcedure;
-                Command.CommandText = "spGetInformationUser";
+                Command.CommandText = "sp_EP_GetInformationUser";
                 Command.Parameters.Clear();
 
                 Command.Parameters.Add(new SqlParameter("UserName", SqlDbType.VarChar));

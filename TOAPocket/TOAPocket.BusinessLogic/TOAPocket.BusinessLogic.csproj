@@ -85,6 +85,7 @@
     <Compile Include="BLDealer.cs" />
     <Compile Include="BLDepartment.cs" />
     <Compile Include="BLNews.cs" />
+    <Compile Include="BLPainter.cs" />
     <Compile Include="BLRoles.cs" />
     <Compile Include="BLStatus.cs" />
     <Compile Include="BLUser.cs" />

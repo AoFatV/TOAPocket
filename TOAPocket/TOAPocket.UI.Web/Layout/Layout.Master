@@ -181,6 +181,38 @@
                     </a>
                 </li>
                 <% } %>
+
+
+                <% if (users.RoleMenus.Contains(Menus.Settings))
+                    {%>
+                <li class="treeview <%=utility.MatchPageMenu(pageName,
+                    new string []
+                    {
+                        "Dealer","News","Painter"
+                    } ) %>">
+                    <a href="#">
+                        <i class="fa fa-cog"></i><span>กำหนดค่าตั้งต้นระบบ</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <%
+                            if (users.RoleMenus.Contains(Menus.Dealer))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"Dealer"} ) %>"><a href="../Dealer/Dealer.aspx"><i class="fa fa-file"></i>Dealer</a></li>
+                        <% }
+                            if (users.RoleMenus.Contains(Menus.News))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"News"}) %>"><a href="../News/News.aspx"><i class="fa fa-file"></i>ข่าวสาร</a></li>
+                        <% }
+                            if (users.RoleMenus.Contains(Menus.Painter))
+                            { %>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"Painter"}) %>"><a href="../Painter/Painter.aspx"><i class="fa fa-file"></i>Painter</a></li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% }  %>
             </ul>
         </section>
     </aside>

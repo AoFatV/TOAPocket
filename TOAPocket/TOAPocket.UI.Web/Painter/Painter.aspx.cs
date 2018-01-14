@@ -5,9 +5,9 @@ using TOAPocket.BusinessLogic;
 using TOAPocket.UI.Web.Common;
 using TOAPocket.UI.Web.Model;
 
-namespace TOAPocket.UI.Web.Dealer
+namespace TOAPocket.UI.Web.Painter
 {
-    public partial class Dealer : System.Web.UI.Page
+    public partial class Painter : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,18 +28,18 @@ namespace TOAPocket.UI.Web.Dealer
 
 
         [WebMethod]
-        public static string GetDealer(string search)
+        public static string GetPainter(string search)
         {
 
             string result = "";
 
             try
             {
-                BLDealer blDealer = new BLDealer();
+                BLPainter blPainter = new BLPainter();
                 DataSet ds = new DataSet();
                 Utility utility = new Utility();
 
-                ds = blDealer.GetDealer(search.Trim());
+                ds = blPainter.GetPainter(search.Trim());
                 result = utility.DataTableToJSONWithJavaScriptSerializer(ds.Tables[0]);
             }
             catch (Exception ex)
