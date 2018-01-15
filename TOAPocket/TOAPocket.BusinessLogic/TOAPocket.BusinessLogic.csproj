@@ -81,6 +81,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLARReceive.cs" />
     <Compile Include="BLBarcode.cs" />
     <Compile Include="BLDealer.cs" />
     <Compile Include="BLDepartment.cs" />

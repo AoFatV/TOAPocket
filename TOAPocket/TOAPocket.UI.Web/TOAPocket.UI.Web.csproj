@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ARReceive\ARReceive.aspx" />
     <Content Include="Barcode\ConfirmReceive.aspx" />
     <Content Include="Barcode\ImportBarcode.aspx" />
     <Content Include="Barcode\MatchBarccode.aspx" />
@@ -7271,6 +7272,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARReceive\ARReceive.aspx.cs">
+      <DependentUpon>ARReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ARReceive\ARReceive.aspx.designer.cs">
+      <DependentUpon>ARReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Barcode\ConfirmReceive.aspx.cs">
       <DependentUpon>ConfirmReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

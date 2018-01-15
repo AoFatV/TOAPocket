@@ -173,6 +173,14 @@
                     </a>
                 </li>
                 <% }
+                    if (users.RoleMenus.Contains(Menus.ARReceive))
+                    { %>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ARReceive"}) %>">
+                    <a href="../ARReceive/ARReceive.aspx">
+                        <i class="fa fa-th"></i><span>ARReceive</span>
+                    </a>
+                </li>
+                <% }
                     if (users.RoleMenus.Contains(Menus.News))
                     { %>
                 <li class="<%=utility.MatchPageMenu(pageName,new string [] {"News"}) %>">
