@@ -92,6 +92,7 @@
     <Compile Include="DADepartment.cs" />
     <Compile Include="DANews.cs" />
     <Compile Include="DAPainter.cs" />
+    <Compile Include="DAProcessOrder.cs" />
     <Compile Include="DARoles.cs" />
     <Compile Include="DAStatus.cs" />
     <Compile Include="DAUser.cs" />

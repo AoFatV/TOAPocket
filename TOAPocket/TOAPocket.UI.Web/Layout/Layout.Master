@@ -140,7 +140,7 @@
                         <% }
                             if (users.RoleMenus.Contains(Menus.MatchBarcode))
                             { %>
-                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"MatchBarccode"}) %>"><a href="../Barcode/MatchBarccode.aspx"><i class="fa fa-circle-o"></i>Match Barcode</a></li>
+                        <li class="<%=utility.MatchPageMenu(pageName,new string [] {"MatchBarcode"}) %>"><a href="../Barcode/MatchBarcode.aspx"><i class="fa fa-circle-o"></i>Match Barcode</a></li>
                         <% }
                             if (users.RoleMenus.Contains(Menus.UnmatchBarcode))
                             { %>
@@ -177,7 +177,15 @@
                     { %>
                 <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ARReceive"}) %>">
                     <a href="../ARReceive/ARReceive.aspx">
-                        <i class="fa fa-th"></i><span>ARReceive</span>
+                        <i class="fa fa-th"></i><span>รับเหรียญคืน</span>
+                    </a>
+                </li>
+                <% }
+                    if (users.RoleMenus.Contains(Menus.ARDestroy))
+                    { %>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ARDestroy"}) %>">
+                    <a href="../ARDestroy/ARDestroy.aspx">
+                        <i class="fa fa-th"></i><span>รับเพื่อทำลาย</span>
                     </a>
                 </li>
                 <% }
