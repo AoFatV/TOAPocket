@@ -26,5 +26,9 @@ namespace TOAPocket.UI.Web.Model
         public static string Promotion = "140";
         public static string UserGroup = "141";
         public static string News = "142";
+
+        public static string ARReceive = "133";
+        public static string ARDestroy = "133";
+        
     }
 }

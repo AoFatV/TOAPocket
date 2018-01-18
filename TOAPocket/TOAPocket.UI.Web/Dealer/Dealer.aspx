@@ -88,6 +88,7 @@
                 //"order": [[3, "desc"]],
                 "ordering": false,
                 "bPaginate": true,
+                //"pageLength": 50,
                 "sPaginationType": "full_numbers",
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
@@ -155,13 +156,13 @@
                                         <div class="col-xs-12">
                                             <div class="row">
                                                 <div class="col-xs-9">
-                                                    <div class="col-xs-2 text-center">
+                                                    <div class="col-xs-3 col-md-2 text-center">
                                                         ค้นหา
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-6 col-md-4">
                                                         <input type="text" id="txtSearch" class="form-control" runat="server" />
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-3 col-ms-4">
                                                         <button type="button" class="btn btn-info" onclick="SearchDealer()">
                                                             <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                         </button>
@@ -175,10 +176,10 @@
                                                         <thead>
                                                             <tr>
                                                                 <th style="width: 1%; text-align: center;"></th>
-                                                                <th style="text-align: center;">Dealer ID</th>
-                                                                <th style="text-align: center;">ชื่อร้านค้า</th>
-                                                                <th style="text-align: center;">City</th>
-                                                                <th style="text-align: center;">Mobile</th>
+                                                                <th data-priority="1" style="text-align: center;">Dealer ID</th>
+                                                                <th data-priority="1" style="text-align: center;">ชื่อร้านค้า</th>
+                                                                <th data-priority="1" style="text-align: center;">City</th>
+                                                                <th data-priority="1" style="text-align: center;">Mobile</th>
                                                                 <th style="text-align: center;">E-mail</th>
                                                                 <th style="text-align: center;">ชื่อ Sale TA</th>
                                                                 <th style="text-align: center;">ชื่อ Sale TB</th>

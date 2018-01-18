@@ -116,9 +116,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ARDestroy\ARDestroy.aspx" />
+    <Content Include="ARReceive\ARReceive.aspx" />
     <Content Include="Barcode\ConfirmReceive.aspx" />
     <Content Include="Barcode\ImportBarcode.aspx" />
-    <Content Include="Barcode\MatchBarccode.aspx" />
+    <Content Include="Barcode\MatchBarcode.aspx" />
     <Content Include="Barcode\TransferBarcode.aspx" />
     <Content Include="Barcode\TransferBarcode_Create.aspx" />
     <Content Include="Barcode\TransferBarcode_Detail.aspx" />
@@ -7271,6 +7273,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARDestroy\ARDestroy.aspx.cs">
+      <DependentUpon>ARDestroy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ARDestroy\ARDestroy.aspx.designer.cs">
+      <DependentUpon>ARDestroy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ARReceive\ARReceive.aspx.cs">
+      <DependentUpon>ARReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ARReceive\ARReceive.aspx.designer.cs">
+      <DependentUpon>ARReceive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Barcode\ConfirmReceive.aspx.cs">
       <DependentUpon>ConfirmReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7285,12 +7301,12 @@
     <Compile Include="Barcode\ImportBarcode.aspx.designer.cs">
       <DependentUpon>ImportBarcode.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Barcode\MatchBarccode.aspx.cs">
-      <DependentUpon>MatchBarccode.aspx</DependentUpon>
+    <Compile Include="Barcode\MatchBarcode.aspx.cs">
+      <DependentUpon>MatchBarcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Barcode\MatchBarccode.aspx.designer.cs">
-      <DependentUpon>MatchBarccode.aspx</DependentUpon>
+    <Compile Include="Barcode\MatchBarcode.aspx.designer.cs">
+      <DependentUpon>MatchBarcode.aspx</DependentUpon>
     </Compile>
     <Compile Include="Barcode\TransferBarcode.aspx.cs">
       <DependentUpon>TransferBarcode.aspx</DependentUpon>

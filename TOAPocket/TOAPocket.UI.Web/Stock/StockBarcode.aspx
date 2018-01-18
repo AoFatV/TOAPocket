@@ -370,52 +370,52 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="row">
-                                                <div class="col-xs-1 col-xs-offset-2">
+                                                <div class="col-xs-2 col-md-1 col-md-offset-2">
                                                     Barcode 
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtBarcode"></asp:TextBox>
                                                 </div>
-                                                <div class="col-xs-1">
+                                                <div class="col-xs-2 col-md-1">
                                                     PO No.
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtPoNo"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-2 col-xs-offset-1 text-right">
+                                                <div class="col-xs-2 col-md-1 col-md-offset-2">
                                                     วันที่แก้ไขล่าสุด 
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtEditStart"></asp:TextBox>
                                                 </div>
-                                                <div class="col-xs-1">
+                                                <div class="col-xs-2 col-md-1">
                                                     ถึง
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtEditEnd"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-1 col-xs-offset-2">
+                                                <div class="col-xs-2 col-md-1 col-md-offset-2">
                                                     แผนก/คลัง 
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="ddlDepartment" />
                                                 </div>
-                                                <div class="col-xs-1">
+                                                <div class="col-xs-2 col-md-1">
                                                     สถานะ
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-4 col-md-2">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="ddlStatus" />
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-md-5 col-md-offset-5 col-xs-5 col-xs-offset-5">
+                                                <div class="col-md-5 col-md-offset-5 col-xs-10 col-xs-offset-2">
                                                     <button type="button" class="btn btn-success" runat="server" id="btnSearch" onserverclick="btnSearch_OnServerClick">
                                                         <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                     </button>
@@ -432,20 +432,6 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <%-- <table id="tbStockBarcode" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 1%; text-align: center;">ลำดับ</th>
-                                                        <th style="text-align: center;">Barcode</th>
-                                                        <th style="text-align: center;">PO No.</th>
-                                                        <th style="text-align: center;">แผนก/คลัง</th>
-                                                        <th style="text-align: center;">วันที่เริ่มต้น</th>
-                                                        <th style="text-align: center;">วันที่แก้ไขล่าสุด</th>
-                                                        <th style="text-align: center;">ผู้แก้ไขล่าสุด</th>
-                                                        <th style="text-align: center;">สถานะ</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>--%>
                                             <asp:GridView runat="server" ID="gridStockBarcode" CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="15" AutoGenerateColumns="False"
                                                 OnPageIndexChanging="gridStockBarcode_OnPageIndexChanging">
                                                 <Columns>

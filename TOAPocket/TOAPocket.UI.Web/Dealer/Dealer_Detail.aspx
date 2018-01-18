@@ -69,164 +69,164 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         Dealer ID
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbDealerId" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ชื่อร้าน
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbDealerName" runat="server" class="form-control"></label>
                                                     </div>
-                                                    <div class="col-xs-2  text-right">
+                                                    <div class="col-xs-5 col-md-2 text-right">
                                                         Vendor Code
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbVendorCode" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         รหัสบัตรประชาชน (Text No.1)
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbTextNo1" runat="server" class="form-control"></label>
                                                     </div>
-                                                    <div class="col-xs-1">
+                                                    <div class="col-md-1 col-xs-12">
                                                     </div>
-                                                    <div class="col-xs-2  text-right">
+                                                    <div class="col-xs-5 col-md-2 text-right">
                                                         สาขา (Text No.4)
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbTextNo4" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         เลขประจำตัวผู้เสียภาษี (Text No.3)
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbTextNo3" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ชื่อ Sale Team A
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbSaleA" runat="server" class="form-control"></label>
                                                     </div>
-                                                    <div class="col-xs-1">
+                                                    <div class="col-md-1 col-xs-12">
                                                     </div>
-                                                    <div class="col-xs-2  text-right">
+                                                    <div class="col-xs-5 col-md-2 text-right">
                                                         ชื่อ Sale Team TK
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbSaleTK" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ชื่อ Sale Team B
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbSaleB" runat="server" class="form-control"></label>
                                                     </div>
-                                                    <div class="col-xs-1">
+                                                    <div class="col-md-1 col-xs-12">
                                                     </div>
-                                                    <div class="col-xs-2  text-right">
+                                                    <div class="col-xs-5 col-md-2 text-right">
                                                         รับได้สูงสุด
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <%--<asp:TextBox ID="txtMaxReceive" runat="server" class="form-control"></asp:TextBox>--%>
                                                         <input type="number" runat="server" id="txtMaxReceive" class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ชื่อบุัญชี
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbAccountName" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ธนาคาร
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbBank" runat="server" class="form-control"></label>
                                                         <%--<asp:DropDownList ID="ddlBank" runat="server" class="form-control"></asp:DropDownList>--%>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         สาขา
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbBranch" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         เลขที่บัญชี
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-3">
                                                         <label id="lbAccountNumber" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         ที่อยู่
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <asp:TextBox ID="txtAddress" runat="server" class="form-control" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         Mobile
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbMobile" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-offset-1">
-                                                    <div class="col-xs-3  text-right">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-3 text-right">
                                                         E-Mail
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbEmail" runat="server" class="form-control"></label>
                                                     </div>
                                                 </div>

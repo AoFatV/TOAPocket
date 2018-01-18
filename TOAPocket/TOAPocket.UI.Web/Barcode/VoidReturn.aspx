@@ -107,19 +107,19 @@
                         <form role="form" runat="server">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-3">
-                                            <div class="col-xs-3 col-md-4">
+                                     <div class="row">
+                                        <div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">
+                                            <div class="col-xs-5 col-md-4">
                                                 <label for="txtBarcodeScan">Barcode :</label>
                                             </div>
-                                            <div class="col-xs-5 col-md-8">
+                                            <div class="col-xs-7 col-md-8">
                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtBarcodeScan" OnTextChanged="txtBarcodeScan_OnTextChanged" AutoPostBack="True"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
-                                        <div class="col-xs-5 col-xs-offset-4">
+                                         <div class="col-xs-6 col-xs-offset-2 col-md-5 col-md-offset-4">
                                             <asp:GridView runat="server" AutoGenerateColumns="false" ID="gridBarcodeScan" CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="5"
                                                 OnPageIndexChanging="gridBarcodeScan_OnPageIndexChanging" OnRowCommand="gridBarcodeScan_OnRowCommand" OnRowDeleting="gridBarcodeScan_OnRowDeleting">
                                                 <Columns>
@@ -139,8 +139,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-3">
-                                            <div class="col-xs-5 col-md-8  col-md-offset-4  col-xs-offset-3">
+                                        <div class="col-md-4 col-md-offset-4 col-xs-12 col-xs-offset-1">
+                                            <div class="col-xs-8 col-md-8  col-md-offset-4  col-xs-offset-2">
                                                 <button type="button" class="btn btn-success" runat="server" id="btnSave" onserverclick="btnSave_ServerClick">
                                                     <span class="glyphicon glyphicon-save">ยืนยัน</span>
                                                 </button>

@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="News.aspx.cs" Inherits="TOAPocket.UI.Web.News.News" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <%--<link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />--%>
     <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
+    <link href="../Content/responsive.dataTables.min2.css" rel="stylesheet" />
+    <script src="../Scripts/dataTables.responsive.js"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -252,7 +255,7 @@
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">คลังสินค้า</h3>
+                            <h3 class="box-title">ข่าวสาร</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -266,46 +269,46 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="row">
-                                                <div class="col-xs-1 col-xs-offset-2">
+                                                <div class="col-xs-3 col-xs-offset-2 col-md-1 col-md-offset-2">
                                                     ชื่อเรื่อง 
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-6 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtNewsName"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-1 col-xs-offset-2">
+                                                <div class="col-xs-3 col-xs-offset-2 col-md-1 col-md-offset-2">
                                                     ช่วงวันที่ 
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-6 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtNewsStart"></asp:TextBox>
                                                 </div>
-                                                <div class="col-xs-1">
+                                                <div class="col-xs-3 col-xs-offset-2 col-md-1 col-md-offset-0">
                                                     ถึง
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-6 col-md-2">
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtNewsEnd"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-1 col-xs-offset-2">
+                                                <div class="col-xs-4 col-xs-offset-1 col-md-1 col-md-offset-2">
                                                     กลุ่มผู้รับข่าว
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-6 col-md-2">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="ddlUserType" />
                                                 </div>
-                                                <div class="col-xs-1">
+                                                <div class="col-xs-3 col-xs-offset-2 col-md-1 col-md-offset-0">
                                                     สถานะ
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-6 col-md-2">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="ddlStatus" />
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-md-5 col-md-offset-5 col-xs-5 col-xs-offset-5">
+                                                <div class="col-md-5 col-md-offset-5 col-xs-11 col-xs-offset-1">
                                                     <button type="button" class="btn btn-success" runat="server" id="btnSearch" onclick="SearchNews()">
                                                         <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                     </button>
@@ -322,7 +325,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <table id="tbNews" class="table table-bordered table-striped" width="100%">
+                                            <table id="tbNews" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th style="width: 1%; text-align: center;">ลำดับ</th>

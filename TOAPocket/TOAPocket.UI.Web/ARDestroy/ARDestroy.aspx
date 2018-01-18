@@ -1,19 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="Painter.aspx.cs" Inherits="TOAPocket.UI.Web.Painter.Painter" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="ARDestroy.aspx.cs" Inherits="TOAPocket.UI.Web.ARDestroy.ARDestroy" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
-    <link href="../Content/responsive.dataTables.min2.css" rel="stylesheet" />
-    <script src="../Scripts/dataTables.responsive.js"></script>
+
     <script type="text/javascript">
 
         $(function () {
 
             InitialTb();
-
         });
 
         function InitialTb() {
-            var postUrl = "Painter.aspx/GetPainter";
+            var postUrl = "ARReceive.aspx/GetSaleRedeem";
             $.ajax({
                 type: "POST",
                 url: postUrl,
@@ -33,7 +31,7 @@
 
             var data = JSON.parse(response.d);
             //console.log(data);
-            var table = $('#tbPainter').DataTable({
+            var table = $('#tbArWhReceive').DataTable({
                 //"processing": true,
                 "responsive": true,
                 "data": (data),
@@ -44,43 +42,70 @@
                 ],
                 "columns": [
                     {
-                        "data": null,
+                        "data": "SALE_ID",
                         render: function (data, type, row) {
+                            if (type === 'display') {
+                                return '<input type="checkbox" name="chkSale" id="chkSale" value="' + data + '" name="chkPO" class="chk" >';
+                            }
                             return "";
-                        }, className: "dt-center"
-
+                        },
+                        className: "dt-center", "orderable": false
                     },
                     {
-                        "data": "PAINTER_NO",
+                        "data": "SALE_ID",
                         render: function (data, type, row) {
-                            return "<a href='Painter_Detail.aspx?Id=" + row.ID + "' >" + row.PAINTER_NO + "</a>";
-                        }, className: "dt-center"
-                    },
-                    {
-                        "data": "FIRST_NAME", className: "dt-center",
-                        render: function (data, type, row) {
-                            var name = row.FIRST_NAME + " " + row.LAST_NAME;
+                            var name = row.SALE_ID + " " + row.SALE_NAME;
                             return name;
+                        },
+                        className: "col-xs-2 dt-center"
+                    },
+                    {
+                        "data": "SALE_RETURN_20_QTY", className: "col-xs-1 dt-center",
+                        render: function (data, type, row) {
+                            return '<label  id="lbRt20_' + row.SALE_ID + '">' + row.SALE_RETURN_20_QTY + '</label>';
                         }
                     },
                     {
-                        "data": "EMAIL", className: "dt-center"
-                    },
-                    {
-                        "data": "AREA_DESC", className: "dt-center"
-                    },
-                    {
-                        "data": "OCCUPATION_DESC", className: "dt-center"
-                    },
-                    {
-                        "data": "IS_REGISTER", className: "dt-center",
+                        "data": null, className: "col-xs-2 dt-center",
                         render: function (data, type, row) {
-                            if (row.IS_REGISTER == "Y") {
-                                var buttonOk = '<button type="button" class="btn btn-success btn-circle"><span class="glyphicon glyphicon-ok"></span></button>';
-                            } else {
-                                var buttonOk = '<button type="button" class="btn btn-danger btn-circle"><span class="glyphicon glyphicon-remove"></span></button>';
-                            }
-                            return buttonOk;
+                            return '<input type="number" id="txtRt20_' + row.SALE_ID + '" onchange="ChangeWhReem()" class="form-control " readonly min="0"/>';
+                        }
+                    },
+                    {
+                        "data": "SALE_RETURN_30_QTY", className: "col-xs-1 dt-center",
+                        render: function (data, type, row) {
+                            return '<label  id="lbRt30_' + row.SALE_ID + '">' + row.SALE_RETURN_30_QTY + '</label>';
+                        }
+
+                    },
+                    {
+                        "data": null, className: "col-xs-2 dt-center",
+                        render: function (data, type, row) {
+                            return '<input type="number" id="txtRt30_' + row.SALE_ID + '" onchange="ChangeWhReem()" class="form-control" readonly min="0"/>';
+                        }
+                    },
+                    {
+                        "data": "SALE_RETURN_60_QTY", className: "col-xs-1 dt-center",
+                        render: function (data, type, row) {
+                            return '<label  id="lbRt60_' + row.SALE_ID + '">' + row.SALE_RETURN_60_QTY + '</label>';
+                        }
+                    },
+                    {
+                        "data": null, className: "col-xs-2 dt-center",
+                        render: function (data, type, row) {
+                            return '<input type="number" id="txtRt60_' + row.SALE_ID + '" onchange="ChangeWhReem()" class="form-control" readonly min="0"/>';
+                        }
+                    },
+                    {
+                        "data": "SALE_RETURN_TOTAL", className: "col-xs-2 dt-center",
+                        render: function (data, type, row) {
+                            return '<label type="number" id="lbTotalRt_' + row.SALE_ID + '">' + row.SALE_RETURN_TOTAL + '</label>';
+                        }
+                    },
+                    {
+                        "data": null, className: "col-xs-1 dt-center",
+                        render: function (data, type, row) {
+                            return '<label type="number" id="lbTotalLoseRt_' + row.SALE_ID + '">0</label>';
                         }
                     }
                 ],
@@ -90,56 +115,14 @@
                 "bPaginate": true,
                 "sPaginationType": "full_numbers",
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                "fnRowCallback": function (nRow, aData, iDisplayIndex) {
-                    $("td:first", nRow).html(($('#tbPainter').DataTable().page.info().page * $('#tbPainter').DataTable().page.info().length) + iDisplayIndex + 1);
-                    return nRow;
-                }, "scrollX": true
+                //"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                //    $("td:first", nRow).html(($('#tbArWhReceive').DataTable().page.info().page * $('#tbArWhReceive').DataTable().page.info().length) + iDisplayIndex + 1);
+                //    return nRow;
+                //}, "scrollX": true
             });
-        }
 
-        function SearchPainter() {
-            var dt = $('#tbPainter').dataTable();
-            var postUrl = "Painter.aspx/GetPainter";
-            $.ajax({
-                type: "POST",
-                url: postUrl,
-                data: '{search: "' + $("[id*='txtSearch']").val()
-                    + '" }',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var data = JSON.parse(response.d);
-                    console.log(data);
-                    if (data.length > 0) {
-                        dt.fnClearTable();
-                        dt.fnAddData(data);
-                        dt.fnDraw();
-                    } else dt.fnClearTable();
-                },
-                failure: function (response) {
-                    //alert(response.d);
-                    console.log(response.d);
-                }
-            });
         }
     </script>
-
-
-    <style type="text/css">
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: 0px;
-        }
-
-        .btn-circle {
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            padding: 6px 0;
-            font-size: 12px;
-            line-height: 1.42;
-            border-radius: 15px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content-wrapper" style="min-height: 990px;">
@@ -150,7 +133,7 @@
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">ข้อมูล Painter</h3>
+                            <h3 class="box-title">รับเหรียญคืน</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -172,7 +155,7 @@
                                                         <input type="text" id="txtSearch" class="form-control" runat="server" />
                                                     </div>
                                                     <div class="col-xs-4">
-                                                        <button type="button" class="btn btn-info" onclick="SearchPainter()">
+                                                        <button type="button" class="btn btn-info" onclick="SearchArWhReceive()">
                                                             <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
                                                         </button>
                                                     </div>
@@ -181,16 +164,16 @@
                                             <br />
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <table id="tbPainter" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+                                                    <table id="tbArWhDestroy" class="table table-bordered table-striped" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th style="width: 1%; text-align: center;"></th>
-                                                                <th data-priority="1" style="text-align: center;">Painter No.</th>
-                                                                <th data-priority="1" style="text-align: center;">ชื่อ</th>
-                                                                <th style="text-align: center;">E-Mail</th>
-                                                                <th style="text-align: center;">เขตพื้นที่</th>
-                                                                <th style="text-align: center;">อาชีพ</th>
-                                                                <th style="text-align: center;">Register</th>
+                                                                <th style="text-align: center;">ชื่อ Sale</th>
+                                                                <th style="text-align: center;">นน. ประมาณ (20)</th>
+                                                                <th style="text-align: center;">นน. ประมาณ (30)</th>
+                                                                <th style="text-align: center;">นน. ประมาณ (60)</th>
+                                                                <th style="text-align: center;">นน. ประมาณ (kg.)</th>
+                                                                <th style="text-align: center;">นน. รับจริง  (kg.)</th>
+                                                                <th style="text-align: center;">หมายเหตุ</th>
                                                             </tr>
                                                         </thead>
                                                     </table>

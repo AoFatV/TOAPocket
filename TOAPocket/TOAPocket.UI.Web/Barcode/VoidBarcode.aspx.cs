@@ -312,8 +312,8 @@ namespace TOAPocket.UI.Web.Barcode
                         }
                     }
 
-                    //ViewState["gridBarcodeScan"] = dt;
-                    ViewState["gridBarcodeScan"] = null;
+                    ViewState["gridBarcodeScan"] = dt;
+                    //ViewState["gridBarcodeScan"] = null;
                     gridBarcodeScan.Columns[3].Visible = true;
                     gridBarcodeScan.Columns[2].Visible = false;
 
@@ -346,7 +346,7 @@ namespace TOAPocket.UI.Web.Barcode
         {
             try
             {
-
+                Response.Redirect("VoidBarcode.aspx");
             }
             catch (Exception ex)
             {
