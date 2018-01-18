@@ -420,6 +420,7 @@ namespace TOAPocket.UI.Web.Barcode
 
                     gridBarcodeScan.HeaderRow.Cells[0].CssClass = "visiblecol";
 
+                    var countMatch = 0;
                     foreach (GridViewRow item in gridBarcodeScan.Rows)
                     {
                         var status = item.Cells[3].Text;
@@ -427,6 +428,7 @@ namespace TOAPocket.UI.Web.Barcode
                         if (status.Equals("Matched"))
                         {
                             item.Cells[3].Style["background-color"] = "green";
+                            countMatch++;
                         }
                         else
                         {
@@ -439,6 +441,14 @@ namespace TOAPocket.UI.Web.Barcode
                     btnBack.Visible = true;
 
                     txtBarcodeScan.Style["display"] = "none";
+                    lbBarcodeScan.Style["display"] = "none";
+
+                    var orderQty = Convert.ToInt32(txtOrderQty.Text);
+                    var matchQty = Convert.ToInt32(lbMatchQty.InnerText) + countMatch;
+                    var remainQty = orderQty - matchQty;
+
+                    lbMatchQty.InnerText = matchQty.ToString();
+                    lbRemainQty.InnerText = remainQty.ToString();
 
                     actionResult = true;
                     msg = "บันทึกข้อมูลสำเร็จ";
@@ -617,6 +627,7 @@ namespace TOAPocket.UI.Web.Barcode
 
                     gridBarcodeScan.HeaderRow.Cells[0].CssClass = "visiblecol";
 
+                    var countMatch = 0;
                     foreach (GridViewRow item in gridBarcodeScan.Rows)
                     {
                         var status = item.Cells[3].Text;
@@ -624,6 +635,7 @@ namespace TOAPocket.UI.Web.Barcode
                         if (status.Equals("Matched"))
                         {
                             item.Cells[3].Style["background-color"] = "green";
+                            countMatch++;
                         }
                         else
                         {
@@ -648,9 +660,10 @@ namespace TOAPocket.UI.Web.Barcode
                     lbOrderQty.InnerText = txtOrderQty.Text;
 
                     var orderQty = Convert.ToInt32(txtOrderQty.Text);
-                    var matchQty = Convert.ToInt32(lbMatchQty.InnerText);
+                    var matchQty = Convert.ToInt32(lbMatchQty.InnerText) + countMatch;
                     var remainQty = orderQty - matchQty;
 
+                    lbMatchQty.InnerText = matchQty.ToString();
                     lbRemainQty.InnerText = remainQty.ToString();
 
                     btnBack.Visible = true;

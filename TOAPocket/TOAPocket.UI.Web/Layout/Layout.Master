@@ -9,6 +9,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
     <%: System.Web.Optimization.Scripts.Render("~/scripts/jquery") %>
     <%: System.Web.Optimization.Styles.Render("~/content/datatable") %>
     <%: System.Web.Optimization.Scripts.Render("~/scripts/adminlte") %>
@@ -37,9 +40,9 @@
 
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
-            <%--  <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
-            </a>--%>
+            </a>
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
@@ -189,17 +192,7 @@
                     </a>
                 </li>
                 <% }
-                    if (users.RoleMenus.Contains(Menus.News))
-                    { %>
-                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"News"}) %>">
-                    <a href="../News/News.aspx">
-                        <i class="fa fa-th"></i><span>ข่าวกิจกรรม</span>
-                    </a>
-                </li>
-                <% } %>
-
-
-                <% if (users.RoleMenus.Contains(Menus.Settings))
+                    if (users.RoleMenus.Contains(Menus.Settings))
                     {%>
                 <li class="treeview <%=utility.MatchPageMenu(pageName,
                     new string []

@@ -32,7 +32,7 @@
         function BindTb(response) {
 
             var data = JSON.parse(response.d);
-            console.log(data);
+            //console.log(data);
             var table = $('#tbPainter').DataTable({
                 //"processing": true,
                 "responsive": true,
@@ -185,8 +185,8 @@
                                                         <thead>
                                                             <tr>
                                                                 <th style="width: 1%; text-align: center;"></th>
-                                                                <th style="text-align: center;">Painter No.</th>
-                                                                <th style="text-align: center;">ชื่อ</th>
+                                                                <th data-priority="1" style="text-align: center;">Painter No.</th>
+                                                                <th data-priority="1" style="text-align: center;">ชื่อ</th>
                                                                 <th style="text-align: center;">E-Mail</th>
                                                                 <th style="text-align: center;">เขตพื้นที่</th>
                                                                 <th style="text-align: center;">อาชีพ</th>

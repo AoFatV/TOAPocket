@@ -637,35 +637,29 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         Tranfer No.
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <input type="text" id="txtTranferNo" class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         แผนกที่โอน
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <select class="form-control" runat="server" id="ddlFromDepartment">
                                                         </select>
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-5 col-md-2">
                                                         แผนกที่รับ
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <select class="form-control" runat="server" id="ddlToDepartment">
                                                         </select>
                                                     </div>
@@ -673,34 +667,28 @@
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
-                                                        Barcode เริ่มต้น
-                                                   
-                                                   
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
+                                                        Barcodeเริ่มต้น
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <input type="text" id="txtBarcodeStart" class="form-control" />
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-5 col-md-2">
                                                         ถึง
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <input type="text" id="txtBarcodeEnd" class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         วันที่โอน
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <div class="input-group date">
                                                             <input type="text" class="form-control pull-left" id="txtTfDateStart" runat="server" />
                                                             <div class="input-group-addon">
@@ -708,12 +696,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-5 col-md-2">
                                                         ถึง
-                                                   
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <div class="input-group date">
                                                             <input type="text" class="form-control pull-left" id="txtTfDateEnd" runat="server" />
                                                             <div class="input-group-addon">
@@ -727,27 +713,23 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-9 col-xs-offset-6 col-md-12 col-md-offset-8">
-                                            <div class="col-xs-2 col-md-1">
-                                                <button type="button" class="btn btn-info" onclick="Search()">
-                                                    <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
-                                               
-                                               
-                                                </button>
-                                            </div>
-                                            <div class="col-xs-2 col-md-1">
-                                                <button type="button" class="btn" onclick="CancelSearch()">
-                                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;ยกเลิก
-                                               
-                                               
-                                                </button>
-                                            </div>
-                                            <div class="col-xs-2 col-md-1">
-                                                <button type="button" class="btn btn-success" onclick="CreateTransferBarcode()">
-                                                    <span class="glyphicon glyphicon-transfer"></span>&nbsp;สร้างรายการโอน
-                                               
-                                               
-                                                </button>
+                                        <div class="col-xs-12 col-md-12 col-md-offset-8">
+                                            <div class="row">
+                                                <div class="col-xs-3 col-md-1">
+                                                    <button type="button" class="btn btn-info" onclick="Search()">
+                                                        <span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา
+                                                    </button>
+                                                </div>
+                                                <div class="col-xs-3 col-md-1">
+                                                    <button type="button" class="btn" onclick="CancelSearch()">
+                                                        <span class="glyphicon glyphicon-remove"></span>&nbsp;ยกเลิก
+                                                    </button>
+                                                </div>
+                                                <div class="col-xs-3 col-md-1">
+                                                    <button type="button" class="btn btn-success" onclick="CreateTransferBarcode()">
+                                                        <span class="glyphicon glyphicon-transfer"></span>&nbsp;สร้างรายการโอน
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

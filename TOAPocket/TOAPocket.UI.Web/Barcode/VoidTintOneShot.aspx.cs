@@ -347,7 +347,7 @@ namespace TOAPocket.UI.Web.Barcode
         {
             try
             {
-
+                Response.Redirect("VoidTintOneShot.aspx");
             }
             catch (Exception ex)
             {

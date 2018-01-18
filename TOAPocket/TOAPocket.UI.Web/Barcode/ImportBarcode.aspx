@@ -3,7 +3,9 @@
 <%@ Import Namespace="System.Data" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
+    <link href="../Content/responsive.dataTables.min2.css" rel="stylesheet" />
+    <script src="../Scripts/dataTables.responsive.js"></script>
     <script type="text/javascript">
         var actionResult = "<%=actionResult %>";
         var msgResult = "<%=msg %>";
@@ -77,6 +79,10 @@
         .btn-bs-file {
             position: relative;
         }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -96,39 +102,45 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-xs-2">
+                                        <div class="col-xs-4 col-md-3 text-right">
                                             <label for="fileUpload">File input</label>
                                         </div>
-                                        <div class="col-xs-3">
+                                        <div class="col-xs-7 col-md-3">
                                             <input type="text" disabled="disabled" id="txtFileUploadName" class="form-control" />
                                         </div>
-                                        <div class="col-xs-6">
-                                            <label class="btn-bs-file btn btn-default">
-                                                <span class="glyphicon glyphicon-folder-open"></span>
-                                                <span class="">Browse</span>
-                                                <%--<input type="file" id="fileUpload" runat="server" />--%>
-                                                <asp:FileUpload ID="fileUpload" runat="server" />
-                                            </label>
-                                            <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_OnClick" Text="Upload" CssClass="btn btn-info" OnClientClick="return checkFileUpload()" />
-
-                                            <div class="btn btn-info" onclick="clearFileUpload();">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                                <span class="">Clear</span>
+                                        <div class="col-md-6">
+                                            <div class="row" style="padding-bottom:1px;"></div>
+                                            <div class="row">
+                                                <div class="col-xs-4 col-md-3">
+                                                    <label class="btn-bs-file btn btn-default">
+                                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                                        <span class="">Browse</span>
+                                                        <asp:FileUpload ID="fileUpload" runat="server" />
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-4 col-md-2">
+                                                    <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_OnClick" Text="Upload" CssClass="btn btn-info" OnClientClick="return checkFileUpload()" />
+                                                </div>
+                                                <div class="col-xs-4 col-md-2">
+                                                    <div class="btn btn-info" onclick="clearFileUpload();">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                        <span class="">Clear</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <table id="tbBarcode" class="table table-bordered table-striped">
+                                        <table id="tbBarcode" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">PO No</th>
-                                                    <th class="text-center">QR Code</th>
-                                                    <th class="text-center">Barcode</th>
+                                                    <th data-priority="1" class="text-center">PO No</th>
+                                                    <th data-priority="1" class="text-center">QR Code</th>
+                                                    <th data-priority="1" class="text-center">Barcode</th>
                                                     <th class="text-center">Status</th>
                                                 </tr>
                                             </thead>
@@ -150,7 +162,7 @@
                             </div>
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-xs-3  col-sm-offset-3">
+                                    <div class="col-xs-7  col-xs-offset-3 col-md-3  col-md-offset-5">
                                         <asp:Button runat="server" ID="btnImport" Text="Import" CssClass="btn btn-success" OnClick="btnImport_OnClick" OnClientClick="return ImportBarode()" />
                                         <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-success" OnClick="btnCancel_OnClick" />
                                     </div>

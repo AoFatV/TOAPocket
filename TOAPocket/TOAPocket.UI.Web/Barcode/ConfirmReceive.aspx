@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout/Layout.Master" AutoEventWireup="true" CodeBehind="ConfirmReceive.aspx.cs" Inherits="TOAPocket.UI.Web.Barcode.ConfirmReceive" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link href="../Content/jquery.dataTables.min2.css" rel="stylesheet" />
+    <link href="../Content/responsive.dataTables.min2.css" rel="stylesheet" />
+    <script src="../Scripts/dataTables.responsive.js"></script>
     <script type="text/javascript">
         var actionResult = "<%=actionResult %>";
         var msgResult = "<%=msg %>";
@@ -17,6 +19,7 @@
             InitialTbByPO();
             InitialTbByBarcode();
 
+            //$('#tab_2').hide();
         });
 
         function InitialTbByPO() {
@@ -256,7 +259,11 @@
                 //if (!$.fn.dataTable.isDataTable("#tbRcBarcode")) {
                 //    BindTableAdjustEvent(data.Table)
                 //}
+                $('#tab_2').show();
+
                 SearchByBarcode();
+
+
             }
 
         }
@@ -265,6 +272,10 @@
     <style type="text/css">
         th.dt-center, td.dt-center {
             text-align: center;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0px;
         }
     </style>
 </asp:Content>
@@ -288,7 +299,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="nav-tabs-custom">
+                                            <div class="nav-tabs-custom" id="tabs">
                                                 <ul class="nav nav-pills">
                                                     <li class="active"><a href="#tab_1" data-toggle="tab" onclick="Opentab(1);">รับทั้ง PO</a></li>
                                                     <li><a href="#tab_2" data-toggle="tab" onclick="Opentab(2);">รับบางส่วน</a></li>
@@ -296,18 +307,13 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="tab_1">
                                                         <div class="row">
-                                                            <div class="col-xs-1 col-xs-offset-2">
+                                                            <div class="col-xs-3 col-xs-offset-1 col-md-1 col-md-offset-2">
                                                                 PO No.
                                                             </div>
-                                                            <div class="col-xs-3">
+                                                            <div class="col-xs-5 col-md-3">
                                                                 <input type="text" id="txtSearchByPO" class="form-control" />
                                                             </div>
-                                                            <div class="col-xs-3">
-                                                                <%--<asp:LinkButton ID="btnSearchByPO"
-                                                                    runat="server"
-                                                                    CssClass="btn btn-primary" OnClick="btnSearchByPO_Click">
-                                                                        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
-                                                                </asp:LinkButton>--%>
+                                                            <div class="col-xs-1 col-md-3">
                                                                 <button type="button" class="btn btn-success" onclick="SearchByPO()">
                                                                     <span class="glyphicon glyphicon-search"></span>
                                                                 </button>
@@ -315,36 +321,38 @@
                                                         </div>
                                                         <br />
                                                         <div class="row">
-                                                            <div class="col-xs-2">
-                                                                <asp:Button ID="btnConfirm" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirm_Click" OnClientClick="return PreparePO()" />
-                                                            </div>
-                                                            <div class="col-xs-10">
-                                                                <table id="tbRcAllPO" class="table table-bordered table-striped" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="text-align: center;">ลำดับ</th>
-                                                                            <th style="text-align: center;">
-                                                                                <input type="checkbox" name="chkAll" value="1" id="chkAll" /></th>
-                                                                            <th style="text-align: center;">PO No.</th>
-                                                                            <th style="text-align: center;">จำนวน</th>
-                                                                            <th style="text-align: center;">จำนวนที่รับ</th>
-                                                                            <th style="text-align: center;">สถานะ</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                </table>
+                                                            <div class="col-xs-12">
+                                                                <div class="col-xs-2 col-md-2">
+                                                                    <asp:Button ID="btnConfirm" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirm_Click" OnClientClick="return PreparePO()" />
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-10">
+                                                                    <table id="tbRcAllPO" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="text-align: center;">ลำดับ</th>
+                                                                                <th style="text-align: center;">
+                                                                                    <input type="checkbox" name="chkAll" value="1" id="chkAll" /></th>
+                                                                                <th style="text-align: center;">PO No.</th>
+                                                                                <th style="text-align: center;">จำนวน</th>
+                                                                                <th style="text-align: center;">จำนวนที่รับ</th>
+                                                                                <th style="text-align: center;">สถานะ</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- /.tab-pane -->
-                                                    <div class="tab-pane" id="tab_2">
+                                                    <div class="tab-pane active" id="tab_2">
                                                         <div class="row">
-                                                            <div class="col-xs-1 col-xs-offset-2">
+                                                            <div class="col-xs-3 col-md-1 col-md-offset-2">
                                                                 PO No.
                                                             </div>
-                                                            <div class="col-xs-3">
+                                                            <div class="col-xs-5 col-md-3">
                                                                 <input type="text" id="txtSearchByBarcode" class="form-control" />
                                                             </div>
-                                                            <div class="col-xs-3">
+                                                            <div class="col-xs-1 col-md-3">
                                                                 <button type="button" class="btn btn-success" onclick="SearchByBarcode()">
                                                                     <span class="glyphicon glyphicon-search"></span>
                                                                 </button>
@@ -352,36 +360,38 @@
                                                         </div>
                                                         <br />
                                                         <div class="row">
-                                                            <div class="col-xs-1 col-xs-offset-2">
+                                                            <div class="col-xs-5 col-md-1 col-md-offset-2">
                                                                 Barcode เริ่มต้น
                                                             </div>
-                                                            <div class="col-xs-2">
+                                                            <div class="col-xs-5 col-md-2">
                                                                 <input type="text" id="txtBarcodeStart" class="form-control" />
                                                             </div>
-                                                            <div class="col-xs-1 col-xs-offset-2">
+                                                            <div class="col-xs-5 col-md-1 col-md-offset-2">
                                                                 Barcode สิ้นสุด
                                                             </div>
-                                                            <div class="col-xs-2">
+                                                            <div class="col-xs-5 col-md-2">
                                                                 <input type="text" id="txtBarcodeEnd" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <br />
                                                         <div class="row">
-                                                            <div class="col-xs-2">
-                                                                <asp:Button ID="btnConfirmBarcode" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirmBarcode_OnClick" OnClientClick="return PrepareBarcode()" />
-                                                            </div>
-                                                            <div class="col-xs-10">
-                                                                <table id="tbRcBarcode" class="table table-bordered table-striped" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="text-align: center;">ลำดับ</th>
-                                                                            <th style="text-align: center;">
-                                                                                <input type="checkbox" name="chkAllBarcode" value="1" id="chkAllBarcode" /></th>
-                                                                            <th style="text-align: center;">PO No.</th>
-                                                                            <th style="text-align: center;">Barcode</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                </table>
+                                                            <div class="col-xs-12">
+                                                                <div class="col-xs-2 col-md-2">
+                                                                    <asp:Button ID="btnConfirmBarcode" runat="server" CssClass="btn btn-success" Text="ยืนยันการรับ" OnClick="btnConfirmBarcode_OnClick" OnClientClick="return PrepareBarcode()" />
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-10">
+                                                                    <table id="tbRcBarcode" class="table responsive display nowrap dtr-inline collapsed" cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="text-align: center;">ลำดับ</th>
+                                                                                <th style="text-align: center;">
+                                                                                    <input type="checkbox" name="chkAllBarcode" value="1" id="chkAllBarcode" /></th>
+                                                                                <th style="text-align: center;">PO No.</th>
+                                                                                <th style="text-align: center;">Barcode</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -136,6 +136,10 @@
             });
         }
 
+
+        function CancelCreateTransfer() {
+            window.location = "TransferBarcode.aspx";
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -159,24 +163,22 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         Tranfer No.
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="txtTranferNo" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         แผนกที่โอน
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <select class="form-control" runat="server" id="ddlFromDepartment">
                                                         </select>
                                                     </div>
@@ -184,12 +186,11 @@
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         แผนกที่รับ
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <select class="form-control" runat="server" id="ddlToDepartment">
                                                         </select>
                                                     </div>
@@ -197,43 +198,39 @@
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         Barcode เริ่มต้น
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <input type="text" id="txtBarcodeStart" class="form-control" onchange="CalBarcodeQty()" />
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-5 col-md-2">
                                                         ถึง
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <input type="text" id="txtBarcodeEnd" class="form-control" onchange="CalBarcodeQty()" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         จำนวน
-                                                   
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbBarcodeQty" class="form-control"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         วันที่โอน
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <div class="input-group date">
                                                             <input type="text" class="form-control pull-left" id="txtTfDate" runat="server" readonly="readonly" />
                                                             <div class="input-group-addon">
@@ -245,12 +242,11 @@
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         วันที่รับ
-                                                   
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label class="form-control pull-left" id="txtRcDate" runat="server"></label>
                                                         <%--<div class="input-group date">
                                                             <input type="text" class="form-control pull-left" id="txtRcDate" runat="server" />
@@ -263,12 +259,11 @@
                                             </div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-xs-9 col-xs-offset-1">
-                                                    <div class="col-xs-2">
+                                                <div class="col-xs-11 col-xs-offset-1 col-md-9 col-md-offset-1">
+                                                    <div class="col-xs-5 col-md-2">
                                                         สถานะ
-                                                   
                                                     </div>
-                                                    <div class="col-xs-1">
+                                                    <div class="col-xs-7 col-md-4">
                                                         <label id="lbStatus" class="form-control">-</label>
                                                     </div>
                                                 </div>
