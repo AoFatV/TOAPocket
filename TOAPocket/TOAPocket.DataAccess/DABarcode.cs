@@ -713,5 +713,83 @@ namespace TOAPocket.DataAccess
 
             return ds;
         }
+
+        public DataSet GetShipment(string shNo)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "sp_EP_GetShipment";
+                Command.Parameters.Clear();
+
+                Command.Parameters.Add(new SqlParameter("ShipmentNo", SqlDbType.VarChar));
+                Command.Parameters["ShipmentNo"].Value = String.IsNullOrEmpty(shNo) ? (object)DBNull.Value : shNo;
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
+
+        public DataSet GetBarcodeShipment(string shipmentId, string barcode)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                BeginTransaction();
+                Command = new SqlCommand();
+                Command.Connection = Connection;
+                Command.CommandType = CommandType.StoredProcedure;
+                Command.CommandText = "sp_EP_GetBarcodeShipment";
+                Command.Parameters.Clear();
+
+                Command.Parameters.Add(new SqlParameter("ShipmentId", SqlDbType.VarChar));
+                Command.Parameters["ShipmentId"].Value = shipmentId;
+                Command.Parameters.Add(new SqlParameter("Barcode", SqlDbType.VarChar));
+                Command.Parameters["Barcode"].Value = barcode;
+
+                Command.CommandTimeout = 0;
+                if (Transaction != null)
+                {
+                    Command.Transaction = Transaction;
+                }
+
+                da = new SqlDataAdapter((SqlCommand)Command);
+                da.Fill(ds);
+                ds.Dispose();
+                CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+            }
+            finally
+            {
+                CloseCon();
+            }
+
+            return ds;
+        }
     }
 }

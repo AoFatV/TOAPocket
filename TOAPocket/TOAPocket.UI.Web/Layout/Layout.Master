@@ -168,6 +168,22 @@
                     </ul>
                 </li>
                 <% }
+                    if (users.RoleMenus.Contains(Menus.ConfirmGR))
+                    { %>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"ConfirmGR"}) %>">
+                    <a href="../GR/ConfirmGR.aspx">
+                        <i class="fa fa-th"></i><span>Confirm GR</span>
+                    </a>
+                </li>
+                <% }
+                    if (users.RoleMenus.Contains(Menus.VoidShipment))
+                    { %>
+                <li class="<%=utility.MatchPageMenu(pageName,new string [] {"VoidShipment"}) %>">
+                    <a href="../Barcode/VoidShipment.aspx">
+                        <i class="fa fa-th"></i><span>Void จัดส่ง</span>
+                    </a>
+                </li>
+                <% }
                     if (users.RoleMenus.Contains(Menus.StockBarcode))
                     { %>
                 <li class="<%=utility.MatchPageMenu(pageName,new string [] {"StockBarcode"}) %>">

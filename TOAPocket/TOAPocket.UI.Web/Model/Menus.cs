@@ -29,6 +29,7 @@ namespace TOAPocket.UI.Web.Model
 
         public static string ARReceive = "133";
         public static string ARDestroy = "133";
-        
+        public static string ConfirmGR = "128";
+        public static string VoidShipment = "129";
     }
 }

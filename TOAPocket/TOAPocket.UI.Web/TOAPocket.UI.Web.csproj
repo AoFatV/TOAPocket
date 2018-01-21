@@ -127,6 +127,7 @@
     <Content Include="Barcode\UnmatchBarcode.aspx" />
     <Content Include="Barcode\VoidBarcode.aspx" />
     <Content Include="Barcode\VoidReturn.aspx" />
+    <Content Include="Barcode\VoidShipment.aspx" />
     <Content Include="Barcode\VoidTintOneShot.aspx" />
     <Content Include="Common\FetchData.asmx" />
     <Content Include="Content\dt\jquery.dataTables.min.css" />
@@ -135,6 +136,7 @@
     <Content Include="Content\responsive.dataTables.min2.css" />
     <Content Include="Dealer\Dealer.aspx" />
     <Content Include="Dealer\Dealer_Detail.aspx" />
+    <Content Include="GR\ConfirmGR.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="News\News.aspx" />
     <Content Include="News\News_Create.aspx" />
@@ -7350,6 +7352,13 @@
     <Compile Include="Barcode\VoidReturn.aspx.designer.cs">
       <DependentUpon>VoidReturn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Barcode\VoidShipment.aspx.cs">
+      <DependentUpon>VoidShipment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Barcode\VoidShipment.aspx.designer.cs">
+      <DependentUpon>VoidShipment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Barcode\VoidTintOneShot.aspx.cs">
       <DependentUpon>VoidTintOneShot.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7381,6 +7390,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GR\ConfirmGR.aspx.cs">
+      <DependentUpon>ConfirmGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GR\ConfirmGR.aspx.designer.cs">
+      <DependentUpon>ConfirmGR.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
