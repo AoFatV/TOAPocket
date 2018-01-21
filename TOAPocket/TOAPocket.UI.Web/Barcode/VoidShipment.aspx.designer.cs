@@ -10,97 +10,61 @@
 namespace TOAPocket.UI.Web.Barcode {
     
     
-    public partial class UnmatchBarcode {
+    public partial class VoidShipment {
         
         /// <summary>
-        /// hdProcessOrderValid control.
+        /// hdShipId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdProcessOrderValid;
+        protected global::System.Web.UI.WebControls.HiddenField hdShipId;
         
         /// <summary>
-        /// dvProcessOrder control.
+        /// dvShipmentScan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvProcessOrder;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvShipmentScan;
         
         /// <summary>
-        /// txtProcessOrder control.
+        /// txtShipmentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProcessOrder;
+        protected global::System.Web.UI.WebControls.TextBox txtShipmentNo;
         
         /// <summary>
-        /// txtBtfs control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBtfs;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearch;
         
         /// <summary>
-        /// txtMaterial control.
+        /// dvShipment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaterial;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvShipment;
         
         /// <summary>
-        /// txtMatDesc control.
+        /// gridShipment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMatDesc;
-        
-        /// <summary>
-        /// txtOrderQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrderQty;
-        
-        /// <summary>
-        /// dvButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvButton;
-        
-        /// <summary>
-        /// btnScan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnScan;
-        
-        /// <summary>
-        /// btnCancelProcessOrder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelProcessOrder;
+        protected global::System.Web.UI.WebControls.GridView gridShipment;
         
         /// <summary>
         /// dvScanBarcode control.
@@ -112,13 +76,13 @@ namespace TOAPocket.UI.Web.Barcode {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvScanBarcode;
         
         /// <summary>
-        /// lbPrOrder control.
+        /// lbShipmentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbPrOrder;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbShipmentNo;
         
         /// <summary>
         /// lbBtfs control.
@@ -130,31 +94,31 @@ namespace TOAPocket.UI.Web.Barcode {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbBtfs;
         
         /// <summary>
-        /// lbOrderQty control.
+        /// lbVoidQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbOrderQty;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbVoidQty;
         
         /// <summary>
-        /// lbUnMatchQty control.
+        /// lbScanQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbUnMatchQty;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbScanQty;
         
         /// <summary>
-        /// lbBarcodeScan control.
+        /// lbRemainQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbBarcodeScan;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbRemainQty;
         
         /// <summary>
         /// txtBarcodeScan control.
@@ -175,31 +139,22 @@ namespace TOAPocket.UI.Web.Barcode {
         protected global::System.Web.UI.WebControls.GridView gridBarcodeScan;
         
         /// <summary>
-        /// btnSaveTemp control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSaveTemp;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSave;
         
         /// <summary>
-        /// btnSave1 control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnSave1;
-        
-        /// <summary>
-        /// btnCancelScanBarcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelScanBarcode;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancel;
         
         /// <summary>
         /// btnBack control.
