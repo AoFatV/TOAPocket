@@ -87,7 +87,8 @@ namespace TOAPocket.DataAccess
             return ds;
         }
 
-        public bool UpdatePainter(string painterNo, string maxReceive, string updateBy)
+        public bool UpdatePainter(string painterId, string painterNo, string name, string surname, string mobile,
+            string areaCode, string areaDesc, string address, string job, string income, string updateBy)
         {
             bool result = true;
             DataSet ds = new DataSet();
@@ -97,9 +98,17 @@ namespace TOAPocket.DataAccess
 
             try
             {
+                db.AddInParameter(sqlCmd, "@PainterId", SqlDbType.NVarChar, painterId);
                 db.AddInParameter(sqlCmd, "@PainterNo", SqlDbType.NVarChar, painterNo);
-                db.AddInParameter(sqlCmd, "@MaxReceive", SqlDbType.NVarChar, maxReceive);
-                db.AddInParameter(sqlCmd, "@UpdateBy", SqlDbType.NVarChar, updateBy);
+                db.AddInParameter(sqlCmd, "@Name", SqlDbType.NVarChar, String.IsNullOrEmpty(name) ? (object)DBNull.Value : name);
+                db.AddInParameter(sqlCmd, "@Surname", SqlDbType.NVarChar, String.IsNullOrEmpty(surname) ? (object)DBNull.Value : surname);
+                db.AddInParameter(sqlCmd, "@Mobile", SqlDbType.NVarChar, String.IsNullOrEmpty(mobile) ? (object)DBNull.Value : mobile);
+                db.AddInParameter(sqlCmd, "@AreaCode", SqlDbType.NVarChar, String.IsNullOrEmpty(areaCode) ? (object)DBNull.Value : areaCode);
+                db.AddInParameter(sqlCmd, "@AreaDesc", SqlDbType.NVarChar, String.IsNullOrEmpty(areaDesc) ? (object)DBNull.Value : areaDesc);
+                db.AddInParameter(sqlCmd, "@Address", SqlDbType.NVarChar, String.IsNullOrEmpty(address) ? (object)DBNull.Value : address);
+                db.AddInParameter(sqlCmd, "@Job", SqlDbType.NVarChar, String.IsNullOrEmpty(job) ? (object)DBNull.Value : job);
+                db.AddInParameter(sqlCmd, "@Income", SqlDbType.NVarChar, String.IsNullOrEmpty(income) ? (object)DBNull.Value : income);
+                db.AddInParameter(sqlCmd, "@UpdateBy", SqlDbType.NVarChar, String.IsNullOrEmpty(updateBy) ? (object)DBNull.Value : updateBy);
                 db.ExecuteNonQuery(sqlCmd);
             }
             catch (Exception ex)

@@ -11,14 +11,22 @@
         });
 
 
-        function UpdateDealer() {
+        function UpdatePainter() {
 
             var postUrl = "Painter_Detail.aspx/UpdatePainter";
             $.ajax({
                 type: "POST",
                 url: postUrl,
-                data: '{dealerId: "' + $("[id*='hdDealer']").val()
-                    + '",maxReceive:"' + $("[id*='txtMaxReceive']").val()
+                data: '{painterId: "' + $("[id*='hdPainterId']").val()
+                    + '",painterNo:"' + $("[id*='lbPainterNo']").text()
+                    + '",name:"' + $("[id*='txtName']").val()
+                    + '",surname:"' + $("[id*='txtSurname']").val()
+                    + '",mobile:"' + $("[id*='txtMobileNo']").val()
+                    + '",areaCode:"' + $("[id*='ddlArea'] option:selected").val()
+                    + '",areaDesc:"' + $("[id*='ddlArea'] option:selected").text()
+                    + '",address:"' + $("[id*='txtAddress']").val()
+                    + '",job:"' + $("[id*='ddlJob'] option:selected").val()
+                    + '",income:"' + $("[id*='ddlIncome'] option:selected").val()
                     + '",updateBy:"' + $("[id*='hdUserName']").val()
                     + '" }',
                 contentType: "application/json; charset=utf-8",
@@ -41,7 +49,7 @@
         }
 
 
-        function CancelUpdateDealer() {
+        function CancelUpdatePainter() {
             window.location = "Painter.aspx";
         }
     </script>
@@ -63,7 +71,7 @@
                         <form role="form" runat="server">
                             <asp:HiddenField runat="server" ID="hdUserId" />
                             <asp:HiddenField runat="server" ID="hdUserName" />
-                            <asp:HiddenField runat="server" ID="hdDealer" />
+                            <asp:HiddenField runat="server" ID="hdPainterId" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -164,6 +172,21 @@
                                                             { %>
                                                         <button type="button" class="btn btn-danger btn-circle"><span class="glyphicon glyphicon-remove"></span></button>
                                                         <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-xs-offset-0 col-md-offset-1">
+                                                    <div class="col-xs-3 col-md-3 text-right">
+                                                    </div>
+                                                    <div class="col-xs-7 col-md-3">
+                                                        <button type="button" class="btn btn-success" onclick="UpdatePainter()">
+                                                            <span class="glyphicon glyphicon-save"></span>บันทึก
+                                                        </button>
+                                                        <button type="button" class="btn" onclick="CancelUpdatePainter()">
+                                                            <span class="glyphicon glyphicon-remove"></span>ยกเลิก
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

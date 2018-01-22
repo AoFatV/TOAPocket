@@ -17,6 +17,20 @@
             }
 
         });
+
+        function ConfirmVoidShipment() {
+
+            confirmBox("คุณต้องการยืนยันการ Matching หรือไม่?", VoidShipment)
+
+            return false;
+        }
+
+        function VoidShipment() {
+
+            $("[id*='btnSave']").click();
+
+            return false;
+        }
     </script>
 
     <style type="text/css">
@@ -186,7 +200,7 @@
                                         </div>
                                         <div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">
                                             <div class="col-xs-5 col-md-4">
-                                                <label for="txtBarcodeScan">Barcode :</label>
+                                                <label for="txtBarcodeScan" id="lbBarcode" runat="server">Barcode :</label>
                                             </div>
                                             <div class="col-xs-7 col-md-8">
                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtBarcodeScan" OnTextChanged="txtBarcodeScan_OnTextChanged" AutoPostBack="True"></asp:TextBox>
@@ -217,7 +231,13 @@
                                     <div class="row">
                                         <div class="col-md-4 col-md-offset-4 col-xs-12 col-xs-offset-1">
                                             <div class="col-xs-8 col-md-8  col-md-offset-4  col-xs-offset-2">
-                                                <button type="button" class="btn btn-success" runat="server" id="btnSave" onserverclick="btnSave_ServerClick">
+                                                <asp:LinkButton ID="btnSaveTmp"
+                                                    runat="server"
+                                                    CssClass="btn btn-success"
+                                                    OnClientClick="return ConfirmVoidShipment()">
+                                                        <span class="glyphicon glyphicon-save">ยืนยัน</span>
+                                                </asp:LinkButton>
+                                                <button type="button" class="btn btn-success" runat="server" id="btnSave" onserverclick="btnSave_ServerClick" style="display: none;">
                                                     <span class="glyphicon glyphicon-save">ยืนยัน</span>
                                                 </button>
                                                 <button type="button" class="btn" runat="server" id="btnCancel" onserverclick="btnCancel_ServerClick">

@@ -28,6 +28,7 @@ namespace TOAPocket.UI.Web.Barcode
                 SetGridData("");
 
                 dvScanBarcode.Style["display"] = "none";
+                btnSaveTmp.Visible = false;
                 btnSave.Visible = false;
                 btnCancel.Visible = false;
                 btnBack.Visible = false;
@@ -106,6 +107,26 @@ namespace TOAPocket.UI.Web.Barcode
                 ViewState["gridShipment"] = dt;
                 gridShipment.DataSource = dt;
                 gridShipment.DataBind();
+
+                foreach (GridViewRow item in gridShipment.Rows)
+                {
+                    var voidQty = !IsDigitsOnly(item.Cells[4].Text) ? 0 : Convert.ToInt32(item.Cells[4].Text);
+                    var scanQty = !IsDigitsOnly(item.Cells[5].Text) ? 0 : Convert.ToInt32(item.Cells[5].Text);
+
+                    if (voidQty == scanQty)
+                    {
+                        item.Cells[4].Style["background-color"] = "green";
+                        item.Cells[5].Style["background-color"] = "green";
+
+                        //Field Button Scan
+                        //item.Cells[1].Visible = false;
+                    }
+                    else
+                    {
+                        item.Cells[4].Style["background-color"] = "orange";
+                        item.Cells[5].Style["background-color"] = "orange";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -158,10 +179,14 @@ namespace TOAPocket.UI.Web.Barcode
                                 lbShipmentNo.InnerText = dr["ShipmentNo"].ToString();
                                 lbBtfs.InnerText = dr["BTFS"].ToString();
                                 lbVoidQty.InnerText = dr["VoidQty"].ToString();
-                                lbScanQty.InnerText = "0";
-                                lbRemainQty.InnerText = "0";
+                                lbScanQty.InnerText = String.IsNullOrEmpty(dr["ScanQty"].ToString()) ? "0" : dr["ScanQty"].ToString();
+                                var remainQty = Convert.ToInt32(lbVoidQty.InnerText) - Convert.ToInt32(lbScanQty.InnerText);
+                                lbRemainQty.InnerText = remainQty.ToString();
 
                                 btnBack.Visible = true;
+
+                                lbBarcode.Style["display"] = "block";
+                                txtBarcodeScan.Style["display"] = "block";
                             }
                         }
                     }
@@ -279,11 +304,13 @@ namespace TOAPocket.UI.Web.Barcode
 
                     if (gridBarcodeScan.Rows.Count > 0 || actionResult)
                     {
+                        btnSaveTmp.Visible = true;
                         btnSave.Visible = true;
                         btnCancel.Visible = true;
                     }
                     else
                     {
+                        btnSaveTmp.Visible = false;
                         btnSave.Visible = false;
                         btnCancel.Visible = false;
                     }
@@ -385,11 +412,13 @@ namespace TOAPocket.UI.Web.Barcode
 
                     if (gridBarcodeScan.Rows.Count > 0)
                     {
+                        btnSaveTmp.Visible = true;
                         btnSave.Visible = true;
                         btnCancel.Visible = true;
                     }
                     else
                     {
+                        btnSaveTmp.Visible = false;
                         btnSave.Visible = false;
                         btnCancel.Visible = false;
                     }
@@ -435,7 +464,7 @@ namespace TOAPocket.UI.Web.Barcode
                     barcode = barcode.Substring(0, barcode.Length - 1);
                 }
 
-                result = blBarcode.InsertBarcodeShipment(barcode, users.UserName, users.DeptName);
+                result = blBarcode.InsertBarcodeShipment(hdShipId.Value, barcode, users.UserName, users.DeptName);
 
                 if (result)
                 {
@@ -462,11 +491,38 @@ namespace TOAPocket.UI.Web.Barcode
                     gridBarcodeScan.DataSource = dt;
                     gridBarcodeScan.DataBind();
 
+                    var countVoid = 0;
+                    foreach (GridViewRow item in gridBarcodeScan.Rows)
+                    {
+                        var status = item.Cells[3].Text;
+
+                        if (status.Equals("OK"))
+                        {
+                            item.Cells[3].Style["background-color"] = "green";
+                            countVoid++;
+                        }
+                        else
+                        {
+                            item.Cells[3].Style["background-color"] = "red";
+                        }
+                    }
+
                     gridBarcodeScan.HeaderRow.Cells[0].CssClass = "visiblecol";
 
+                    btnSaveTmp.Visible = false;
                     btnSave.Visible = false;
                     btnCancel.Visible = false;
                     btnBack.Visible = true;
+
+                    var voidQty = Convert.ToInt32(lbVoidQty.InnerText);
+                    var scanQty = Convert.ToInt32(lbScanQty.InnerText) + countVoid;
+                    var remainQty = voidQty - scanQty;
+
+                    lbScanQty.InnerText = scanQty.ToString();
+                    lbRemainQty.InnerText = remainQty.ToString();
+
+                    lbBarcode.Style["display"] = "none";
+                    txtBarcodeScan.Style["display"] = "none";
 
                     actionResult = true;
                     msg = "บันทึกข้อมูลสำเร็จ";
