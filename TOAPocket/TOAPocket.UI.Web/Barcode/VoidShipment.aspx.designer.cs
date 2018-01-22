@@ -121,6 +121,15 @@ namespace TOAPocket.UI.Web.Barcode {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbRemainQty;
         
         /// <summary>
+        /// lbBarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbBarcode;
+        
+        /// <summary>
         /// txtBarcodeScan control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,15 @@ namespace TOAPocket.UI.Web.Barcode {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridBarcodeScan;
+        
+        /// <summary>
+        /// btnSaveTmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveTmp;
         
         /// <summary>
         /// btnSave control.

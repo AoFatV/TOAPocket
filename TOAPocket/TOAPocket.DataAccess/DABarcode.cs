@@ -791,5 +791,34 @@ namespace TOAPocket.DataAccess
 
             return ds;
         }
+
+        public bool InsertBarcodeShipment(string shipmentId, string barcode, string createBy, string department)
+        {
+            bool result = true;
+            DataSet ds = new DataSet();
+
+            SqlDatabase db = new SqlDatabase(_ConnString);
+            DbCommand sqlCmd = db.GetStoredProcCommand("sp_EP_InsBarcodeShipment");
+
+            try
+            {
+                db.AddInParameter(sqlCmd, "@ShipmentId", SqlDbType.NVarChar, shipmentId);
+                db.AddInParameter(sqlCmd, "@Barcode", SqlDbType.NVarChar, barcode);
+                db.AddInParameter(sqlCmd, "@CreateBy", SqlDbType.NVarChar, createBy);
+                db.AddInParameter(sqlCmd, "@Department", SqlDbType.NVarChar, department);
+
+                db.ExecuteNonQuery(sqlCmd);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            finally
+            {
+                sqlCmd.Dispose();
+            }
+
+            return result;
+        }
     }
 }

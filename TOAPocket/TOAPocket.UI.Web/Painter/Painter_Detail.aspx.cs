@@ -23,7 +23,7 @@ namespace TOAPocket.UI.Web.Painter
                     var users = (User)Session["User"];
                     hdUserId.Value = users.UserId;
                     hdUserName.Value = users.UserName;
-                    hdDealer.Value = Request.Params["Id"];
+                    hdPainterId.Value = Request.Params["Id"];
                     InitialDropdown();
                     //InitialRadio();
 
@@ -49,10 +49,14 @@ namespace TOAPocket.UI.Web.Painter
                             txtName.Text = dr["FIRST_NAME"].ToString();
                             txtSurname.Text = dr["LAST_NAME"].ToString();
                             txtMobileNo.Text = dr["MOBILE_NO"].ToString();
-                            ddlArea.SelectedValue = dr["AREA_CODE"].ToString();
+                            ddlArea.SelectedValue = dr["AREA_CODE"].ToString().Trim();
                             txtAddress.Text = dr["ADDRESS1"].ToString();
                             ddlJob.SelectedValue = dr["OCCUPATION"].ToString();
-                            ddlIncome.SelectedValue = dr["INCOME_PER_MONTH"].ToString();
+                            if (!String.IsNullOrEmpty(dr["INCOME_PER_MONTH"].ToString()))
+                            {
+                                ddlIncome.SelectedValue = Convert.ToInt32(dr["INCOME_PER_MONTH"]).ToString();
+                            }
+
                             if (dr["IS_REGISTER"].ToString().Equals("Y"))
                             {
                                 lbStatus.InnerText = "Register";
@@ -91,7 +95,8 @@ namespace TOAPocket.UI.Web.Painter
                 DataSet ds3 = blPainter.GetIncome();
                 ddlIncome.DataSource = ds3;
                 ddlIncome.DataTextField = "DESC";
-                ddlIncome.DataValueField = "CODE";
+                //ddlIncome.DataValueField = "CODE";
+                ddlIncome.DataValueField = "ID";
                 ddlIncome.DataBind();
 
             }
@@ -102,18 +107,19 @@ namespace TOAPocket.UI.Web.Painter
         }
 
         [WebMethod]
-        public static string UpdatePainter(string dealerId, string maxReceive, string updateBy)
+        public static string UpdatePainter(string painterId, string painterNo, string name, string surname, string mobile,
+            string areaCode, string areaDesc, string address, string job, string income, string updateBy)
         {
             string str = "";
             try
             {
-                BLDealer blDealer = new BLDealer();
+                BLPainter blPainter = new BLPainter();
                 bool result = false;
                 DataTable dt = new DataTable();
 
                 Utility utility = new Utility();
 
-                result = blDealer.UpdateDealer(dealerId, maxReceive, updateBy);
+                result = blPainter.UpdatePainter(painterId, painterNo, name, surname, mobile, areaCode.Trim(), areaDesc, address, job, income, updateBy);
 
                 dt.Columns.Add("result");
                 dt.Rows.Add("false");

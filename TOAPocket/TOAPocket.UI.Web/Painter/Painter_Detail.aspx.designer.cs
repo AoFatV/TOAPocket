@@ -31,13 +31,13 @@ namespace TOAPocket.UI.Web.Painter {
         protected global::System.Web.UI.WebControls.HiddenField hdUserName;
         
         /// <summary>
-        /// hdDealer control.
+        /// hdPainterId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdDealer;
+        protected global::System.Web.UI.WebControls.HiddenField hdPainterId;
         
         /// <summary>
         /// lbPainterNo control.

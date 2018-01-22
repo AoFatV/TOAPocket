@@ -110,5 +110,10 @@ namespace TOAPocket.BusinessLogic
         {
             return daBarcode.GetBarcodeShipment(shipmentId, barcode);
         }
+
+        public bool InsertBarcodeShipment(string shipmentId, string barcode, string createBy, string department)
+        {
+            return daBarcode.InsertBarcodeShipment(shipmentId, barcode, createBy, department);
+        }
     }
 }
